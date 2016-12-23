@@ -1,7 +1,221 @@
-body: {
-	padding: 0;
+* {
+  user-select: none;
 }
 
-canvas {
-	display: block;
+html, body {
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #bd523b url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/934290/background.jpg') no-repeat center;
+  background-size: cover;
+
+  font-family: "Karla", Arial, sans-serif;
+  font-weight: bold;
+}
+
+#paper-texture {
+  display: none;
+}
+
+.cutting-mode .segment-canvas {
+  opacity: 1;
+}
+
+.cutting-mode .snowflake-3d {
+  opacity: 0;
+}
+
+.snowflake-3d {
+  transition: 500ms opacity ease-out;
+}
+
+.segment-canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  z-index: 2;
+
+  width: 26%;
+  height: 62%;
+
+  transform: translateX(-50%) translateY(-50%);
+
+  transition: 500ms opacity ease-out;
+}
+
+.ants-canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  z-index: 3;
+  cursor: none;
+}
+
+.button {
+  position: absolute;
+  bottom: 40px;
+  right: 50px;
+
+  display: none;
+  padding: 10px 50px 10px 15px;
+
+  overflow: hidden;
+
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  color: #fff;
+  background: none;
+
+  border: 2px solid #fff;
+  border-radius: 30px;
+
+  z-index: 4;
+
+  cursor: pointer;
+}
+
+
+@media screen and (max-width: 600px) {
+  .button--start-again {
+    right: auto;
+    left: 50%;
+
+    width: 240px;
+
+    transform: translateX(-50%);
+  }
+}
+
+.button--active {
+  display: block;
+}
+
+.cutting-mode .button--next {
+  display: block;
+}
+
+.button span {
+  position: relative;
+}
+
+.button:after {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+
+  display: block;
+  width: 28px;
+  height: 28px;
+
+  margin-top: -14px;
+
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/934290/button-icon.png') no-repeat center;
+  background-size: contain;
+
+  content: '';
+}
+
+.button:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background: #bd523b;
+
+  transform: scaleX(0);
+  transform-origin: 0;
+  content: '';
+
+  transition: 250ms transform ease-out;
+}
+
+.button:hover:before {
+  transform: scaleX(1);
+}
+
+
+.knife-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: 5;
+
+  display: none;
+  width: 45px;
+  height: 45px;
+
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/934290/scalpel.png') no-repeat center;
+
+  mix-blend-mode: difference;
+
+  cursor: none;
+
+  pointer-events: none;
+}
+
+.cutting-mode .knife-cursor {
+  display: block;
+}
+
+.demo-animation__touch-marker {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  margin-top: -25px;
+  margin-left: -25px;
+
+  z-index: 6;
+
+  width: 50px;
+  height: 50px;
+
+  transform-origin: 50%;
+
+  opacity: 0;
+
+  background: #3eacc3;
+  border-radius: 50%;
+}
+
+.title {
+  position: absolute;
+  top: 10%;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.title:before {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+
+  display: block;
+  width: 60px;
+  height: 30px;
+
+  margin-left: -30px;
+
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/934290/flourish.png') no-repeat center;
+  background-size: contain;
+
+  content: '';
 }
