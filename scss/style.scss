@@ -1,0 +1,4160 @@
+html, body{
+	height: 100%;
+	width: 100%;
+	background-color: white;	
+	overflow: hidden;
+  margin: 0;
+	font-family: "Courier New", Courier, monospace;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+$m: 1.25em;
+
+//colours
+$red		: #EE452F;
+$dark-red	: #8E291C;
+$dark-brown	: #402607;
+$green		: #008D29;
+$dark-green	: #2A6922;
+$brown		: #633B0D;
+$yellow		: #FFF734;
+$dark-yellow: #CAC627;
+$blue		: #556DAC;
+$grey		: #B9C4C9;
+$mist   : #B9C4C9;
+$blueberry: #4D648D;
+
+.red-pixels,
+.black-pixels,
+.brown-pixels,
+.dark-brown-pixels,
+.white-pixels,
+.yellow-pixels,
+.green-pixels,
+.christmas-pixels{
+	height: $m*15;
+	width: $m*15;
+	position: absolute;
+	
+	div{
+		position: absolute;
+		width: $m;
+		height: $m;
+	}
+}
+
+.overlay{
+	z-index: 20;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	position: absolute;
+}
+
+.wrapper{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	display: none;
+	background-color: white;
+}
+
+.road{
+	height: $m*25;
+	background-color: $mist;
+	border-bottom: $m solid black;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Italianno);
+$font: 'Italianno', cursive;
+
+.christmas-message{
+	display: none;
+	height: 100%;
+	width: 100%;
+	z-index: 20;
+	position: absolute;
+	margin-left: 50px;
+	tspan{
+		font-family: $font;
+	}
+	.merry-christmas{
+		height: 100%;
+		width: 100%;
+		fill: white;
+	}
+}
+
+.christmas-tree{
+	height: $m*26;
+	width: $m*19;
+	opacity: 0;
+	position: absolute;
+	.pixel{
+		height: $m;
+		width: $m;
+		position: absolute;
+		&.tinsel{
+			z-index: 1;
+			height: $m;
+			width: $m;
+			background-color: $yellow;
+			@for $i from 1 through 3{
+				&.tinsel#{$i}{
+					top: $m*10;
+					left: $m*($i+2);
+				}
+			}
+			@for $i from 1 through 4{
+				&.tinsel#{$i + 3}{
+					top: $m*9;
+					left: $m*($i+5);
+				}
+			}
+			@for $i from 1 through 4{
+				&.tinsel#{$i + 7}{
+					top: $m*8;
+					left: $m*($i+9);
+					background-color: $dark-yellow;
+				}
+			}
+			@for $i from 1 through 3{
+				&.tinsel#{$i + 11}{
+					top: $m*5;
+					left: $m*($i+5);
+				}
+			}
+			@for $i from 1 through 2{
+				&.tinsel#{$i + 14}{
+					top: $m*4;
+					left: $m*($i+8);
+				}
+			}
+			&.tinsel17{
+				top: $m*4;
+				left: $m*11;
+				background-color: $dark-yellow;
+			}
+		}
+		&.decoration{
+			z-index: 1;
+		}
+		&.decoration1{
+			top:$m*4;
+			left: $m*8;
+			background-color: $blue;
+		}
+		&.decoration2{
+			top:$m*11;
+			left: $m*8;
+			background-color: $red;
+		}
+		&.decoration3{
+			top:$m*12;
+			left: $m*12;
+			background-color: $blue;
+		}
+		&.decoration4{
+			top:$m*6;
+			left: $m*11;
+			background-color: $red;
+		}
+		&.decoration5{
+			top:$m*12;
+			left: $m*5;
+			background-color: $blue;
+		}
+		&.decoration6{
+			top:$m*2;
+			left: $m*8;
+			background-color: $red;
+		}
+		&.decoration7{
+			top:$m*7;
+			left: $m*7;
+			background-color: $blue;
+		}
+	}
+	.star{
+		height: $m*9;
+		width: $m*19;
+		position: absolute;
+		top: -$m*2;
+		.white-pixel{
+			background-color: white;
+			@for $i from 1 through 3{
+				&.pixel#{$i}{
+					top: $m*($i+3);
+					right: $m*($i+8);
+				}
+			}
+		}
+		.dark-yellow-pixel{
+			background-color: $dark-yellow;
+			@for $i from 1 through 2{
+				&.pixel#{$i}{
+					top: $m*($i+6);
+					right: $m*8;
+				}
+			}
+			@for $i from 1 through 5{
+				&.pixel#{$i + 2}{
+					top: $m*($i+4);
+					right: $m*7;
+				}
+			}
+			&.pixel8{
+				top: $m*6;
+				right: $m*6;
+			}
+			&.pixel9{
+				top: $m*9;
+				right: $m*6;
+			}
+		}
+		.yellow-pixel{
+			background-color: $yellow;
+			@for $i from 1 through 4{
+				&.pixel#{$i}{
+					top: $m*($i+2);
+					right: $m*($i+8);
+				}
+			}
+			@for $i from 1 through 4{
+				&.pixel#{$i + 4}{
+					top: $m*($i+3);
+					right: $m*($i+7);
+				}
+			}
+			@for $i from 1 through 5{
+				&.pixel#{$i + 8}{
+					top: $m*($i+4);
+					right: $m*($i+7);
+				}
+			}
+			@for $i from 1 through 4{
+				&.pixel#{$i + 13}{
+					top: $m*($i+5);
+					right: $m*($i+7);
+				}
+			}
+		}
+		.black-pixel{
+			background-color: black;
+			@for $i from 1 through 4{
+				&.pixel#{$i}{
+					top: $m*($i+1);
+					right: $m*($i+8);
+				}
+			}
+			@for $i from 1 through 3{
+				&.pixel#{$i + 4}{
+					top: $m*($i+2);
+					left: $m*($i+9);
+				}
+			}
+			@for $i from 1 through 3{
+				&.pixel#{$i + 8}{
+					top: $m*($i+8);
+					right: $m*($i+9);
+				}
+			}
+			@for $i from 1 through 3{
+				&.pixel#{$i + 10}{
+					top: $m*($i+7);
+					left: $m*($i+8);
+				}
+			}
+			@for $i from 1 through 2{
+				&.pixel#{$i + 13}{
+					top: $m*($i+6);
+					left: $m*6;
+				}
+			}
+			@for $i from 1 through 2{
+				&.pixel#{$i + 15}{
+					top: $m*($i+6);
+					right: $m*6;
+				}
+			}
+			@for $i from 1 through 2{
+				&.pixel#{$i + 17}{
+					top: $m*($i+4);
+					left: $m*5;
+				}
+			}
+			@for $i from 1 through 2{
+				&.pixel#{$i + 19}{
+					top: $m*($i+4);
+					right: $m*5;
+				}
+			}
+			@for $i from 1 through 2{
+				&.pixel#{$i + 21}{
+					top: $m*($i+8);
+					right: $m*($i+4);
+				}
+			}
+			@for $i from 1 through 2{
+				&.pixel#{$i + 23}{
+					top: $m*($i+8);
+					left: $m*($i+4);
+				}
+			}
+		}
+	}
+	.tree{
+		height: $m*15;
+		width: $m*19;
+		bottom: $m*4;
+		position: absolute;
+		.dark-green-pixel{
+			background-color: $dark-green;
+			@for $i from 1 through 8{
+				&.pixel#{$i}{
+					top: $m*13;
+					right: $m*($i+1);
+				}
+			}
+			@for $i from 1 through 7{
+				&.pixel#{$i + 8}{
+					top: $m*12;
+					right: $m*($i+2);
+				}
+			}
+			@for $i from 1 through 5{
+				&.pixel#{$i + 15}{
+					top: $m*11;
+					right: $m*($i+3);
+				}
+			}
+			@for $i from 1 through 6{
+				&.pixel#{$i + 20}{
+					top: $m*10;
+					right: $m*($i+2);
+				}
+			}
+			@for $i from 1 through 5{
+				&.pixel#{$i + 26}{
+					top: $m*9;
+					right: $m*($i+3);
+				}
+			}
+			@for $i from 1 through 4{
+				&.pixel#{$i + 31}{
+					top: $m*8;
+					right: $m*($i+4);
+				}
+			}
+			@for $i from 1 through 3{
+				&.pixel#{$i + 35}{
+					top: $m*7;
+					right: $m*($i+5);
+				}
+			}
+			@for $i from 1 through 3{
+				&.pixel#{$i + 38}{
+					top: $m*6;
+					right: $m*($i+4);
+				}
+			}
+			@for $i from 1 through 2{
+				&.pixel#{$i + 41}{
+					top: $m*5;
+					right: $m*($i+5);
+				}
+			}
+			&.pixel44{
+				top: $m*4;
+				right: $m*7;
+			}
+		}
+		.green-pixel{
+			background-color: $green;
+			@for $i from 1 through 7{
+				&.pixel#{$i}{
+					top: $m*13;
+					left: $m*($i+1);
+				}
+			}
+			@for $i from 1 through 6{
+				&.pixel#{$i + 7}{
+					top: $m*12;
+					left: $m*($i+2);
+				}
+			}
+			@for $i from 1 through 6{
+				&.pixel#{$i + 13}{
+					top: $m*11;
+					left: $m*($i+3);
+				}
+			}
+			@for $i from 1 through 7{
+				&.pixel#{$i + 19}{
+					top: $m*10;
+					left: $m*($i+2);
+				}
+			}
+			@for $i from 1 through 6{
+				&.pixel#{$i + 26}{
+					top: $m*9;
+					left: $m*($i+3);
+				}
+			}
+			@for $i from 1 through 5{
+				&.pixel#{$i + 32}{
+					top: $m*8;
+					left: $m*($i+4);
+				}
+			}
+			@for $i from 1 through 4{
+				&.pixel#{$i + 37}{
+					top: $m*7;
+					left: $m*($i+5);
+				}
+			}
+			@for $i from 1 through 6{
+				&.pixel#{$i + 41}{
+					top: $m*6;
+					left: $m*($i+4);
+				}
+			}
+			@for $i from 1 through 5{
+				&.pixel#{$i + 47}{
+					top: $m*5;
+					left: $m*($i+5);
+				}
+			}
+			@for $i from 1 through 4{
+				&.pixel#{$i + 52}{
+					top: $m*4;
+					left: $m*($i+6);
+				}
+			}
+			@for $i from 1 through 3{
+				&.pixel#{$i + 56}{
+					top: $m*3;
+					left: $m*($i+7);
+				}
+			}
+			@for $i from 1 through 5{
+				&.pixel#{$i + 59}{
+					top: $m*2;
+					left: $m*($i+6);
+				}
+			}
+			@for $i from 1 through 3{
+				&.pixel#{$i + 64}{
+					top: $m;
+					left: $m*($i+7);
+				}
+			}
+			&.pixel68{
+				top: 0;
+				left: $m*9;
+			}
+		}
+		.black-pixel{
+			background-color: black;
+			@for $i from 1 through 17{
+				&.pixel#{$i}{
+					top: $m*14;
+					left: $m*$i;
+				}
+			}
+			@for $i from 1 through 3{
+				&.pixel#{$i + 17}{
+					top: $m*(14 - $i);
+					left: $m*$i;
+				}
+			}
+			@for $i from 1 through 4{
+				&.pixel#{$i + 20}{
+					top: $m*(11 - $i);
+					left: $m*($i+1);
+				}
+			}
+			@for $i from 1 through 4{
+				&.pixel#{$i + 24}{
+					top: $m*(7 - $i);
+					left: $m*($i+3);
+				}
+			}
+			@for $i from 1 through 3{
+				&.pixel#{$i + 28}{
+					top: $m*(14 - $i);
+					right: $m*$i;
+				}
+			}
+			@for $i from 1 through 4{
+				&.pixel#{$i + 31}{
+					top: $m*(11 - $i);
+					right: $m*($i+1);
+				}
+			}
+			@for $i from 1 through 4{
+				&.pixel#{$i + 35}{
+					top: $m*(7 - $i);
+					right: $m*($i+3);
+				}
+			}
+			&.pixel40{
+				top: $m*2;
+				left: $m*6;
+			}
+			&.pixel41{
+				top: $m*2;
+				right: $m*6;
+			}
+		}
+	}
+	.stump{
+		height: $m*4;
+		width: $m*19;
+		bottom: $m;
+		position: absolute;
+		.black-pixel{
+			background-color: black;
+			@for $i from 1 through 4{
+				&.pixel#{$i}{
+					top: $m*$i;
+					left: $m*7;
+				}
+			}
+			@for $i from 1 through 4{
+				&.pixel#{$i + 4}{
+					top: $m*4;
+					left: $m*($i+7);
+				}
+			}
+			@for $i from 1 through 3{
+				&.pixel#{$i + 8}{
+					top: $m*$i;
+					left: $m*11;
+				}
+			}
+		}
+		.brown-pixel{
+			background-color: $brown;
+			@for $i from 1 through 3{
+				&.pixel#{$i}{
+					top: $m*$i;
+					left: $m*8;
+				}
+			}
+			@for $i from 1 through 3{
+				&.pixel#{$i + 3}{
+					top: $m*$i;
+					left: $m*9;
+				}
+			}
+			@for $i from 1 through 3{
+				&.pixel#{$i + 6}{
+					top: $m*$i;
+					left: $m*10;
+					background-color: $dark-brown;
+				}
+			}
+		}
+	}
+}
+
+.green-class{
+	background-color: $green !important;
+}
+
+.road-dirt-container{
+	width: 100%;
+	position: absolute;
+	top: $m*26;
+	height: $m*4;
+	.dirt{
+		height: $m/2;
+		width: $m/2;
+		position: absolute;
+		left: -$m;
+		background-color: $grey;
+		@for $i from 1 through 5{
+			&.dirt#{$i}{
+				top: 0;
+			}
+		}
+		@for $i from 1 through 5{
+			&.dirt#{$i + 5}{
+				top: $m;
+			}
+		}
+		@for $i from 1 through 5{
+			&.dirt#{$i + 10}{
+				top: $m*2;
+			}
+		}
+	}
+	
+}
+
+/* =SNOW CONTAINER */
+.snow-container{
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	.snow{
+		position: absolute;
+		top: -$m;
+		background-color: white;
+		z-index: 2;
+		&.small{
+			height: $m/4;
+			width: $m/4;
+		}
+		&.large{
+			height: $m;
+			width: $m;
+			z-index: 5;
+		}
+		&.normal{
+			height: $m/2;
+			width: $m/2;
+		}
+	}
+}
+
+/* =PIKACHU */
+.pikachu,
+.pikachu-walking{
+	margin-top: $m*2;
+}
+
+/* =MAIN WRAPPER */
+.main-wrapper{
+	position: absolute;
+	top: $m*6;
+	left: 50%;
+	transform: translateX(-50%);
+	width: $m*32;
+	z-index: 4;
+	height: $m*15;
+}
+ 
+/* =MAIN CONTAINER */
+//Coded each individual block because I felt like it.. nah more likely because I was bored
+.main-container{
+	position: absolute;
+	top: $m*11;
+	left: 50%;
+	transform: translateX(-50%);
+	width: $m*32;
+	z-index: 3;
+	height: $m*15;
+	.pikachu{
+		width: $m*15;
+		height: $m*15;
+		position: absolute;
+		right:0;
+		.christmas-pixels{
+			z-index: 5;
+			.white-pixel{
+				background: white;
+				&.pixel01{
+					top: $m*2;
+					left: $m*2;
+				}
+				&.pixel02{
+					top: $m*2;
+					left: $m*3;
+				}
+				&.pixel03{
+					top: $m*2;
+					left: $m*4;
+				}
+				&.pixel04{
+					top: $m*2;
+					left: $m*5;
+				}
+				&.pixel05{
+					top: $m*2;
+					left: $m*6;
+				}
+				&.pixel06{
+					top: $m*2;
+					left: $m*7;
+				}
+				&.pixel07{
+					top: $m*2;
+					left: $m*8;
+				}
+				&.pixel08{
+					top: -$m*2;
+					left: $m*10;
+				}
+			}
+			.red-pixel{
+				background: $red;
+				&.pixel01{
+					left: $m*4;
+				}
+				&.pixel02{
+					left: $m*5;
+				}
+				&.pixel03{
+					left: $m*6;
+				}
+				&.pixel04{
+					left: $m*7;
+				}
+				&.pixel05{
+					left: $m*8;
+				}
+				&.pixel06{
+					top: -$m;
+					left: $m*8;
+				}
+				&.pixel07{
+					top: -$m;
+					left: $m*7;
+				}
+				&.pixel08{
+					top: -$m;
+					left: $m*6;
+				}
+			}
+			.black-pixel{
+				background: black;
+				&.pixel01{
+					top: $m*3;
+					left: $m;
+				}
+				&.pixel02{
+					top: $m*3;
+					left: $m*2;
+				}
+				&.pixel03{
+					top: $m*3;
+					left: $m*3;
+				}
+				&.pixel04{
+					top: $m*3;
+					left: $m*4;
+				}
+				&.pixel05{
+					top: $m*3;
+					left: $m*5;
+				}
+				&.pixel06{
+					top: $m*3;
+					left: $m*6;
+				}
+				&.pixel07{
+					top: $m*3;
+					left: $m*7;
+				}
+				&.pixel08{
+					top: $m*3;
+					left: $m*8;
+				}
+				&.pixel09{
+					top: $m*3;
+					left: $m*9;
+				}
+				&.pixel10{
+					top: $m*2;
+					left: $m*9;
+				}
+				&.pixel11{
+					top: $m;
+					left: $m*9;
+				}
+				&.pixel12{
+					top: 0;
+					left: $m*9
+				}
+				&.pixel13{
+					top: -$m;
+					left: $m*9;
+				}
+				&.pixel14{
+					top: -$m;
+					left: $m*10;
+				}
+				&.pixel15{
+					top: -$m*2;
+					left: $m*11;
+				}
+				&.pixel16{
+					top: -$m*3;
+					left: $m*10;
+				}
+				&.pixel17{
+					top: -$m*2;
+					left: $m*9;
+				}
+				&.pixel18{
+					top: -$m*2;
+					left: $m*8;
+				}
+				&.pixel19{
+					top: -$m*2;
+					left: $m*7;
+				}
+				&.pixel20{
+					top: -$m*2;
+					left: $m*6;
+				}
+				&.pixel21{
+					top: -$m;
+					left: $m*5;
+				}
+				&.pixel22{
+					top: -$m;
+					left: $m*4;
+				}
+				&.pixel23{
+					top: 0;
+					left: $m*3;
+				}
+				&.pixel24{
+					top: $m;
+					left: $m*2;
+				}
+				&.pixel25{
+					top: $m*2;
+					left: $m;
+				}
+				&.pixel26{
+					top: $m;
+					left: $m*3
+				}
+				&.pixel27{
+					top: $m;
+					left: $m*4
+				}
+				&.pixel28{
+					top: $m;
+					left: $m*5
+				}
+				&.pixel29{
+					top: $m;
+					left: $m*6
+				}
+				&.pixel30{
+					top: $m;
+					left: $m*7
+				}
+				&.pixel31{
+					top: $m;
+					left: $m*8;
+				}
+			}
+		}
+		.black-pixels{
+			div{
+				background: black;
+				&.pixel01{
+					top: $m*6;
+				}
+				&.pixel02{
+					top: $m*7;
+				}
+				&.pixel03{
+					top: $m*8;
+					left: $m;
+				}
+				&.pixel04{
+					top: $m*9;
+					left: $m;
+				}
+				&.pixel05{
+					top: $m*10;
+					left: $m;
+				}
+				&.pixel06{
+					top: $m*11;
+					left: $m;
+				}
+				&.pixel07{
+					top: $m*11;
+					left: $m*2;
+				}
+				&.pixel08{
+					top: $m*12;
+				}
+				&.pixel09{
+					top: $m*13;
+					left: $m;
+				}
+				&.pixel11{
+					top: $m*13;
+					left: $m*2;
+				}
+				&.pixel12{
+					top: $m*12;
+					left: $m*3;
+				}
+				&.pixel13{
+					top: $m*13;
+					left: $m*4;
+				}
+				&.pixel14{
+					top: $m*13;
+					left: $m*5;
+				}
+				&.pixel15{
+					top: $m*13;
+					left: $m*6;
+				}
+				&.pixel16{
+					top: $m*13;
+					left: $m*7;
+				}
+				&.pixel17{
+					top: $m*14;
+					left: $m*8;
+				}
+				&.pixel18{
+					top: $m*14;
+					left: $m*9;
+				}
+				&.pixel19{
+					top: $m*13;
+					left: $m*10;
+				}
+				&.pixel20{
+					top: $m*12;
+					left: $m*8;
+				}
+				&.pixel21{
+					top: $m*12;
+					left: $m*9;
+				}
+				&.pixel22{
+					top: $m*11;
+					left: $m*9;
+				}
+				&.pixel23{
+					top: $m*11;
+					left: $m*10;
+				}
+				&.pixel24{
+					top: $m*11;
+					left: $m*11;
+				}
+				&.pixel25{
+					top: $m*12;
+					left: $m*11;
+				}
+				&.pixel26{
+					top: $m*10;
+					left: $m*10;
+				}
+				&.pixel27{
+					top: $m*9;
+					left: $m*10;
+				}
+				&.pixel28{
+					top: $m*8;
+					left: $m*10;
+				}
+				&.pixel29{
+					top: $m*7;
+					left: $m*10;
+				}
+				&.pixel30{
+					top: $m*7;
+					left: $m*9;
+				}
+				&.pixel31{
+					top: $m*10;
+					left: $m*12;
+				}
+				&.pixel32{
+					top: $m*9;
+					left: $m*13;
+				}
+				&.pixel33{
+					top: $m*8;
+					left: $m*12;
+				}
+				&.pixel34{
+					top: $m*7;
+					left: $m*13;
+				}
+				&.pixel35{
+					top: $m*6;
+					left: $m*13;
+				}
+				&.pixel36{
+					top: $m*6;
+					left: $m*12;
+				}
+				&.pixel37{
+					top: $m*6;
+					left: $m*11;
+				}
+				&.pixel38{
+					top: $m*5;
+					left: $m*11;
+				}
+				&.pixel39{
+					top: $m*4;
+					left: $m*12;
+				}
+				&.pixel40{
+					top: $m*3;
+					left: $m*13;
+				}
+				&.pixel41{
+					top: $m*2;
+					left: $m*14;
+				}
+				&.pixel42{
+					top: $m*1;
+					left: $m*14;
+				}
+				&.pixel43{
+					top: $m*1;
+					left: $m*13;
+				}
+				&.pixel44{
+					top: $m*1;
+					left: $m*12;
+				}
+				&.pixel45{
+					top: $m*1;
+					left: $m*11;
+				}
+				&.pixel46{
+					top: $m*1;
+					left: $m*10;
+				}
+				&.pixel47{
+					top: $m*1;
+					left: $m*9;
+				}
+				&.pixel48{
+					top: $m*1;
+					left: $m*8;
+				}
+				&.pixel49{
+					top: $m*1;
+					left: $m*7;
+				}
+				&.pixel50{
+					top: $m*1;
+					left: $m*6;
+				}
+				&.pixel51{
+					top: 0;
+					left: $m*9;
+				}
+				&.pixel52{
+					top: 0;
+					left: $m*10;
+				}
+				&.pixel53{
+					top: $m*2;
+					left: $m*10;
+				}
+				&.pixel54{
+					top: $m*2;
+					left: $m*9;
+				}
+				&.pixel55{
+					top: $m*2;
+					left: $m*8;
+				}
+				&.pixel56{
+					top: $m*3;
+					left: $m*9;
+				}
+				&.pixel57{
+					top: $m*4;
+					left: $m*9;
+				}
+				&.pixel58{
+					top: $m*4;
+					left: $m*8;
+				}
+				&.pixel59{
+					top: $m*5;
+					left: $m*8;
+				}
+				&.pixel60{
+					top: $m*6;
+					left: $m*9;
+				}
+				&.pixel61{
+					top: $m*2;
+					left: $m*5;
+				}
+				&.pixel62{
+					top: $m*2;
+					left: $m*4;
+				}
+				&.pixel63{
+					top: $m*2;
+					left: $m*3;
+				}
+				&.pixel64{
+					top: $m*3;
+					left: $m*2;
+				}
+				&.pixel65{
+					top: $m*4;
+					left: $m;
+				}
+				&.pixel66{
+					top: $m*5;
+					left: $m;
+				}
+				&.pixel67{
+					top: $m*6;
+					left: $m*3;
+				}
+				&.pixel68{
+					top: $m*9;
+					left: $m*3;
+				}
+				&.pixel69{
+					top: $m*10;
+					left: $m*3;
+				}
+				&.pixel70{
+					top: $m*10;
+					left: $m*4;
+				}
+			}
+		}
+		.red-pixels{
+			div{
+				background: $red;
+				&.pixel01{
+					top: $m*7;
+					left: $m*5;
+				}
+			}
+		}
+		.brown-pixels{
+			div{
+				background: $brown;
+				&.pixel01{
+					top: $m*8;
+					left: $m*7;
+				}
+				&.pixel02{
+					top: $m*8;
+					left: $m*8;
+				}
+				&.pixel03{
+					top: $m*8;
+					left: $m*9;
+				}
+				&.pixel04{
+					top: $m*8;
+					left: $m*11;
+				}
+				&.pixel05{
+					top: $m*9;
+					left: $m*11;
+				}
+				&.pixel06{
+					top: $m*9;
+					left: $m*12;
+				}
+				&.pixel07{
+					top: $m*10;
+					left: $m*7;
+				}
+				&.pixel08{
+					top: $m*10;
+					left: $m*8;
+				}
+				&.pixel09{
+					top: $m*10;
+					left: $m*9;
+				}
+				&.pixel10{
+					top: $m*10;
+					left: $m*11;
+				}
+			}
+		}
+		.yellow-pixels{
+			div{
+				background: $yellow;
+				&.pixel01{
+					top: $m*2;
+					left: $m*6;
+				}
+				&.pixel02{
+					top: $m*2;
+					left: $m*7;
+				}
+				&.pixel03{
+					top: $m*2;
+					left: $m*11;
+				}
+				&.pixel04{
+					top: $m*2;
+					left: $m*12;
+				}
+				&.pixel05{
+					top: $m*2;
+					left: $m*13;
+				}
+				&.pixel06{
+					top: $m*3;
+					left: $m*4;
+				}
+				&.pixel07{
+					top: $m*3;
+					left: $m*5;
+				}
+				&.pixel08{
+					top: $m*3;
+					left: $m*6;
+				}
+				&.pixel09{
+					top: $m*3;
+					left: $m*7;
+				}
+				&.pixel10{
+					top: $m*3;
+					left: $m*8;
+				}
+				&.pixel11{
+					top: $m*3;
+					left: $m*10;
+				}
+				&.pixel12{
+					top: $m*3;
+					left: $m*11;
+				}
+				&.pixel13{
+					top: $m*3;
+					left: $m*12;
+				}
+				&.pixel14{
+					top: $m*3;
+					left: $m*3;
+				}
+				&.pixel15{
+					top: $m*4;
+					left: $m*2;
+				}
+				&.pixel16{
+					top: $m*4;
+					left: $m*3;
+				}
+				&.pixel17{
+					top: $m*4;
+					left: $m*4;
+				}
+				&.pixel18{
+					top: $m*4;
+					left: $m*5;
+				}
+				&.pixel19{
+					top: $m*4;
+					left: $m*6;
+				}
+				&.pixel20{
+					top: $m*4;
+					left: $m*7;
+				}
+				&.pixel21{
+					top: $m*4;
+					left: $m*10;
+				}
+				&.pixel22{
+					top: $m*4;
+					left: $m*11;
+				}
+				&.pixel23{
+					top: $m*5;
+					left: $m*2;
+				}
+				&.pixel24{
+					top: $m*5;
+					left: $m*3;
+				}
+				&.pixel25{
+					top: $m*5;
+					left: $m*4;
+				}
+				&.pixel26{
+					top: $m*5;
+					left: $m*5;
+				}
+				&.pixel27{
+					top: $m*5;
+					left: $m*6;
+				}
+				&.pixel28{
+					top: $m*5;
+					left: $m*7;
+				}
+				&.pixel29{
+					top: $m*5;
+					left: $m*9;
+				}
+				&.pixel30{
+					top: $m*5;
+					left: $m*10;
+				}
+				&.pixel30{
+					top: $m*6;
+					left: $m;
+				}
+				&.pixel31{
+					top: $m*6;
+					left: $m*2;
+				}
+				&.pixel32{
+					top: $m*6;
+					left: $m*4;
+				}
+				&.pixel33{
+					top: $m*6;
+					left: $m*5;
+				}
+				&.pixel34{
+					top: $m*6;
+					left: $m*6;
+				}
+				&.pixel35{
+					top: $m*6;
+					left: $m*7;
+				}
+				&.pixel36{
+					top: $m*6;
+					left: $m*8;
+				}
+				&.pixel37{
+					top: $m*6;
+					left: $m*10;
+				}
+				&.pixel38{
+					top: $m*7;
+					left: $m;
+				}
+				&.pixel39{
+					top: $m*7;
+					left: $m*2;
+				}
+				&.pixel40{
+					top: $m*7;
+					left: $m*3;
+				}
+				&.pixel41{
+					top: $m*7;
+					left: $m*4;
+				}
+				&.pixel43{
+					top: $m*7;
+					left: $m*6;
+				}
+				&.pixel44{
+					top: $m*7;
+					left: $m*7;
+				}
+				&.pixel45{
+					top: $m*7;
+					left: $m*8;
+				}
+				&.pixel46{
+					top: $m*8;
+					left: $m*2;
+				}
+				&.pixel47{
+					top: $m*8;
+					left: $m*3;
+				}
+				&.pixel48{
+					top: $m*8;
+					left: $m*4;
+				}
+				&.pixel49{
+					top: $m*8;
+					left: $m*5;
+				}
+				&.pixel50{
+					top: $m*8;
+					left: $m*6;
+				}
+				&.pixel51{
+					top: $m*9;
+					left: $m*2;
+				}
+				&.pixel52{
+					top: $m*9;
+					left: $m*4;
+				}
+				&.pixel53{
+					top: $m*9;
+					left: $m*5;
+				}
+				&.pixel54{
+					top: $m*9;
+					left: $m*6;
+				}
+				&.pixel55{
+					top: $m*9;
+					left: $m*7;
+				}
+				&.pixel56{
+					top: $m*9;
+					left: $m*8;
+				}
+				&.pixel57{
+					top: $m*9;
+					left: $m*9;
+				}
+				&.pixel58{
+					top: $m*10;
+					left: $m*2;
+				}
+				&.pixel59{
+					top: $m*10;
+					left: $m*5;
+				}
+				&.pixel60{
+					top: $m*10;
+					left: $m*6;
+				}
+				&.pixel61{
+					top: $m*5;
+					left: $m*10;
+				}
+				&.pixel62{
+					top: $m*7;
+					left: $m*11;
+				}
+				&.pixel63{
+					top: $m*7;
+					left: $m*12;
+				}
+				&.pixel64{
+					top: $m*11;
+					left: $m*3;
+				}
+				&.pixel65{
+					top: $m*11;
+					left: $m*4;
+				}
+				&.pixel66{
+					top: $m*11;
+					left: $m*5;
+				}
+				&.pixel67{
+					top: $m*11;
+					left: $m*6;
+				}
+				&.pixel68{
+					top: $m*11;
+					left: $m*7;
+				}
+				&.pixel69{
+					top: $m*11;
+					left: $m*8;
+				}
+				&.pixel70{
+					top: $m*11;
+					left: $m*9;
+				}
+				&.pixel71{
+					top: $m*12;
+					left: $m;
+				}
+				&.pixel72{
+					top: $m*12;
+					left: $m*2;
+				}
+				&.pixel73{
+					top: $m*12;
+					left: $m*4;
+				}
+				&.pixel74{
+					top: $m*12;
+					left: $m*5;
+				}
+				&.pixel75{
+					top: $m*12;
+					left: $m*6;
+				}
+				&.pixel76{
+					top: $m*12;
+					left: $m*7;
+				}
+				&.pixel77{
+					top: $m*12;
+					left: $m*8;
+					background-color: black;
+				}
+				&.pixel78{
+					top: $m*12;
+					left: $m*10;
+				}
+				&.pixel79{
+					top: $m*13;
+					left: $m*8;
+				}
+				&.pixel80{
+					top: $m*13;
+					left: $m*9;
+				}
+
+			}
+		}
+	}
+
+	.pikachu-walking{
+		height: $m*15;
+		width: $m*15;
+		position: absolute;
+		right:0;
+		visibility: hidden;
+		opacity: 0;
+		.christmas-pixels{
+			z-index: 5;
+			.white-pixel{
+				background: white;
+				&.pixel01{
+					top: $m*2;
+					left: $m*2;
+				}
+				&.pixel02{
+					top: $m*2;
+					left: $m*3;
+				}
+				&.pixel03{
+					top: $m*2;
+					left: $m*4;
+				}
+				&.pixel04{
+					top: $m*2;
+					left: $m*5;
+				}
+				&.pixel05{
+					top: $m*2;
+					left: $m*6;
+				}
+				&.pixel06{
+					top: $m*2;
+					left: $m*7;
+				}
+				&.pixel07{
+					top: $m*2;
+					left: $m*8;
+				}
+				&.pixel08{
+					top: -$m*2;
+					left: $m*10;
+				}
+			}
+			.red-pixel{
+				background: $red;
+				&.pixel01{
+					left: $m*4;
+				}
+				&.pixel02{
+					left: $m*5;
+				}
+				&.pixel03{
+					left: $m*6;
+				}
+				&.pixel04{
+					left: $m*7;
+				}
+				&.pixel05{
+					left: $m*8;
+				}
+				&.pixel06{
+					top: -$m;
+					left: $m*8;
+				}
+				&.pixel07{
+					top: -$m;
+					left: $m*7;
+				}
+				&.pixel08{
+					top: -$m;
+					left: $m*6;
+				}
+			}
+			.black-pixel{
+				background: black;
+				&.pixel01{
+					top: $m*3;
+					left: $m;
+				}
+				&.pixel02{
+					top: $m*3;
+					left: $m*2;
+				}
+				&.pixel03{
+					top: $m*3;
+					left: $m*3;
+				}
+				&.pixel04{
+					top: $m*3;
+					left: $m*4;
+				}
+				&.pixel05{
+					top: $m*3;
+					left: $m*5;
+				}
+				&.pixel06{
+					top: $m*3;
+					left: $m*6;
+				}
+				&.pixel07{
+					top: $m*3;
+					left: $m*7;
+				}
+				&.pixel08{
+					top: $m*3;
+					left: $m*8;
+				}
+				&.pixel09{
+					top: $m*3;
+					left: $m*9;
+				}
+				&.pixel10{
+					top: $m*2;
+					left: $m*9;
+				}
+				&.pixel11{
+					top: $m;
+					left: $m*9;
+				}
+				&.pixel12{
+					top: 0;
+					left: $m*9
+				}
+				&.pixel13{
+					top: -$m;
+					left: $m*9;
+				}
+				&.pixel14{
+					top: -$m;
+					left: $m*10;
+				}
+				&.pixel15{
+					top: -$m*2;
+					left: $m*11;
+				}
+				&.pixel16{
+					top: -$m*3;
+					left: $m*10;
+				}
+				&.pixel17{
+					top: -$m*2;
+					left: $m*9;
+				}
+				&.pixel18{
+					top: -$m*2;
+					left: $m*8;
+				}
+				&.pixel19{
+					top: -$m*2;
+					left: $m*7;
+				}
+				&.pixel20{
+					top: -$m*2;
+					left: $m*6;
+				}
+				&.pixel21{
+					top: -$m;
+					left: $m*5;
+				}
+				&.pixel22{
+					top: -$m;
+					left: $m*4;
+				}
+				&.pixel23{
+					top: 0;
+					left: $m*3;
+				}
+				&.pixel24{
+					top: $m;
+					left: $m*2;
+				}
+				&.pixel25{
+					top: $m*2;
+					left: $m;
+				}
+				&.pixel26{
+					top: $m;
+					left: $m*3
+				}
+				&.pixel27{
+					top: $m;
+					left: $m*4
+				}
+				&.pixel28{
+					top: $m;
+					left: $m*5
+				}
+				&.pixel29{
+					top: $m;
+					left: $m*6
+				}
+				&.pixel30{
+					top: $m;
+					left: $m*7
+				}
+				&.pixel31{
+					top: $m;
+					left: $m*8;
+				}
+			}
+		}
+		.black-pixels{
+			div{
+				background: black;
+				&.pixel01{
+					top: $m*6;
+				}
+				&.pixel02{
+					top: $m*7;
+				}
+				&.pixel03{
+					top: $m*8;
+					left: $m;
+				}
+				&.pixel04{
+					top: $m*9;
+					left: $m;
+				}
+				&.pixel05{
+					top: $m*10;
+					left: $m;
+				}
+				&.pixel06{
+					top: $m*11;
+					left: $m;
+				}
+				&.pixel07{
+					top: $m*11;
+					left: $m*2;
+					background-color: $yellow;
+				}
+				&.pixel08{
+					top: $m*12;
+				}
+				&.pixel09{
+					top: $m*13;
+					left: $m;
+				}
+				&.pixel11{
+					top: $m*13;
+					left: $m*2;
+				}
+				&.pixel12{
+					top: $m*12;
+					left: $m*3;
+				}
+				&.pixel13{
+					top: $m*13;
+					left: $m*4;
+				}
+				&.pixel14{
+					top: $m*13;
+					left: $m*5;
+				}
+				&.pixel15{
+					top: $m*13;
+					left: $m*6;
+				}
+				&.pixel16{
+					top: $m*13;
+					left: $m*7;
+				}
+				&.pixel17{
+					top: $m*14;
+					left: $m*8;
+				}
+				&.pixel18{
+					top: $m*14;
+					left: $m*9;
+				}
+				&.pixel19{
+					top: $m*13;
+					left: $m*10;
+				}
+				&.pixel20{
+					top: $m*12;
+					left: $m*8;
+				}
+				&.pixel21{
+					top: $m*12;
+					left: $m*9;
+				}
+				&.pixel22{
+					top: $m*11;
+					left: $m*9;
+				}
+				&.pixel23{
+					top: $m*11;
+					left: $m*10;
+				}
+				&.pixel24{
+					top: $m*11;
+					left: $m*11;
+				}
+				&.pixel25{
+					top: $m*12;
+					left: $m*11;
+				}
+				&.pixel26{
+					top: $m*10;
+					left: $m*10;
+				}
+				&.pixel27{
+					top: $m*9;
+					left: $m*10;
+				}
+				&.pixel28{
+					top: $m*8;
+					left: $m*10;
+				}
+				&.pixel29{
+					top: $m*7;
+					left: $m*10;
+				}
+				&.pixel30{
+					top: $m*7;
+					left: $m*9;
+				}
+				&.pixel31{
+					top: $m*10;
+					left: $m*12;
+				}
+				&.pixel32{
+					top: $m*9;
+					left: $m*13;
+				}
+				&.pixel33{
+					top: $m*8;
+					left: $m*12;
+				}
+				&.pixel34{
+					top: $m*7;
+					left: $m*13;
+				}
+				&.pixel35{
+					top: $m*6;
+					left: $m*13;
+				}
+				&.pixel36{
+					top: $m*6;
+					left: $m*12;
+				}
+				&.pixel37{
+					top: $m*6;
+					left: $m*11;
+				}
+				&.pixel38{
+					top: $m*5;
+					left: $m*11;
+				}
+				&.pixel39{
+					top: $m*4;
+					left: $m*12;
+				}
+				&.pixel40{
+					top: $m*3;
+					left: $m*13;
+				}
+				&.pixel41{
+					top: $m*2;
+					left: $m*14;
+				}
+				&.pixel42{
+					top: $m*1;
+					left: $m*14;
+				}
+				&.pixel43{
+					top: $m*1;
+					left: $m*13;
+				}
+				&.pixel44{
+					top: $m*1;
+					left: $m*12;
+				}
+				&.pixel45{
+					top: $m*1;
+					left: $m*11;
+				}
+				&.pixel46{
+					top: $m*1;
+					left: $m*10;
+				}
+				&.pixel47{
+					top: $m*1;
+					left: $m*9;
+				}
+				&.pixel48{
+					top: $m*1;
+					left: $m*8;
+				}
+				&.pixel49{
+					top: $m*1;
+					left: $m*7;
+				}
+				&.pixel50{
+					top: $m*1;
+					left: $m*6;
+				}
+				&.pixel51{
+					top: 0;
+					left: $m*9;
+				}
+				&.pixel52{
+					top: 0;
+					left: $m*10;
+				}
+				&.pixel53{
+					top: $m*2;
+					left: $m*10;
+				}
+				&.pixel54{
+					top: $m*2;
+					left: $m*9;
+				}
+				&.pixel55{
+					top: $m*2;
+					left: $m*8;
+				}
+				&.pixel56{
+					top: $m*3;
+					left: $m*9;
+				}
+				&.pixel57{
+					top: $m*4;
+					left: $m*9;
+				}
+				&.pixel58{
+					top: $m*4;
+					left: $m*8;
+				}
+				&.pixel59{
+					top: $m*5;
+					left: $m*8;
+				}
+				&.pixel60{
+					top: $m*6;
+					left: $m*9;
+				}
+				&.pixel61{
+					top: $m*2;
+					left: $m*5;
+				}
+				&.pixel62{
+					top: $m*2;
+					left: $m*4;
+				}
+				&.pixel63{
+					top: $m*2;
+					left: $m*3;
+				}
+				&.pixel64{
+					top: $m*3;
+					left: $m*2;
+				}
+				&.pixel65{
+					top: $m*4;
+					left: $m;
+				}
+				&.pixel66{
+					top: $m*5;
+					left: $m;
+				}
+				&.pixel67{
+					top: $m*6;
+					left: $m*3;
+				}
+				&.pixel68{
+					top: $m*9;
+					left: $m*3;
+				}
+				&.pixel69{
+					top: $m*10;
+					left: $m*3;
+				}
+				&.pixel70{
+					top: $m*10;
+					left: $m*4;
+				}
+			}
+		}
+		.red-pixels{
+			div{
+				background: $red;
+				&.pixel01{
+					top: $m*7;
+					left: $m*5;
+				}
+			}
+		}
+		.brown-pixels{
+			div{
+				background: $brown;
+				&.pixel01{
+					top: $m*8;
+					left: $m*7;
+				}
+				&.pixel02{
+					top: $m*8;
+					left: $m*8;
+				}
+				&.pixel03{
+					top: $m*8;
+					left: $m*9;
+				}
+				&.pixel04{
+					top: $m*8;
+					left: $m*11;
+				}
+				&.pixel05{
+					top: $m*9;
+					left: $m*11;
+				}
+				&.pixel06{
+					top: $m*9;
+					left: $m*12;
+				}
+				&.pixel07{
+					top: $m*10;
+					left: $m*7;
+				}
+				&.pixel08{
+					top: $m*10;
+					left: $m*8;
+				}
+				&.pixel09{
+					top: $m*10;
+					left: $m*9;
+				}
+				&.pixel10{
+					top: $m*10;
+					left: $m*11;
+				}
+			}
+		}
+		.yellow-pixels{
+			div{
+				background: $yellow;
+				&.pixel01{
+					top: $m*2;
+					left: $m*6;
+				}
+				&.pixel02{
+					top: $m*2;
+					left: $m*7;
+				}
+				&.pixel03{
+					top: $m*2;
+					left: $m*11;
+				}
+				&.pixel04{
+					top: $m*2;
+					left: $m*12;
+				}
+				&.pixel05{
+					top: $m*2;
+					left: $m*13;
+				}
+				&.pixel06{
+					top: $m*3;
+					left: $m*4;
+				}
+				&.pixel07{
+					top: $m*3;
+					left: $m*5;
+				}
+				&.pixel08{
+					top: $m*3;
+					left: $m*6;
+				}
+				&.pixel09{
+					top: $m*3;
+					left: $m*7;
+				}
+				&.pixel10{
+					top: $m*3;
+					left: $m*8;
+				}
+				&.pixel11{
+					top: $m*3;
+					left: $m*10;
+				}
+				&.pixel12{
+					top: $m*3;
+					left: $m*11;
+				}
+				&.pixel13{
+					top: $m*3;
+					left: $m*12;
+				}
+				&.pixel14{
+					top: $m*3;
+					left: $m*3;
+				}
+				&.pixel15{
+					top: $m*4;
+					left: $m*2;
+				}
+				&.pixel16{
+					top: $m*4;
+					left: $m*3;
+				}
+				&.pixel17{
+					top: $m*4;
+					left: $m*4;
+				}
+				&.pixel18{
+					top: $m*4;
+					left: $m*5;
+				}
+				&.pixel19{
+					top: $m*4;
+					left: $m*6;
+				}
+				&.pixel20{
+					top: $m*4;
+					left: $m*7;
+				}
+				&.pixel21{
+					top: $m*4;
+					left: $m*10;
+				}
+				&.pixel22{
+					top: $m*4;
+					left: $m*11;
+				}
+				&.pixel23{
+					top: $m*5;
+					left: $m*2;
+				}
+				&.pixel24{
+					top: $m*5;
+					left: $m*3;
+				}
+				&.pixel25{
+					top: $m*5;
+					left: $m*4;
+				}
+				&.pixel26{
+					top: $m*5;
+					left: $m*5;
+				}
+				&.pixel27{
+					top: $m*5;
+					left: $m*6;
+				}
+				&.pixel28{
+					top: $m*5;
+					left: $m*7;
+				}
+				&.pixel29{
+					top: $m*5;
+					left: $m*9;
+				}
+				&.pixel30{
+					top: $m*5;
+					left: $m*10;
+				}
+				&.pixel30{
+					top: $m*6;
+					left: $m;
+				}
+				&.pixel31{
+					top: $m*6;
+					left: $m*2;
+				}
+				&.pixel32{
+					top: $m*6;
+					left: $m*4;
+				}
+				&.pixel33{
+					top: $m*6;
+					left: $m*5;
+				}
+				&.pixel34{
+					top: $m*6;
+					left: $m*6;
+				}
+				&.pixel35{
+					top: $m*6;
+					left: $m*7;
+				}
+				&.pixel36{
+					top: $m*6;
+					left: $m*8;
+				}
+				&.pixel37{
+					top: $m*6;
+					left: $m*10;
+				}
+				&.pixel38{
+					top: $m*7;
+					left: $m;
+				}
+				&.pixel39{
+					top: $m*7;
+					left: $m*2;
+				}
+				&.pixel40{
+					top: $m*7;
+					left: $m*3;
+				}
+				&.pixel41{
+					top: $m*7;
+					left: $m*4;
+				}
+				&.pixel43{
+					top: $m*7;
+					left: $m*6;
+				}
+				&.pixel44{
+					top: $m*7;
+					left: $m*7;
+				}
+				&.pixel45{
+					top: $m*7;
+					left: $m*8;
+				}
+				&.pixel46{
+					top: $m*8;
+					left: $m*2;
+				}
+				&.pixel47{
+					top: $m*8;
+					left: $m*3;
+				}
+				&.pixel48{
+					top: $m*8;
+					left: $m*4;
+				}
+				&.pixel49{
+					top: $m*8;
+					left: $m*5;
+				}
+				&.pixel50{
+					top: $m*8;
+					left: $m*6;
+				}
+				&.pixel51{
+					top: $m*9;
+					left: $m*2;
+				}
+				&.pixel52{
+					top: $m*9;
+					left: $m*4;
+				}
+				&.pixel53{
+					top: $m*9;
+					left: $m*5;
+				}
+				&.pixel54{
+					top: $m*9;
+					left: $m*6;
+				}
+				&.pixel55{
+					top: $m*9;
+					left: $m*7;
+				}
+				&.pixel56{
+					top: $m*9;
+					left: $m*8;
+				}
+				&.pixel57{
+					top: $m*9;
+					left: $m*9;
+				}
+				&.pixel58{
+					top: $m*10;
+					left: $m*2;
+				}
+				&.pixel59{
+					top: $m*10;
+					left: $m*5;
+				}
+				&.pixel60{
+					top: $m*10;
+					left: $m*6;
+				}
+				&.pixel61{
+					top: $m*5;
+					left: $m*10;
+				}
+				&.pixel62{
+					top: $m*7;
+					left: $m*11;
+				}
+				&.pixel63{
+					top: $m*7;
+					left: $m*12;
+				}
+				&.pixel64{
+					top: $m*11;
+					left: $m*3;
+				}
+				&.pixel65{
+					top: $m*11;
+					left: $m*4;
+				}
+				&.pixel66{
+					top: $m*11;
+					left: $m*5;
+				}
+				&.pixel67{
+					top: $m*11;
+					left: $m*6;
+				}
+				&.pixel68{
+					top: $m*11;
+					left: $m*7;
+				}
+				&.pixel69{
+					top: $m*11;
+					left: $m*8;
+				}
+				&.pixel70{
+					top: $m*11;
+					left: $m*9;
+					background-color: black;
+				}
+				&.pixel71{
+					top: $m*12;
+					left: $m;
+				}
+				&.pixel72{
+					top: $m*12;
+					left: $m*2;
+					background-color: black;
+				}
+				&.pixel73{
+					top: $m*12;
+					left: $m*4;
+				}
+				&.pixel74{
+					top: $m*12;
+					left: $m*5;
+				}
+				&.pixel75{
+					top: $m*12;
+					left: $m*6;
+				}
+				&.pixel76{
+					top: $m*12;
+					left: $m*7;
+					background-color: black;
+				}
+				&.pixel77{
+					top: $m*12;
+					left: $m*8;
+					background-color: black;
+				}
+				&.pixel78{
+					top: $m*12;
+					left: $m*10;
+				}
+				&.pixel79{
+					top: $m*13;
+					left: $m*8;
+				}
+				&.pixel80{
+					top: $m*13;
+					left: $m*9;
+				}
+
+			}
+		}
+	}
+
+	.jacob{
+		height: $m*15;
+		width: $m*15;
+		position: absolute;
+		left: 0;
+		.green-pixels{
+			div{
+				background-color: $green;
+				&.pixel01{
+					top: $m*9;
+					left: $m*10;
+				}
+				&.pixel02{
+					top: $m*10;
+					left: $m*10;
+				}
+			}
+		}
+
+		.dark-brown-pixels{
+			div{
+				background-color: $dark-brown;
+				&.pixel01{
+					top: $m;
+					left: $m*4;
+				}
+				&.pixel02{
+					top: $m*2;
+					left: $m*4;
+				}
+				&.pixel03{
+					top: $m*2;
+					left: $m*3;
+				}
+				&.pixel04{
+					top: $m*3;
+					left: $m*4;
+				}
+				&.pixel05{
+					top: $m;
+					left: $m*5;
+				}
+				&.pixel06{
+					top: $m;
+					left: $m*6;
+				}
+				&.pixel07{
+					top: $m;
+					left: $m*7;
+				}
+				&.pixel08{
+					top: $m;
+					left: $m*8;
+				}
+				&.pixel09{
+					top: $m;
+					left: $m*9;
+				}
+				&.pixel10{
+					top: $m*2;
+					left: $m*5;
+				}
+				&.pixel11{
+					top: $m*2;
+					left: $m*6;
+				}
+				&.pixel12{
+					top: $m*2;
+					left: $m*7;
+				}
+				&.pixel13{
+					top: $m*2;
+					left: $m*8;
+				}
+				&.pixel14{
+					top: $m*2;
+					left: $m*9;
+				}
+				&.pixel15{
+					top: $m*2;
+					left: $m*10;
+				}
+				&.pixel16{
+					top: $m*3;
+					left: $m*6;
+				}
+				&.pixel17{
+					top: $m*3;
+					left: $m*7;
+				}
+				&.pixel18{
+					top: $m*3;
+					left: $m*8;
+				}
+				&.pixel19{
+					top: $m*3;
+					left: $m*9;
+				}
+				&.pixel20{
+					top: $m*3;
+					left: $m*10;
+				}
+				&.pixel21{
+					top: $m*3;
+					left: $m*5;
+				}
+				&.pixel22{
+					top: $m*4;
+					left: $m*6;
+				}
+				&.pixel23{
+					top: $m*4;
+					left: $m*7;
+				}
+				&.pixel24{
+					top: $m*4;
+					left: $m*8;
+				}
+				&.pixel25{
+					top: $m*4;
+					left: $m*5;
+				}
+				&.pixel26{
+					top: $m*5;
+					left: $m*5;
+					background-color: white;
+				}
+				&.pixel27{
+					top: $m*5;
+					left: $m*4;
+					background-color: white;
+				}
+				&.pixel28{
+					top: $m*5;
+					left: $m*3;
+					background-color: white;
+				}
+				&.pixel29{
+					top: $m*4;
+					left: $m*9;
+				}
+				&.pixel30{
+					top: -$m;
+					left: $m*4;
+				}
+				&.pixel31{
+					top: 0;
+					left: $m*3;
+				}
+				&.pixel32{
+					top: 0;
+					left: $m*4;
+				}
+				&.pixel33{
+					top: 0;
+					left: $m*5;
+				}
+				&.pixel34{
+					top: $m;
+					left: $m*2;
+				}
+				&.pixel35{
+					top: $m;
+					left: $m*3;
+				}
+				&.pixel36{
+					top: $m*2;
+					left: $m*2;
+				}
+			}
+		}
+
+		.black-pixels{
+			div{
+				background-color: black;
+				//black outline
+				&.pixel01{
+					left: $m*4;
+					top: -$m*2;
+				}
+				&.pixel02{
+					top: -$m;
+					left: $m*3;
+				}
+				&.pixel03{
+					top: 0;
+					left: $m*2;
+				}
+				&.pixel04{
+					top: $m;
+					left: $m;
+				}
+				&.pixel05{
+					top: $m*2;
+					left: $m;
+				}
+				&.pixel06{
+					top: $m*7;
+					left: $m*4;
+				}
+				&.pixel07{
+					top: $m*3;
+					left: $m*2;
+				}
+				&.pixel08{
+					top: $m*4;
+					left: $m*2;
+				}
+				&.pixel09{
+					top: $m*5;
+					left: $m*2;
+				}
+				&.pixel10{
+					top: $m*6;
+					left: $m*2;
+				}
+				&.pixel11{
+					top: $m*7;
+					left: $m*2;
+				}
+				&.pixel12{
+					top: $m*8;
+					left: $m*2;
+				}
+				&.pixel13{
+					top: $m*6;
+					left: $m*4;
+				}
+				&.pixel14{
+					top: $m*9;
+					left: $m*3;
+				}
+				&.pixel15{
+					top: $m*10;
+					left: $m*3;
+				}
+				&.pixel16{
+					top: $m*10;
+					left: $m*4;
+				}
+				&.pixel17{
+					top: $m*10;
+					left: $m*5;
+				}
+				&.pixel18{
+					top: $m*10;
+					left: $m*6;
+				}
+				&.pixel19{
+					top: $m*10;
+					left: $m*7;
+				}
+				&.pixel20{
+					top: $m*10;
+					left: $m*8;
+				}
+				&.pixel21{
+					top: $m*11;
+					left: $m*2;
+				}
+				&.pixel22{
+					top: $m*11;
+					left: $m*3;
+				}
+				&.pixel23{
+					top: $m*11;
+					left: $m*4;
+				}
+				&.pixel24{
+					top: $m*11;
+					left: $m*5;
+				}
+				&.pixel25{
+					top: $m*11;
+					left: $m*6;
+				}
+				&.pixel26{
+					top: $m*11;
+					left: $m*7;
+				}
+				&.pixel27{
+					top: $m*12;
+					left: $m;
+				}
+				&.pixel28{
+					top: $m*13;
+					left: $m*2;
+				}
+				&.pixel29{
+					top: $m*14;
+					left: $m*3;
+				}
+				&.pixel30{
+					top: $m*14;
+					left: $m*4;
+				}
+				&.pixel31{
+					top: $m*14;
+					left: $m*5;
+				}
+				&.pixel32{
+					top: $m*12;
+					left: $m*4;
+				}
+				&.pixel33{
+					top: $m*13;
+					left: $m*5;
+				}
+				&.pixel34{
+					top: $m*13;
+					left: $m*6;
+				}
+				&.pixel35{
+					top: $m*13;
+					left: $m*7;
+				}
+				&.pixel36{
+					top: $m*13;
+					left: $m*8;
+				}
+				&.pixel37{
+					top: $m*13;
+					left: $m*9;
+				}
+				&.pixel38{
+					top: $m*12;
+					left: $m*7;
+				}
+				&.pixel39{
+					top: $m*14;
+					left: $m*10;
+				}
+				&.pixel40{
+					top: $m*14;
+					left: $m*11;
+				}
+				&.pixel41{
+					top: $m*13;
+					left: $m*12;
+				}
+				&.pixel42{
+					top: $m*12;
+					left: $m*12;
+				}
+				&.pixel43{
+					top: $m*12;
+					left: $m*10;
+				}
+				&.pixel44{
+					top: $m*11;
+					left: $m*10;
+				}
+				&.pixel45{
+					top: $m*11;
+					left: $m*11;
+				}
+				&.pixel46{
+					top: $m*10;
+					left: $m*11;
+				}
+				&.pixel47{
+					top: $m*9;
+					left: $m*11;
+				}
+				&.pixel48{
+					top: $m*10;
+					left: $m*9;
+				}
+				&.pixel49{
+					top: $m*9;
+					left: $m*9;
+				}
+				&.pixel50{
+					top: $m*9;
+					left: $m*8;
+				}
+				&.pixel51{
+					top: $m*8;
+					left: $m*10;
+				}
+				&.pixel52{
+					top: $m*7;
+					left: $m*10;
+				}
+				&.pixel53{
+					top: $m*7;
+					left: $m*11;
+				}
+				&.pixel54{
+					top: $m*6;
+					left: $m*12;
+				}
+				&.pixel55{
+					top: $m*6;
+					left: $m*11;
+				}
+				&.pixel56{
+					top: $m*6;
+					left: $m*10;
+				}
+				&.pixel57{
+					top: $m*6;
+					left: $m*9;
+				}
+				&.pixel58{
+					top: $m*6;
+					left: $m*8;
+				}
+				&.pixel59{
+					top: $m*6;
+					left: $m*7;
+				}
+				&.pixel60{
+					top: $m*7;
+					left: $m*7;
+				}
+				&.pixel61{
+					top: $m*5;
+					left: $m*12;
+				}
+				&.pixel62{
+					top: $m*5;
+					left: $m*11;
+				}
+				&.pixel63{
+					top: $m*5;
+					left: $m*10;
+				}
+				&.pixel64{
+					top: $m*5;
+					left: $m*9;
+				}
+				&.pixel65{
+					top: $m*5;
+					left: $m*8;
+				}
+				&.pixel66{
+					top: $m*5;
+					left: $m*7;
+				}
+				&.pixel67{
+					top: $m*5;
+					left: $m*6;
+				}
+				&.pixel68{
+					top: $m*4;
+					left: $m*12;
+				}
+				&.pixel69{
+					top: $m*4;
+					left: $m*11;
+				}
+				&.pixel70{
+					top: $m*4;
+					left: $m*10;
+				}
+				&.pixel71{
+					top: $m*3;
+					left: $m*11;
+				}
+				&.pixel72{
+					top: $m*2;
+					left: $m*11;
+				}
+				&.pixel73{
+					top: $m*1;
+					left: $m*10;
+				}
+				&.pixel74{
+					left: $m*9;
+				}
+				&.pixel75{
+					left: $m*8;
+				}
+				&.pixel76{
+					left: $m*7;
+				}
+				&.pixel77{
+					left: $m*6;
+				}
+				&.pixel78{
+					left: $m*5;
+					top: -$m;
+				}
+			}
+			
+		}
+		.white-pixels{
+			div{
+				background-color: white;
+				//black outline
+				&.pixel01{
+					top: $m*3;
+					left: $m*3;
+				}
+				&.pixel02{
+					top: $m*4;
+					left: $m;
+				}
+				&.pixel03{
+					top: $m*4;
+					left: $m*2;
+				}
+				&.pixel04{
+					top: $m*4;
+					left: $m*3;
+				}
+				&.pixel05{
+					top: $m*4;
+					left: $m*4;
+				}
+				&.pixel06{
+					top: $m*6;
+					left: $m*3;
+				}
+				&.pixel07{
+					top: $m*7;
+					left: $m*3;
+				}
+				&.pixel08{
+					top: $m*8;
+					left: $m*3;
+				}
+				&.pixel09{
+					top: $m*8;
+					left: $m*4;
+				}
+				&.pixel10{
+					top: $m*9;
+					left: $m*4;
+				}
+				&.pixel11{
+					top: $m*6;
+					left: $m*5;
+				}
+				&.pixel12{
+					top: $m*7;
+					left: $m*5;
+				}
+				&.pixel13{
+					top: $m*8;
+					left: $m*5;
+				}
+				&.pixel14{
+					top: $m*9;
+					left: $m*5;
+				}
+				&.pixel15{
+					top: $m*6;
+					left: $m*6;
+				}
+				&.pixel16{
+					top: $m*7;
+					left: $m*6;
+				}
+				&.pixel17{
+					top: $m*8;
+					left: $m*6;
+				}
+				&.pixel18{
+					top: $m*9;
+					left: $m*6;
+				}
+				&.pixel19{
+					top: $m*8;
+					left: $m*7;
+				}
+				&.pixel20{
+					top: $m*9;
+					left: $m*7;
+				}
+				&.pixel21{
+					top: $m*7;
+					left: $m*8;
+				}
+				&.pixel22{
+					top: $m*8;
+					left: $m*8;
+				}
+				&.pixel23{
+					top: $m*7;
+					left: $m*9;
+				}
+				&.pixel24{
+					top: $m*8;
+					left: $m*9;
+				}
+				&.pixel25{
+					top: $m*12;
+					left: $m*2;
+				}
+				&.pixel26{
+					top: $m*12;
+					left: $m*3;
+				}
+				&.pixel27{
+					top: $m*13;
+					left: $m*3;
+				}
+				&.pixel28{
+					top: $m*13;
+					left: $m*4;
+				}
+				&.pixel29{
+					top: $m*12;
+					left: $m*5;
+				}
+				&.pixel30{
+					top: $m*12;
+					left: $m*6;
+				}
+				&.pixel31{
+					top: $m*11;
+					left: $m*8;
+				}
+				&.pixel32{
+					top: $m*12;
+					left: $m*8;
+				}
+				&.pixel33{
+					top: $m*11;
+					left: $m*9;
+				}
+				&.pixel34{
+					top: $m*12;
+					left: $m*9;
+				}
+				&.pixel35{
+					top: $m*13;
+					left: $m*10;
+				}
+				&.pixel36{
+					top: $m*13;
+					left: $m*11;
+				}
+				&.pixel37{
+					top: $m*12;
+					left: $m*11;
+				}
+			}
+		}
+	}
+	.jacob-walking{
+		height: $m*15;
+		width: $m*15;
+		position: absolute;
+		left: 0;
+		visibility: hidden;
+		opacity: 0;
+		.green-pixels{
+			div{
+				background-color: $green;
+				&.pixel01{
+					top: $m*9;
+					left: $m*10;
+				}
+				&.pixel02{
+					top: $m*10;
+					left: $m*10;
+				}
+				&.pixel03{
+					top: $m*11;
+					left: $m*10;
+				}
+				&.pixel04{
+					top: $m*12;
+					left: $m*10;
+				}
+				&.pixel05{
+					top: $m*10;
+					left: $m*9;
+				}
+			}
+		}
+
+		.dark-brown-pixels{
+			div{
+				background-color: $dark-brown;
+				&.pixel01{
+					top: $m;
+					left: $m*4;
+				}
+				&.pixel02{
+					top: $m*2;
+					left: $m*4;
+				}
+				&.pixel03{
+					top: $m*2;
+					left: $m*3;
+				}
+				&.pixel04{
+					top: $m*3;
+					left: $m*4;
+				}
+				&.pixel05{
+					top: $m;
+					left: $m*5;
+				}
+				&.pixel06{
+					top: $m;
+					left: $m*6;
+				}
+				&.pixel07{
+					top: $m;
+					left: $m*7;
+				}
+				&.pixel08{
+					top: $m;
+					left: $m*8;
+				}
+				&.pixel09{
+					top: $m;
+					left: $m*9;
+				}
+				&.pixel10{
+					top: $m*2;
+					left: $m*5;
+				}
+				&.pixel11{
+					top: $m*2;
+					left: $m*6;
+				}
+				&.pixel12{
+					top: $m*2;
+					left: $m*7;
+				}
+				&.pixel13{
+					top: $m*2;
+					left: $m*8;
+				}
+				&.pixel14{
+					top: $m*2;
+					left: $m*9;
+				}
+				&.pixel15{
+					top: $m*2;
+					left: $m*10;
+				}
+				&.pixel16{
+					top: $m*3;
+					left: $m*6;
+				}
+				&.pixel17{
+					top: $m*3;
+					left: $m*7;
+				}
+				&.pixel18{
+					top: $m*3;
+					left: $m*8;
+				}
+				&.pixel19{
+					top: $m*3;
+					left: $m*9;
+				}
+				&.pixel20{
+					top: $m*3;
+					left: $m*10;
+				}
+				&.pixel21{
+					top: $m*3;
+					left: $m*5;
+				}
+				&.pixel22{
+					top: $m*4;
+					left: $m*6;
+				}
+				&.pixel23{
+					top: $m*4;
+					left: $m*7;
+				}
+				&.pixel24{
+					top: $m*4;
+					left: $m*8;
+				}
+				&.pixel25{
+					top: $m*4;
+					left: $m*5;
+				}
+				&.pixel26{
+					top: $m*5;
+					left: $m*5;
+					background-color: white;
+				}
+				&.pixel27{
+					top: $m*5;
+					left: $m*4;
+					background-color: white;
+				}
+				&.pixel28{
+					top: $m*5;
+					left: $m*3;
+					background-color: white;
+				}
+				&.pixel29{
+					top: $m*4;
+					left: $m*9;
+				}
+				&.pixel30{
+					top: -$m;
+					left: $m*4;
+				}
+				&.pixel31{
+					top: 0;
+					left: $m*3;
+				}
+				&.pixel32{
+					top: 0;
+					left: $m*4;
+				}
+				&.pixel33{
+					top: 0;
+					left: $m*5;
+				}
+				&.pixel34{
+					top: $m;
+					left: $m*2;
+				}
+				&.pixel35{
+					top: $m;
+					left: $m*3;
+				}
+				&.pixel36{
+					top: $m*2;
+					left: $m*2;
+				}
+			}
+		}
+
+		.black-pixels{
+			div{
+				background-color: black;
+				//black outline
+				&.pixel01{
+					left: $m*4;
+					top: -$m*2;
+				}
+				&.pixel02{
+					top: -$m;
+					left: $m*3;
+				}
+				&.pixel03{
+					top: 0;
+					left: $m*2;
+				}
+				&.pixel04{
+					top: $m;
+					left: $m;
+				}
+				&.pixel05{
+					top: $m*2;
+					left: $m;
+				}
+				&.pixel06{
+					top: $m*7;
+					left: $m*4;
+				}
+				&.pixel07{
+					top: $m*3;
+					left: $m*2;
+				}
+				&.pixel08{
+					top: $m*4;
+					left: $m*2;
+				}
+				&.pixel09{
+					top: $m*5;
+					left: $m*2;
+				}
+				&.pixel10{
+					top: $m*6;
+					left: $m*2;
+				}
+				&.pixel11{
+					top: $m*7;
+					left: $m*2;
+				}
+				&.pixel12{
+					top: $m*8;
+					left: $m*2;
+				}
+				&.pixel13{
+					top: $m*6;
+					left: $m*4;
+				}
+				&.pixel14{
+					top: $m*9;
+					left: $m*3;
+				}
+				&.pixel15{
+					top: $m*10;
+					left: $m*3;
+				}
+				&.pixel16{
+					top: $m*10;
+					left: $m*4;
+				}
+				&.pixel17{
+					top: $m*10;
+					left: $m*5;
+				}
+				&.pixel18{
+					top: $m*10;
+					left: $m*6;
+				}
+				&.pixel19{
+					top: $m*10;
+					left: $m*7;
+				}
+				&.pixel20{
+					top: $m*11;
+					left: $m*5;
+				}
+				&.pixel23{
+					top: $m*11;
+					left: $m*6;
+				}
+				&.pixel24{
+					top: $m*12;
+					left: $m*5;
+				}
+				&.pixel25{
+					top: $m*12;
+					left: $m*6;
+				}
+				&.pixel26{
+					top: $m*13;
+					left: $m*4;
+				}	
+				&.pixel31{
+					top: $m*15;
+					left: $m*5;
+				}
+				&.pixel32{
+					top: $m*15;
+					left: $m*6;
+				}
+				&.pixel33{
+					top: $m*15;
+					left: $m*7;
+				}
+				&.pixel34{
+					top: $m*15;
+					left: $m*8;
+				}
+				&.pixel35{
+					top: $m*14;
+					left: $m*4;
+				}
+				&.pixel36{
+					top: $m*14;
+					left: $m*9;
+				}
+				&.pixel37{
+					top: $m*13;
+					left: $m*9;
+				}
+				&.pixel38{
+					top: $m*13;
+					left: $m*8;
+				}
+				&.pixel39{
+					top: $m*13;
+					left: $m*7;
+				}
+				&.pixel40{
+					top: $m*12;
+					left: $m*9;
+				}
+				&.pixel41{
+					top: $m*11;
+					left: $m*9;
+				}
+				&.pixel42{
+					top: $m*13;
+					left: $m*10;
+				}
+				&.pixel43{
+					top: $m*12;
+					left: $m*11;
+				}
+				&.pixel44{
+					top: $m*11;
+					left: $m*11;
+				}
+				&.pixel45{
+					top: $m*10;
+					left: $m*11;
+				}
+				&.pixel46{
+					top: $m*9;
+					left: $m*11;
+				}
+				&.pixel48{
+					top: $m*10;
+					left: $m*8;
+				}
+				&.pixel49{
+					top: $m*9;
+					left: $m*9;
+				}
+				&.pixel50{
+					top: $m*9;
+					left: $m*8;
+				}
+				&.pixel51{
+					top: $m*8;
+					left: $m*10;
+				}
+				&.pixel52{
+					top: $m*7;
+					left: $m*10;
+				}
+				&.pixel53{
+					top: $m*7;
+					left: $m*11;
+				}
+				&.pixel54{
+					top: $m*6;
+					left: $m*12;
+				}
+				&.pixel55{
+					top: $m*6;
+					left: $m*11;
+				}
+				&.pixel56{
+					top: $m*6;
+					left: $m*10;
+				}
+				&.pixel57{
+					top: $m*6;
+					left: $m*9;
+				}
+				&.pixel58{
+					top: $m*6;
+					left: $m*8;
+				}
+				&.pixel59{
+					top: $m*6;
+					left: $m*7;
+				}
+				&.pixel60{
+					top: $m*7;
+					left: $m*7;
+				}
+				&.pixel61{
+					top: $m*5;
+					left: $m*12;
+				}
+				&.pixel62{
+					top: $m*5;
+					left: $m*11;
+				}
+				&.pixel63{
+					top: $m*5;
+					left: $m*10;
+				}
+				&.pixel64{
+					top: $m*5;
+					left: $m*9;
+				}
+				&.pixel65{
+					top: $m*5;
+					left: $m*8;
+				}
+				&.pixel66{
+					top: $m*5;
+					left: $m*7;
+				}
+				&.pixel67{
+					top: $m*5;
+					left: $m*6;
+				}
+				&.pixel68{
+					top: $m*4;
+					left: $m*12;
+				}
+				&.pixel69{
+					top: $m*4;
+					left: $m*11;
+				}
+				&.pixel70{
+					top: $m*4;
+					left: $m*10;
+				}
+				&.pixel71{
+					top: $m*3;
+					left: $m*11;
+				}
+				&.pixel72{
+					top: $m*2;
+					left: $m*11;
+				}
+				&.pixel73{
+					top: $m*1;
+					left: $m*10;
+				}
+				&.pixel74{
+					left: $m*9;
+				}
+				&.pixel75{
+					left: $m*8;
+				}
+				&.pixel76{
+					left: $m*7;
+				}
+				&.pixel77{
+					left: $m*6;
+				}
+				&.pixel78{
+					left: $m*5;
+					top: -$m;
+				}
+			}
+			
+		}
+		.white-pixels{
+			div{
+				background-color: white;
+				//black outline
+				&.pixel01{
+					top: $m*3;
+					left: $m*3;
+				}
+				&.pixel02{
+					top: $m*4;
+					left: $m;
+				}
+				&.pixel03{
+					top: $m*4;
+					left: $m*2;
+				}
+				&.pixel04{
+					top: $m*4;
+					left: $m*3;
+				}
+				&.pixel05{
+					top: $m*4;
+					left: $m*4;
+				}
+				&.pixel06{
+					top: $m*6;
+					left: $m*3;
+				}
+				&.pixel07{
+					top: $m*7;
+					left: $m*3;
+				}
+				&.pixel08{
+					top: $m*8;
+					left: $m*3;
+				}
+				&.pixel09{
+					top: $m*8;
+					left: $m*4;
+				}
+				&.pixel10{
+					top: $m*9;
+					left: $m*4;
+				}
+				&.pixel11{
+					top: $m*6;
+					left: $m*5;
+				}
+				&.pixel12{
+					top: $m*7;
+					left: $m*5;
+				}
+				&.pixel13{
+					top: $m*8;
+					left: $m*5;
+				}
+				&.pixel14{
+					top: $m*9;
+					left: $m*5;
+				}
+				&.pixel15{
+					top: $m*6;
+					left: $m*6;
+				}
+				&.pixel16{
+					top: $m*7;
+					left: $m*6;
+				}
+				&.pixel17{
+					top: $m*8;
+					left: $m*6;
+				}
+				&.pixel18{
+					top: $m*9;
+					left: $m*6;
+				}
+				&.pixel19{
+					top: $m*8;
+					left: $m*7;
+				}
+				&.pixel20{
+					top: $m*9;
+					left: $m*7;
+				}
+				&.pixel21{
+					top: $m*7;
+					left: $m*8;
+				}
+				&.pixel22{
+					top: $m*8;
+					left: $m*8;
+				}
+				&.pixel23{
+					top: $m*7;
+					left: $m*9;
+				}
+				&.pixel24{
+					top: $m*8;
+					left: $m*9;
+				}
+				&.pixel25{
+					top: $m*11;
+					left: $m*7;
+				}
+				&.pixel26{
+					top: $m*11;
+					left: $m*8;
+				}
+				&.pixel27{
+					top: $m*12;
+					left: $m*7;
+				}
+				&.pixel28{
+					top: $m*12;
+					left: $m*8;
+				}
+				&.pixel29{
+					top: $m*13;
+					left: $m*5;
+				}
+				&.pixel30{
+					top: $m*13;
+					left: $m*6;
+				}
+				&.pixel31{
+					top: $m*14;
+					left: $m*5;
+				}
+				&.pixel32{
+					top: $m*14;
+					left: $m*6;
+				}
+				&.pixel33{
+					top: $m*14;
+					left: $m*7;
+				}
+				&.pixel34{
+					top: $m*14;
+					left: $m*8;
+				}
+			}
+		}
+	}
+}
+
+/* =BLACK SQUARES */
+$w: 12.5%;
+$h: 25%;
+.square{
+	width: $w;
+	height: $h;
+	position: absolute;
+	background-color: black;
+	opacity: 0;
+	display: none;
+	&.square01{
+		top: 0;
+		left: 0;
+	}
+	&.square02{
+		top: 0;
+		left: $w;
+	}
+	&.square03{
+		top: 0;
+		left: $w*2;
+	}
+	&.square04{
+		top: 0;
+		left: $w*3;
+	}
+	&.square05{
+		top: 0;
+		left: $w*4;
+	}
+	&.square06{
+		top: 0;
+		left: $w*5;
+	}
+	&.square07{
+		top: 0;
+		left: $w*6;
+	}
+	&.square08{
+		top: 0;
+		left: $w*7;
+	}
+	&.square09{
+		top: 0;
+		left: $w*8;
+	}
+	&.square10{
+		top: $h;
+		left: 0;
+	}
+	&.square11{
+		top: $h;
+		left: $w;
+	}
+	&.square12{
+		top: $h;
+		left: $w*2;
+	}
+	&.square13{
+		top: $h;
+		left: $w*3;
+	}
+	&.square14{
+		top: $h;
+		left: $w*4;
+	}
+	&.square15{
+		top: $h;
+		left: $w*5;
+	}
+	&.square16{
+		top: $h;
+		left: $w*6;
+	}
+	&.square17{
+		top: $h;
+		left: $w*7;
+	}
+	&.square18{
+		top: $h;
+		left: $w*8;
+	}
+	&.square19{
+		top: $h*2;
+		left: 0;
+	}
+	&.square20{
+		top: $h*2;
+		left: $w;
+	}
+	&.square21{
+		top: $h*2;
+		left: $w*2;
+	}
+	&.square22{
+		top: $h*2;
+		left: $w*3;
+	}
+	&.square23{
+		top: $h*2;
+		left: $w*4;
+	}
+	&.square24{
+		top: $h*2;
+		left: $w*5;
+	}
+	&.square25{
+		top: $h*2;
+		left: $w*6;
+	}
+	&.square26{
+		top: $h*2;
+		left: $w*7;
+	}
+	&.square27{
+		top: $h*2;
+		left: $w*8;
+	}
+	&.square28{
+		top: $h*3;
+		left: 0;
+	}
+	&.square29{
+		top: $h*3;
+		left: $w;
+	}
+	&.square30{
+		top: $h*3;
+		left: $w*2;
+	}
+	&.square31{
+		top: $h*3;
+		left: $w*3;
+	}
+	&.square32{
+		top: $h*3;
+		left: $w*4;
+	}
+	&.square33{
+		top: $h*3;
+		left: $w*5;
+	}
+	&.square34{
+		top: $h*3;
+		left: $w*6;
+	}
+	&.square35{
+		top: $h*3;
+		left: $w*7;
+	}
+	&.square36{
+		top: $h*3;
+		left: $w*8;
+	}
+}
+
+/* =PRESENT */
+.present-container{
+	width: $m*12;
+	height: $m*12;
+	position: absolute;
+	top: $m*5;
+	right: 0%;
+	opacity: 0;
+	visibility: hidden;
+	.black-pixel{
+		background: black;
+		height: $m;
+		width: $m;
+		position: absolute;
+		
+		@for $i from 3 through 11{
+			&.pixel#{$i} {
+				top: $m*$i;
+				left: 0;
+			}
+		}
+
+		@for $i from 1 through 11{
+			&.pixel#{$i + 11} {
+				top: $m*11;
+				left: $m*$i;
+			}
+		}
+		
+		@for $i from 1 through 8{
+			&.pixel#{$i + 22} {
+				top: $m*($i+2);
+				left: $m*11;
+			}
+		}
+	}
+	.red-pixel{
+		background: $red;
+		height: $m;
+		width: $m;
+		position: absolute;
+		
+		@for $i from 1 through 3{
+			&.pixel#{$i} {
+				top: $m*($i+7);
+				left: $m*$i;
+			}
+		}
+		@for $i from 1 through 5{
+			&.pixel#{$i + 3} {
+				top: $m*($i+5);
+				left: $m*$i;
+			}
+		}
+		@for $i from 1 through 7{
+			&.pixel#{$i + 8} {
+				top: $m*($i+3);
+				left: $m*$i;
+			}
+		}
+		@for $i from 1 through 8{
+			&.pixel#{$i + 15} {
+				top: $m*($i+2);
+				left: $m*($i+1);
+			}
+		}
+		@for $i from 1 through 7{
+			&.pixel#{$i + 23} {
+				top: $m*($i+2);
+				left: $m*($i+3);
+			}
+		}
+		@for $i from 1 through 5{
+			&.pixel#{$i + 30} {
+				top: $m*($i+2);
+				left: $m*($i+5);
+			}
+		}
+		@for $i from 1 through 3{
+			&.pixel#{$i + 35} {
+				top: $m*($i+2);
+				left: $m*($i+7);
+			}
+		}
+
+		&.pixel39{
+			top: $m*3;
+			left: $m*10;
+		}
+		&.pixel40{
+			top: $m*10;
+			left: $m;
+		}
+	}
+	.darkred-pixel{
+		background: $dark-red;
+		height: $m;
+		width: $m;
+		position: absolute;
+		
+		@for $i from 1 through 2{
+			&.pixel#{$i} {
+				top: $m*($i+8);
+				left: $m*$i;
+			}
+		}
+		@for $i from 1 through 4{
+			&.pixel#{$i + 2} {
+				top: $m*($i+6);
+				left: $m*$i;
+			}
+		}
+		@for $i from 1 through 6{
+			&.pixel#{$i + 6} {
+				top: $m*($i+4);
+				left: $m*$i;
+			}
+		}
+		@for $i from 1 through 8{
+			&.pixel#{$i + 12} {
+				top: $m*($i+2);
+				left: $m*$i;
+			}
+		}
+		@for $i from 1 through 8{
+			&.pixel#{$i + 20} {
+				top: $m*($i+2);
+				left: $m*($i+2);
+			}
+		}
+		@for $i from 1 through 6{
+			&.pixel#{$i + 28} {
+				top: $m*($i+2);
+				left: $m*($i+4);
+			}
+		}
+		@for $i from 1 through 4{
+			&.pixel#{$i + 34} {
+				top: $m*($i+2);
+				left: $m*($i+6);
+			}
+		}
+		@for $i from 1 through 2{
+			&.pixel#{$i + 38} {
+				top: $m*($i+2);
+				left: $m*($i+8);
+			}
+		}
+	}
+	.wrapper1{
+		position: absolute;
+		top: $m*6;
+		left: $m;
+		width: $m*10;
+		height: $m*2;
+		z-index: 10;
+		background-color: $yellow;
+	}
+	.wrapper2{
+		position: absolute;
+		top: $m*3;
+		left: $m*5;
+		width: $m*2;
+		height: $m*8;
+		z-index: 10;
+		background-color: $yellow;
+	}
+	.present-top-container{
+		position: absolute;
+		left: -$m;
+		z-index: 20;
+		.present-top{
+			border: $m solid black;
+			width: $m*12;
+			height: $m*2;
+			background-color: $red;
+		}
+		.wrapper-circle-one{
+			border: $m solid $yellow;
+			height: $m*2;
+			width: $m*4;
+			position: absolute;
+			top: -$m*3;
+			left: $m*1.5;
+			z-index: -1;
+			transform: rotate(45deg);
+			border-radius: 50%;
+		}
+		.wrapper-circle-two{
+			border: $m solid $yellow;
+			height: $m*2;
+			width: $m*4;
+			position: absolute;
+			top: -$m*3;
+			left: $m*6.5;
+			z-index: -1;
+			transform: rotate(315deg);
+			border-radius: 50%;
+		}
+		.wrapper-middle{
+			position: absolute;
+			top: $m;
+			left: $m*6;
+			width: $m*2;
+			height: $m*2;
+			background-color: $yellow;
+		}
+	}
+}
+
+/* =SPEECH BOX */
+.speech-box{
+	width: 90%;
+	height: 30%;
+	border: 5px solid black;
+	border-radius: 5px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 15px;
+	opacity: 0;
+	display: none;
+	.speech-box-inner{
+		width: calc(100% - 20px);
+		height: calc(100% - 20px);
+		border: 5px solid black;
+		border-radius: 5px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		.battle-message{
+			width: 60%;
+			margin:5px 20px;
+			position: absolute;
+			font-size: 4vw;
+		}
+		.run-message{
+			@extend .battle-message;
+			width: 100%;
+			display: none;
+		}
+		.pack-message{
+			@extend .battle-message;
+			width: 90%;
+			display: none;
+		}
+		.not-effective{
+			@extend .battle-message;
+			width: 100%;
+			display: none;
+		}
+		.super-effective{
+			@extend .battle-message;
+			width: 100%;
+			display: none;
+		}
+	}
+	.fight-menu{
+		@extend .options;
+		width: 55% !important;
+		.attack{
+			position: relative;
+			cursor: pointer;
+			font-size: 5vw;
+			text-transform: uppercase;
+			.open{
+				width: 100%;
+				float: left;
+			}
+			.shake{
+				@extend .open;
+			}
+		}
+	}
+	.options{
+		width: 35%;
+		height: calc(100% - 15px);
+		border-left: 5px solid black;
+		position: absolute;
+		opacity: 0;
+		visibility: hidden;
+		right: 10px;
+		top: 8px;
+		ul{
+			list-style-type: none;
+			margin: 0;
+		}
+		.option{
+			position: relative;
+			cursor: pointer;
+			font-size: 5vw;
+			text-transform: uppercase;
+			&.fight{
+				float: left;
+				width: 60%;
+			}
+			&.pack{
+				float: left;
+				width: 45%;
+			}
+			&.run{
+				float: left;
+				text-align: center;
+				margin-left: 10px;
+				width: 45%;
+			}
+		}
+	}
+}
+
+/* =INFO */
+.info{
+    position: fixed;
+    bottom:0;
+    right: 20px;
+    z-index: 21;
+    .twitter-logo{
+        fill: $blueberry;
+        float:left;
+        vertical-align: center;
+    }
+    .info-header{
+        color: $blueberry;
+        float:right;
+        text-decoration: none;
+        font-size: 25px;
+    }
+}
+
+/* iPads (portrait) */
+@media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : portrait) {
+	.road{
+		height: $m*35;
+	}
+	.christmas-tree{
+		top: $m*10;
+	}
+	.main-container{
+		top: $m*21;
+	}
+
+	.speech-box{
+		height: 20%;
+		.speech-box-inner{
+			.battle-message{
+				font-size: 5.5vw;
+			}
+		}
+		.fight-menu{
+			.attack{
+				font-size: 7vw;
+			}
+		}
+		.options{
+			.option{
+				padding-left: 11px;
+				&.run{
+					float: left;
+					width: 45%;
+					margin: 0;
+					text-align: left;
+				}
+			}
+		}
+	}
+}

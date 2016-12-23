@@ -1,221 +1,5037 @@
-* {
-  user-select: none;
+@import url(https://fonts.googleapis.com/css?family=Italianno);
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  overflow: hidden;
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
+.red-pixels,
+.black-pixels,
+.brown-pixels,
+.dark-brown-pixels,
+.white-pixels,
+.yellow-pixels,
+.green-pixels,
+.christmas-pixels {
+  height: 18.75em;
+  width: 18.75em;
+  position: absolute;
+}
+.red-pixels div,
+.black-pixels div,
+.brown-pixels div,
+.dark-brown-pixels div,
+.white-pixels div,
+.yellow-pixels div,
+.green-pixels div,
+.christmas-pixels div {
+  position: absolute;
+  width: 1.25em;
+  height: 1.25em;
+}
 
+.overlay {
+  z-index: 20;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  position: absolute;
+}
+
+.wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  display: none;
+  background-color: white;
+}
+
+.road {
+  height: 31.25em;
+  background-color: #B9C4C9;
+  border-bottom: 1.25em solid black;
+}
+
+.christmas-message {
+  display: none;
+  height: 100%;
+  width: 100%;
+  z-index: 20;
+  position: absolute;
+  margin-left: 50px;
+}
+.christmas-message tspan {
+  font-family: "Italianno", cursive;
+}
+.christmas-message .merry-christmas {
+  height: 100%;
+  width: 100%;
+  fill: white;
+}
+
+.christmas-tree {
+  height: 32.5em;
+  width: 23.75em;
+  opacity: 0;
+  position: absolute;
+}
+.christmas-tree .pixel {
+  height: 1.25em;
+  width: 1.25em;
+  position: absolute;
+}
+.christmas-tree .pixel.tinsel {
+  z-index: 1;
+  height: 1.25em;
+  width: 1.25em;
+  background-color: #FFF734;
+}
+.christmas-tree .pixel.tinsel.tinsel1 {
+  top: 12.5em;
+  left: 3.75em;
+}
+.christmas-tree .pixel.tinsel.tinsel2 {
+  top: 12.5em;
+  left: 5em;
+}
+.christmas-tree .pixel.tinsel.tinsel3 {
+  top: 12.5em;
+  left: 6.25em;
+}
+.christmas-tree .pixel.tinsel.tinsel4 {
+  top: 11.25em;
+  left: 7.5em;
+}
+.christmas-tree .pixel.tinsel.tinsel5 {
+  top: 11.25em;
+  left: 8.75em;
+}
+.christmas-tree .pixel.tinsel.tinsel6 {
+  top: 11.25em;
+  left: 10em;
+}
+.christmas-tree .pixel.tinsel.tinsel7 {
+  top: 11.25em;
+  left: 11.25em;
+}
+.christmas-tree .pixel.tinsel.tinsel8 {
+  top: 10em;
+  left: 12.5em;
+  background-color: #CAC627;
+}
+.christmas-tree .pixel.tinsel.tinsel9 {
+  top: 10em;
+  left: 13.75em;
+  background-color: #CAC627;
+}
+.christmas-tree .pixel.tinsel.tinsel10 {
+  top: 10em;
+  left: 15em;
+  background-color: #CAC627;
+}
+.christmas-tree .pixel.tinsel.tinsel11 {
+  top: 10em;
+  left: 16.25em;
+  background-color: #CAC627;
+}
+.christmas-tree .pixel.tinsel.tinsel12 {
+  top: 6.25em;
+  left: 7.5em;
+}
+.christmas-tree .pixel.tinsel.tinsel13 {
+  top: 6.25em;
+  left: 8.75em;
+}
+.christmas-tree .pixel.tinsel.tinsel14 {
+  top: 6.25em;
+  left: 10em;
+}
+.christmas-tree .pixel.tinsel.tinsel15 {
+  top: 5em;
+  left: 11.25em;
+}
+.christmas-tree .pixel.tinsel.tinsel16 {
+  top: 5em;
+  left: 12.5em;
+}
+.christmas-tree .pixel.tinsel.tinsel17 {
+  top: 5em;
+  left: 13.75em;
+  background-color: #CAC627;
+}
+.christmas-tree .pixel.decoration {
+  z-index: 1;
+}
+.christmas-tree .pixel.decoration1 {
+  top: 5em;
+  left: 10em;
+  background-color: #556DAC;
+}
+.christmas-tree .pixel.decoration2 {
+  top: 13.75em;
+  left: 10em;
+  background-color: #EE452F;
+}
+.christmas-tree .pixel.decoration3 {
+  top: 15em;
+  left: 15em;
+  background-color: #556DAC;
+}
+.christmas-tree .pixel.decoration4 {
+  top: 7.5em;
+  left: 13.75em;
+  background-color: #EE452F;
+}
+.christmas-tree .pixel.decoration5 {
+  top: 15em;
+  left: 6.25em;
+  background-color: #556DAC;
+}
+.christmas-tree .pixel.decoration6 {
+  top: 2.5em;
+  left: 10em;
+  background-color: #EE452F;
+}
+.christmas-tree .pixel.decoration7 {
+  top: 8.75em;
+  left: 8.75em;
+  background-color: #556DAC;
+}
+.christmas-tree .star {
+  height: 11.25em;
+  width: 23.75em;
+  position: absolute;
+  top: -2.5em;
+}
+.christmas-tree .star .white-pixel {
+  background-color: white;
+}
+.christmas-tree .star .white-pixel.pixel1 {
+  top: 5em;
+  right: 11.25em;
+}
+.christmas-tree .star .white-pixel.pixel2 {
+  top: 6.25em;
+  right: 12.5em;
+}
+.christmas-tree .star .white-pixel.pixel3 {
+  top: 7.5em;
+  right: 13.75em;
+}
+.christmas-tree .star .dark-yellow-pixel {
+  background-color: #CAC627;
+}
+.christmas-tree .star .dark-yellow-pixel.pixel1 {
+  top: 8.75em;
+  right: 10em;
+}
+.christmas-tree .star .dark-yellow-pixel.pixel2 {
+  top: 10em;
+  right: 10em;
+}
+.christmas-tree .star .dark-yellow-pixel.pixel3 {
+  top: 6.25em;
+  right: 8.75em;
+}
+.christmas-tree .star .dark-yellow-pixel.pixel4 {
+  top: 7.5em;
+  right: 8.75em;
+}
+.christmas-tree .star .dark-yellow-pixel.pixel5 {
+  top: 8.75em;
+  right: 8.75em;
+}
+.christmas-tree .star .dark-yellow-pixel.pixel6 {
+  top: 10em;
+  right: 8.75em;
+}
+.christmas-tree .star .dark-yellow-pixel.pixel7 {
+  top: 11.25em;
+  right: 8.75em;
+}
+.christmas-tree .star .dark-yellow-pixel.pixel8 {
+  top: 7.5em;
+  right: 7.5em;
+}
+.christmas-tree .star .dark-yellow-pixel.pixel9 {
+  top: 11.25em;
+  right: 7.5em;
+}
+.christmas-tree .star .yellow-pixel {
+  background-color: #FFF734;
+}
+.christmas-tree .star .yellow-pixel.pixel1 {
+  top: 3.75em;
+  right: 11.25em;
+}
+.christmas-tree .star .yellow-pixel.pixel2 {
+  top: 5em;
+  right: 12.5em;
+}
+.christmas-tree .star .yellow-pixel.pixel3 {
+  top: 6.25em;
+  right: 13.75em;
+}
+.christmas-tree .star .yellow-pixel.pixel4 {
+  top: 7.5em;
+  right: 15em;
+}
+.christmas-tree .star .yellow-pixel.pixel5 {
+  top: 5em;
+  right: 10em;
+}
+.christmas-tree .star .yellow-pixel.pixel6 {
+  top: 6.25em;
+  right: 11.25em;
+}
+.christmas-tree .star .yellow-pixel.pixel7 {
+  top: 7.5em;
+  right: 12.5em;
+}
+.christmas-tree .star .yellow-pixel.pixel8 {
+  top: 8.75em;
+  right: 13.75em;
+}
+.christmas-tree .star .yellow-pixel.pixel9 {
+  top: 6.25em;
+  right: 10em;
+}
+.christmas-tree .star .yellow-pixel.pixel10 {
+  top: 7.5em;
+  right: 11.25em;
+}
+.christmas-tree .star .yellow-pixel.pixel11 {
+  top: 8.75em;
+  right: 12.5em;
+}
+.christmas-tree .star .yellow-pixel.pixel12 {
+  top: 10em;
+  right: 13.75em;
+}
+.christmas-tree .star .yellow-pixel.pixel13 {
+  top: 11.25em;
+  right: 15em;
+}
+.christmas-tree .star .yellow-pixel.pixel14 {
+  top: 7.5em;
+  right: 10em;
+}
+.christmas-tree .star .yellow-pixel.pixel15 {
+  top: 8.75em;
+  right: 11.25em;
+}
+.christmas-tree .star .yellow-pixel.pixel16 {
+  top: 10em;
+  right: 12.5em;
+}
+.christmas-tree .star .yellow-pixel.pixel17 {
+  top: 11.25em;
+  right: 13.75em;
+}
+.christmas-tree .star .black-pixel {
+  background-color: black;
+}
+.christmas-tree .star .black-pixel.pixel1 {
+  top: 2.5em;
+  right: 11.25em;
+}
+.christmas-tree .star .black-pixel.pixel2 {
+  top: 3.75em;
+  right: 12.5em;
+}
+.christmas-tree .star .black-pixel.pixel3 {
+  top: 5em;
+  right: 13.75em;
+}
+.christmas-tree .star .black-pixel.pixel4 {
+  top: 6.25em;
+  right: 15em;
+}
+.christmas-tree .star .black-pixel.pixel5 {
+  top: 3.75em;
+  left: 12.5em;
+}
+.christmas-tree .star .black-pixel.pixel6 {
+  top: 5em;
+  left: 13.75em;
+}
+.christmas-tree .star .black-pixel.pixel7 {
+  top: 6.25em;
+  left: 15em;
+}
+.christmas-tree .star .black-pixel.pixel9 {
+  top: 11.25em;
+  right: 12.5em;
+}
+.christmas-tree .star .black-pixel.pixel10 {
+  top: 12.5em;
+  right: 13.75em;
+}
+.christmas-tree .star .black-pixel.pixel11 {
+  top: 13.75em;
+  right: 15em;
+}
+.christmas-tree .star .black-pixel.pixel11 {
+  top: 10em;
+  left: 11.25em;
+}
+.christmas-tree .star .black-pixel.pixel12 {
+  top: 11.25em;
+  left: 12.5em;
+}
+.christmas-tree .star .black-pixel.pixel13 {
+  top: 12.5em;
+  left: 13.75em;
+}
+.christmas-tree .star .black-pixel.pixel14 {
+  top: 8.75em;
+  left: 7.5em;
+}
+.christmas-tree .star .black-pixel.pixel15 {
+  top: 10em;
+  left: 7.5em;
+}
+.christmas-tree .star .black-pixel.pixel16 {
+  top: 8.75em;
+  right: 7.5em;
+}
+.christmas-tree .star .black-pixel.pixel17 {
+  top: 10em;
+  right: 7.5em;
+}
+.christmas-tree .star .black-pixel.pixel18 {
+  top: 6.25em;
+  left: 6.25em;
+}
+.christmas-tree .star .black-pixel.pixel19 {
+  top: 7.5em;
+  left: 6.25em;
+}
+.christmas-tree .star .black-pixel.pixel20 {
+  top: 6.25em;
+  right: 6.25em;
+}
+.christmas-tree .star .black-pixel.pixel21 {
+  top: 7.5em;
+  right: 6.25em;
+}
+.christmas-tree .star .black-pixel.pixel22 {
+  top: 11.25em;
+  right: 6.25em;
+}
+.christmas-tree .star .black-pixel.pixel23 {
+  top: 12.5em;
+  right: 7.5em;
+}
+.christmas-tree .star .black-pixel.pixel24 {
+  top: 11.25em;
+  left: 6.25em;
+}
+.christmas-tree .star .black-pixel.pixel25 {
+  top: 12.5em;
+  left: 7.5em;
+}
+.christmas-tree .tree {
+  height: 18.75em;
+  width: 23.75em;
+  bottom: 5em;
+  position: absolute;
+}
+.christmas-tree .tree .dark-green-pixel {
+  background-color: #2A6922;
+}
+.christmas-tree .tree .dark-green-pixel.pixel1 {
+  top: 16.25em;
+  right: 2.5em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel2 {
+  top: 16.25em;
+  right: 3.75em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel3 {
+  top: 16.25em;
+  right: 5em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel4 {
+  top: 16.25em;
+  right: 6.25em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel5 {
+  top: 16.25em;
+  right: 7.5em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel6 {
+  top: 16.25em;
+  right: 8.75em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel7 {
+  top: 16.25em;
+  right: 10em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel8 {
+  top: 16.25em;
+  right: 11.25em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel9 {
+  top: 15em;
+  right: 3.75em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel10 {
+  top: 15em;
+  right: 5em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel11 {
+  top: 15em;
+  right: 6.25em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel12 {
+  top: 15em;
+  right: 7.5em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel13 {
+  top: 15em;
+  right: 8.75em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel14 {
+  top: 15em;
+  right: 10em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel15 {
+  top: 15em;
+  right: 11.25em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel16 {
+  top: 13.75em;
+  right: 5em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel17 {
+  top: 13.75em;
+  right: 6.25em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel18 {
+  top: 13.75em;
+  right: 7.5em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel19 {
+  top: 13.75em;
+  right: 8.75em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel20 {
+  top: 13.75em;
+  right: 10em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel21 {
+  top: 12.5em;
+  right: 3.75em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel22 {
+  top: 12.5em;
+  right: 5em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel23 {
+  top: 12.5em;
+  right: 6.25em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel24 {
+  top: 12.5em;
+  right: 7.5em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel25 {
+  top: 12.5em;
+  right: 8.75em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel26 {
+  top: 12.5em;
+  right: 10em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel27 {
+  top: 11.25em;
+  right: 5em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel28 {
+  top: 11.25em;
+  right: 6.25em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel29 {
+  top: 11.25em;
+  right: 7.5em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel30 {
+  top: 11.25em;
+  right: 8.75em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel31 {
+  top: 11.25em;
+  right: 10em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel32 {
+  top: 10em;
+  right: 6.25em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel33 {
+  top: 10em;
+  right: 7.5em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel34 {
+  top: 10em;
+  right: 8.75em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel35 {
+  top: 10em;
+  right: 10em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel36 {
+  top: 8.75em;
+  right: 7.5em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel37 {
+  top: 8.75em;
+  right: 8.75em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel38 {
+  top: 8.75em;
+  right: 10em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel39 {
+  top: 7.5em;
+  right: 6.25em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel40 {
+  top: 7.5em;
+  right: 7.5em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel41 {
+  top: 7.5em;
+  right: 8.75em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel42 {
+  top: 6.25em;
+  right: 7.5em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel43 {
+  top: 6.25em;
+  right: 8.75em;
+}
+.christmas-tree .tree .dark-green-pixel.pixel44 {
+  top: 5em;
+  right: 8.75em;
+}
+.christmas-tree .tree .green-pixel {
+  background-color: #008D29;
+}
+.christmas-tree .tree .green-pixel.pixel1 {
+  top: 16.25em;
+  left: 2.5em;
+}
+.christmas-tree .tree .green-pixel.pixel2 {
+  top: 16.25em;
+  left: 3.75em;
+}
+.christmas-tree .tree .green-pixel.pixel3 {
+  top: 16.25em;
+  left: 5em;
+}
+.christmas-tree .tree .green-pixel.pixel4 {
+  top: 16.25em;
+  left: 6.25em;
+}
+.christmas-tree .tree .green-pixel.pixel5 {
+  top: 16.25em;
+  left: 7.5em;
+}
+.christmas-tree .tree .green-pixel.pixel6 {
+  top: 16.25em;
+  left: 8.75em;
+}
+.christmas-tree .tree .green-pixel.pixel7 {
+  top: 16.25em;
+  left: 10em;
+}
+.christmas-tree .tree .green-pixel.pixel8 {
+  top: 15em;
+  left: 3.75em;
+}
+.christmas-tree .tree .green-pixel.pixel9 {
+  top: 15em;
+  left: 5em;
+}
+.christmas-tree .tree .green-pixel.pixel10 {
+  top: 15em;
+  left: 6.25em;
+}
+.christmas-tree .tree .green-pixel.pixel11 {
+  top: 15em;
+  left: 7.5em;
+}
+.christmas-tree .tree .green-pixel.pixel12 {
+  top: 15em;
+  left: 8.75em;
+}
+.christmas-tree .tree .green-pixel.pixel13 {
+  top: 15em;
+  left: 10em;
+}
+.christmas-tree .tree .green-pixel.pixel14 {
+  top: 13.75em;
+  left: 5em;
+}
+.christmas-tree .tree .green-pixel.pixel15 {
+  top: 13.75em;
+  left: 6.25em;
+}
+.christmas-tree .tree .green-pixel.pixel16 {
+  top: 13.75em;
+  left: 7.5em;
+}
+.christmas-tree .tree .green-pixel.pixel17 {
+  top: 13.75em;
+  left: 8.75em;
+}
+.christmas-tree .tree .green-pixel.pixel18 {
+  top: 13.75em;
+  left: 10em;
+}
+.christmas-tree .tree .green-pixel.pixel19 {
+  top: 13.75em;
+  left: 11.25em;
+}
+.christmas-tree .tree .green-pixel.pixel20 {
+  top: 12.5em;
+  left: 3.75em;
+}
+.christmas-tree .tree .green-pixel.pixel21 {
+  top: 12.5em;
+  left: 5em;
+}
+.christmas-tree .tree .green-pixel.pixel22 {
+  top: 12.5em;
+  left: 6.25em;
+}
+.christmas-tree .tree .green-pixel.pixel23 {
+  top: 12.5em;
+  left: 7.5em;
+}
+.christmas-tree .tree .green-pixel.pixel24 {
+  top: 12.5em;
+  left: 8.75em;
+}
+.christmas-tree .tree .green-pixel.pixel25 {
+  top: 12.5em;
+  left: 10em;
+}
+.christmas-tree .tree .green-pixel.pixel26 {
+  top: 12.5em;
+  left: 11.25em;
+}
+.christmas-tree .tree .green-pixel.pixel27 {
+  top: 11.25em;
+  left: 5em;
+}
+.christmas-tree .tree .green-pixel.pixel28 {
+  top: 11.25em;
+  left: 6.25em;
+}
+.christmas-tree .tree .green-pixel.pixel29 {
+  top: 11.25em;
+  left: 7.5em;
+}
+.christmas-tree .tree .green-pixel.pixel30 {
+  top: 11.25em;
+  left: 8.75em;
+}
+.christmas-tree .tree .green-pixel.pixel31 {
+  top: 11.25em;
+  left: 10em;
+}
+.christmas-tree .tree .green-pixel.pixel32 {
+  top: 11.25em;
+  left: 11.25em;
+}
+.christmas-tree .tree .green-pixel.pixel33 {
+  top: 10em;
+  left: 6.25em;
+}
+.christmas-tree .tree .green-pixel.pixel34 {
+  top: 10em;
+  left: 7.5em;
+}
+.christmas-tree .tree .green-pixel.pixel35 {
+  top: 10em;
+  left: 8.75em;
+}
+.christmas-tree .tree .green-pixel.pixel36 {
+  top: 10em;
+  left: 10em;
+}
+.christmas-tree .tree .green-pixel.pixel37 {
+  top: 10em;
+  left: 11.25em;
+}
+.christmas-tree .tree .green-pixel.pixel38 {
+  top: 8.75em;
+  left: 7.5em;
+}
+.christmas-tree .tree .green-pixel.pixel39 {
+  top: 8.75em;
+  left: 8.75em;
+}
+.christmas-tree .tree .green-pixel.pixel40 {
+  top: 8.75em;
+  left: 10em;
+}
+.christmas-tree .tree .green-pixel.pixel41 {
+  top: 8.75em;
+  left: 11.25em;
+}
+.christmas-tree .tree .green-pixel.pixel42 {
+  top: 7.5em;
+  left: 6.25em;
+}
+.christmas-tree .tree .green-pixel.pixel43 {
+  top: 7.5em;
+  left: 7.5em;
+}
+.christmas-tree .tree .green-pixel.pixel44 {
+  top: 7.5em;
+  left: 8.75em;
+}
+.christmas-tree .tree .green-pixel.pixel45 {
+  top: 7.5em;
+  left: 10em;
+}
+.christmas-tree .tree .green-pixel.pixel46 {
+  top: 7.5em;
+  left: 11.25em;
+}
+.christmas-tree .tree .green-pixel.pixel47 {
+  top: 7.5em;
+  left: 12.5em;
+}
+.christmas-tree .tree .green-pixel.pixel48 {
+  top: 6.25em;
+  left: 7.5em;
+}
+.christmas-tree .tree .green-pixel.pixel49 {
+  top: 6.25em;
+  left: 8.75em;
+}
+.christmas-tree .tree .green-pixel.pixel50 {
+  top: 6.25em;
+  left: 10em;
+}
+.christmas-tree .tree .green-pixel.pixel51 {
+  top: 6.25em;
+  left: 11.25em;
+}
+.christmas-tree .tree .green-pixel.pixel52 {
+  top: 6.25em;
+  left: 12.5em;
+}
+.christmas-tree .tree .green-pixel.pixel53 {
+  top: 5em;
+  left: 8.75em;
+}
+.christmas-tree .tree .green-pixel.pixel54 {
+  top: 5em;
+  left: 10em;
+}
+.christmas-tree .tree .green-pixel.pixel55 {
+  top: 5em;
+  left: 11.25em;
+}
+.christmas-tree .tree .green-pixel.pixel56 {
+  top: 5em;
+  left: 12.5em;
+}
+.christmas-tree .tree .green-pixel.pixel57 {
+  top: 3.75em;
+  left: 10em;
+}
+.christmas-tree .tree .green-pixel.pixel58 {
+  top: 3.75em;
+  left: 11.25em;
+}
+.christmas-tree .tree .green-pixel.pixel59 {
+  top: 3.75em;
+  left: 12.5em;
+}
+.christmas-tree .tree .green-pixel.pixel60 {
+  top: 2.5em;
+  left: 8.75em;
+}
+.christmas-tree .tree .green-pixel.pixel61 {
+  top: 2.5em;
+  left: 10em;
+}
+.christmas-tree .tree .green-pixel.pixel62 {
+  top: 2.5em;
+  left: 11.25em;
+}
+.christmas-tree .tree .green-pixel.pixel63 {
+  top: 2.5em;
+  left: 12.5em;
+}
+.christmas-tree .tree .green-pixel.pixel64 {
+  top: 2.5em;
+  left: 13.75em;
+}
+.christmas-tree .tree .green-pixel.pixel65 {
+  top: 1.25em;
+  left: 10em;
+}
+.christmas-tree .tree .green-pixel.pixel66 {
+  top: 1.25em;
+  left: 11.25em;
+}
+.christmas-tree .tree .green-pixel.pixel67 {
+  top: 1.25em;
+  left: 12.5em;
+}
+.christmas-tree .tree .green-pixel.pixel68 {
+  top: 0;
+  left: 11.25em;
+}
+.christmas-tree .tree .black-pixel {
+  background-color: black;
+}
+.christmas-tree .tree .black-pixel.pixel1 {
+  top: 17.5em;
+  left: 1.25em;
+}
+.christmas-tree .tree .black-pixel.pixel2 {
+  top: 17.5em;
+  left: 2.5em;
+}
+.christmas-tree .tree .black-pixel.pixel3 {
+  top: 17.5em;
+  left: 3.75em;
+}
+.christmas-tree .tree .black-pixel.pixel4 {
+  top: 17.5em;
+  left: 5em;
+}
+.christmas-tree .tree .black-pixel.pixel5 {
+  top: 17.5em;
+  left: 6.25em;
+}
+.christmas-tree .tree .black-pixel.pixel6 {
+  top: 17.5em;
+  left: 7.5em;
+}
+.christmas-tree .tree .black-pixel.pixel7 {
+  top: 17.5em;
+  left: 8.75em;
+}
+.christmas-tree .tree .black-pixel.pixel8 {
+  top: 17.5em;
+  left: 10em;
+}
+.christmas-tree .tree .black-pixel.pixel9 {
+  top: 17.5em;
+  left: 11.25em;
+}
+.christmas-tree .tree .black-pixel.pixel10 {
+  top: 17.5em;
+  left: 12.5em;
+}
+.christmas-tree .tree .black-pixel.pixel11 {
+  top: 17.5em;
+  left: 13.75em;
+}
+.christmas-tree .tree .black-pixel.pixel12 {
+  top: 17.5em;
+  left: 15em;
+}
+.christmas-tree .tree .black-pixel.pixel13 {
+  top: 17.5em;
+  left: 16.25em;
+}
+.christmas-tree .tree .black-pixel.pixel14 {
+  top: 17.5em;
+  left: 17.5em;
+}
+.christmas-tree .tree .black-pixel.pixel15 {
+  top: 17.5em;
+  left: 18.75em;
+}
+.christmas-tree .tree .black-pixel.pixel16 {
+  top: 17.5em;
+  left: 20em;
+}
+.christmas-tree .tree .black-pixel.pixel17 {
+  top: 17.5em;
+  left: 21.25em;
+}
+.christmas-tree .tree .black-pixel.pixel18 {
+  top: 16.25em;
+  left: 1.25em;
+}
+.christmas-tree .tree .black-pixel.pixel19 {
+  top: 15em;
+  left: 2.5em;
+}
+.christmas-tree .tree .black-pixel.pixel20 {
+  top: 13.75em;
+  left: 3.75em;
+}
+.christmas-tree .tree .black-pixel.pixel21 {
+  top: 12.5em;
+  left: 2.5em;
+}
+.christmas-tree .tree .black-pixel.pixel22 {
+  top: 11.25em;
+  left: 3.75em;
+}
+.christmas-tree .tree .black-pixel.pixel23 {
+  top: 10em;
+  left: 5em;
+}
+.christmas-tree .tree .black-pixel.pixel24 {
+  top: 8.75em;
+  left: 6.25em;
+}
+.christmas-tree .tree .black-pixel.pixel25 {
+  top: 7.5em;
+  left: 5em;
+}
+.christmas-tree .tree .black-pixel.pixel26 {
+  top: 6.25em;
+  left: 6.25em;
+}
+.christmas-tree .tree .black-pixel.pixel27 {
+  top: 5em;
+  left: 7.5em;
+}
+.christmas-tree .tree .black-pixel.pixel28 {
+  top: 3.75em;
+  left: 8.75em;
+}
+.christmas-tree .tree .black-pixel.pixel29 {
+  top: 16.25em;
+  right: 1.25em;
+}
+.christmas-tree .tree .black-pixel.pixel30 {
+  top: 15em;
+  right: 2.5em;
+}
+.christmas-tree .tree .black-pixel.pixel31 {
+  top: 13.75em;
+  right: 3.75em;
+}
+.christmas-tree .tree .black-pixel.pixel32 {
+  top: 12.5em;
+  right: 2.5em;
+}
+.christmas-tree .tree .black-pixel.pixel33 {
+  top: 11.25em;
+  right: 3.75em;
+}
+.christmas-tree .tree .black-pixel.pixel34 {
+  top: 10em;
+  right: 5em;
+}
+.christmas-tree .tree .black-pixel.pixel35 {
+  top: 8.75em;
+  right: 6.25em;
+}
+.christmas-tree .tree .black-pixel.pixel36 {
+  top: 7.5em;
+  right: 5em;
+}
+.christmas-tree .tree .black-pixel.pixel37 {
+  top: 6.25em;
+  right: 6.25em;
+}
+.christmas-tree .tree .black-pixel.pixel38 {
+  top: 5em;
+  right: 7.5em;
+}
+.christmas-tree .tree .black-pixel.pixel39 {
+  top: 3.75em;
+  right: 8.75em;
+}
+.christmas-tree .tree .black-pixel.pixel40 {
+  top: 2.5em;
+  left: 7.5em;
+}
+.christmas-tree .tree .black-pixel.pixel41 {
+  top: 2.5em;
+  right: 7.5em;
+}
+.christmas-tree .stump {
+  height: 5em;
+  width: 23.75em;
+  bottom: 1.25em;
+  position: absolute;
+}
+.christmas-tree .stump .black-pixel {
+  background-color: black;
+}
+.christmas-tree .stump .black-pixel.pixel1 {
+  top: 1.25em;
+  left: 8.75em;
+}
+.christmas-tree .stump .black-pixel.pixel2 {
+  top: 2.5em;
+  left: 8.75em;
+}
+.christmas-tree .stump .black-pixel.pixel3 {
+  top: 3.75em;
+  left: 8.75em;
+}
+.christmas-tree .stump .black-pixel.pixel4 {
+  top: 5em;
+  left: 8.75em;
+}
+.christmas-tree .stump .black-pixel.pixel5 {
+  top: 5em;
+  left: 10em;
+}
+.christmas-tree .stump .black-pixel.pixel6 {
+  top: 5em;
+  left: 11.25em;
+}
+.christmas-tree .stump .black-pixel.pixel7 {
+  top: 5em;
+  left: 12.5em;
+}
+.christmas-tree .stump .black-pixel.pixel8 {
+  top: 5em;
+  left: 13.75em;
+}
+.christmas-tree .stump .black-pixel.pixel9 {
+  top: 1.25em;
+  left: 13.75em;
+}
+.christmas-tree .stump .black-pixel.pixel10 {
+  top: 2.5em;
+  left: 13.75em;
+}
+.christmas-tree .stump .black-pixel.pixel11 {
+  top: 3.75em;
+  left: 13.75em;
+}
+.christmas-tree .stump .brown-pixel {
+  background-color: #633B0D;
+}
+.christmas-tree .stump .brown-pixel.pixel1 {
+  top: 1.25em;
+  left: 10em;
+}
+.christmas-tree .stump .brown-pixel.pixel2 {
+  top: 2.5em;
+  left: 10em;
+}
+.christmas-tree .stump .brown-pixel.pixel3 {
+  top: 3.75em;
+  left: 10em;
+}
+.christmas-tree .stump .brown-pixel.pixel4 {
+  top: 1.25em;
+  left: 11.25em;
+}
+.christmas-tree .stump .brown-pixel.pixel5 {
+  top: 2.5em;
+  left: 11.25em;
+}
+.christmas-tree .stump .brown-pixel.pixel6 {
+  top: 3.75em;
+  left: 11.25em;
+}
+.christmas-tree .stump .brown-pixel.pixel7 {
+  top: 1.25em;
+  left: 12.5em;
+  background-color: #402607;
+}
+.christmas-tree .stump .brown-pixel.pixel8 {
+  top: 2.5em;
+  left: 12.5em;
+  background-color: #402607;
+}
+.christmas-tree .stump .brown-pixel.pixel9 {
+  top: 3.75em;
+  left: 12.5em;
+  background-color: #402607;
+}
+
+.green-class {
+  background-color: #008D29 !important;
+}
+
+.road-dirt-container {
+  width: 100%;
+  position: absolute;
+  top: 32.5em;
+  height: 5em;
+}
+.road-dirt-container .dirt {
+  height: 0.625em;
+  width: 0.625em;
+  position: absolute;
+  left: -1.25em;
+  background-color: #B9C4C9;
+}
+.road-dirt-container .dirt.dirt1 {
+  top: 0;
+}
+.road-dirt-container .dirt.dirt2 {
+  top: 0;
+}
+.road-dirt-container .dirt.dirt3 {
+  top: 0;
+}
+.road-dirt-container .dirt.dirt4 {
+  top: 0;
+}
+.road-dirt-container .dirt.dirt5 {
+  top: 0;
+}
+.road-dirt-container .dirt.dirt6 {
+  top: 1.25em;
+}
+.road-dirt-container .dirt.dirt7 {
+  top: 1.25em;
+}
+.road-dirt-container .dirt.dirt8 {
+  top: 1.25em;
+}
+.road-dirt-container .dirt.dirt9 {
+  top: 1.25em;
+}
+.road-dirt-container .dirt.dirt10 {
+  top: 1.25em;
+}
+.road-dirt-container .dirt.dirt11 {
+  top: 2.5em;
+}
+.road-dirt-container .dirt.dirt12 {
+  top: 2.5em;
+}
+.road-dirt-container .dirt.dirt13 {
+  top: 2.5em;
+}
+.road-dirt-container .dirt.dirt14 {
+  top: 2.5em;
+}
+.road-dirt-container .dirt.dirt15 {
+  top: 2.5em;
+}
+
+/* =SNOW CONTAINER */
+.snow-container {
   width: 100%;
   height: 100%;
+  background-color: transparent;
+}
+.snow-container .snow {
+  position: absolute;
+  top: -1.25em;
+  background-color: white;
+  z-index: 2;
+}
+.snow-container .snow.small {
+  height: 0.3125em;
+  width: 0.3125em;
+}
+.snow-container .snow.large {
+  height: 1.25em;
+  width: 1.25em;
+  z-index: 5;
+}
+.snow-container .snow.normal {
+  height: 0.625em;
+  width: 0.625em;
 }
 
-body {
-  background: #bd523b url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/934290/background.jpg') no-repeat center;
-  background-size: cover;
-
-  font-family: "Karla", Arial, sans-serif;
-  font-weight: bold;
+/* =PIKACHU */
+.pikachu,
+.pikachu-walking {
+  margin-top: 2.5em;
 }
 
-#paper-texture {
-  display: none;
+/* =MAIN WRAPPER */
+.main-wrapper {
+  position: absolute;
+  top: 7.5em;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40em;
+  z-index: 4;
+  height: 18.75em;
 }
 
-.cutting-mode .segment-canvas {
-  opacity: 1;
+/* =MAIN CONTAINER */
+.main-container {
+  position: absolute;
+  top: 13.75em;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40em;
+  z-index: 3;
+  height: 18.75em;
 }
-
-.cutting-mode .snowflake-3d {
+.main-container .pikachu {
+  width: 18.75em;
+  height: 18.75em;
+  position: absolute;
+  right: 0;
+}
+.main-container .pikachu .christmas-pixels {
+  z-index: 5;
+}
+.main-container .pikachu .christmas-pixels .white-pixel {
+  background: white;
+}
+.main-container .pikachu .christmas-pixels .white-pixel.pixel01 {
+  top: 2.5em;
+  left: 2.5em;
+}
+.main-container .pikachu .christmas-pixels .white-pixel.pixel02 {
+  top: 2.5em;
+  left: 3.75em;
+}
+.main-container .pikachu .christmas-pixels .white-pixel.pixel03 {
+  top: 2.5em;
+  left: 5em;
+}
+.main-container .pikachu .christmas-pixels .white-pixel.pixel04 {
+  top: 2.5em;
+  left: 6.25em;
+}
+.main-container .pikachu .christmas-pixels .white-pixel.pixel05 {
+  top: 2.5em;
+  left: 7.5em;
+}
+.main-container .pikachu .christmas-pixels .white-pixel.pixel06 {
+  top: 2.5em;
+  left: 8.75em;
+}
+.main-container .pikachu .christmas-pixels .white-pixel.pixel07 {
+  top: 2.5em;
+  left: 10em;
+}
+.main-container .pikachu .christmas-pixels .white-pixel.pixel08 {
+  top: -2.5em;
+  left: 12.5em;
+}
+.main-container .pikachu .christmas-pixels .red-pixel {
+  background: #EE452F;
+}
+.main-container .pikachu .christmas-pixels .red-pixel.pixel01 {
+  left: 5em;
+}
+.main-container .pikachu .christmas-pixels .red-pixel.pixel02 {
+  left: 6.25em;
+}
+.main-container .pikachu .christmas-pixels .red-pixel.pixel03 {
+  left: 7.5em;
+}
+.main-container .pikachu .christmas-pixels .red-pixel.pixel04 {
+  left: 8.75em;
+}
+.main-container .pikachu .christmas-pixels .red-pixel.pixel05 {
+  left: 10em;
+}
+.main-container .pikachu .christmas-pixels .red-pixel.pixel06 {
+  top: -1.25em;
+  left: 10em;
+}
+.main-container .pikachu .christmas-pixels .red-pixel.pixel07 {
+  top: -1.25em;
+  left: 8.75em;
+}
+.main-container .pikachu .christmas-pixels .red-pixel.pixel08 {
+  top: -1.25em;
+  left: 7.5em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel {
+  background: black;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel01 {
+  top: 3.75em;
+  left: 1.25em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel02 {
+  top: 3.75em;
+  left: 2.5em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel03 {
+  top: 3.75em;
+  left: 3.75em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel04 {
+  top: 3.75em;
+  left: 5em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel05 {
+  top: 3.75em;
+  left: 6.25em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel06 {
+  top: 3.75em;
+  left: 7.5em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel07 {
+  top: 3.75em;
+  left: 8.75em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel08 {
+  top: 3.75em;
+  left: 10em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel09 {
+  top: 3.75em;
+  left: 11.25em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel10 {
+  top: 2.5em;
+  left: 11.25em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel11 {
+  top: 1.25em;
+  left: 11.25em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel12 {
+  top: 0;
+  left: 11.25em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel13 {
+  top: -1.25em;
+  left: 11.25em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel14 {
+  top: -1.25em;
+  left: 12.5em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel15 {
+  top: -2.5em;
+  left: 13.75em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel16 {
+  top: -3.75em;
+  left: 12.5em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel17 {
+  top: -2.5em;
+  left: 11.25em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel18 {
+  top: -2.5em;
+  left: 10em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel19 {
+  top: -2.5em;
+  left: 8.75em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel20 {
+  top: -2.5em;
+  left: 7.5em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel21 {
+  top: -1.25em;
+  left: 6.25em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel22 {
+  top: -1.25em;
+  left: 5em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel23 {
+  top: 0;
+  left: 3.75em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel24 {
+  top: 1.25em;
+  left: 2.5em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel25 {
+  top: 2.5em;
+  left: 1.25em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel26 {
+  top: 1.25em;
+  left: 3.75em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel27 {
+  top: 1.25em;
+  left: 5em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel28 {
+  top: 1.25em;
+  left: 6.25em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel29 {
+  top: 1.25em;
+  left: 7.5em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel30 {
+  top: 1.25em;
+  left: 8.75em;
+}
+.main-container .pikachu .christmas-pixels .black-pixel.pixel31 {
+  top: 1.25em;
+  left: 10em;
+}
+.main-container .pikachu .black-pixels div {
+  background: black;
+}
+.main-container .pikachu .black-pixels div.pixel01 {
+  top: 7.5em;
+}
+.main-container .pikachu .black-pixels div.pixel02 {
+  top: 8.75em;
+}
+.main-container .pikachu .black-pixels div.pixel03 {
+  top: 10em;
+  left: 1.25em;
+}
+.main-container .pikachu .black-pixels div.pixel04 {
+  top: 11.25em;
+  left: 1.25em;
+}
+.main-container .pikachu .black-pixels div.pixel05 {
+  top: 12.5em;
+  left: 1.25em;
+}
+.main-container .pikachu .black-pixels div.pixel06 {
+  top: 13.75em;
+  left: 1.25em;
+}
+.main-container .pikachu .black-pixels div.pixel07 {
+  top: 13.75em;
+  left: 2.5em;
+}
+.main-container .pikachu .black-pixels div.pixel08 {
+  top: 15em;
+}
+.main-container .pikachu .black-pixels div.pixel09 {
+  top: 16.25em;
+  left: 1.25em;
+}
+.main-container .pikachu .black-pixels div.pixel11 {
+  top: 16.25em;
+  left: 2.5em;
+}
+.main-container .pikachu .black-pixels div.pixel12 {
+  top: 15em;
+  left: 3.75em;
+}
+.main-container .pikachu .black-pixels div.pixel13 {
+  top: 16.25em;
+  left: 5em;
+}
+.main-container .pikachu .black-pixels div.pixel14 {
+  top: 16.25em;
+  left: 6.25em;
+}
+.main-container .pikachu .black-pixels div.pixel15 {
+  top: 16.25em;
+  left: 7.5em;
+}
+.main-container .pikachu .black-pixels div.pixel16 {
+  top: 16.25em;
+  left: 8.75em;
+}
+.main-container .pikachu .black-pixels div.pixel17 {
+  top: 17.5em;
+  left: 10em;
+}
+.main-container .pikachu .black-pixels div.pixel18 {
+  top: 17.5em;
+  left: 11.25em;
+}
+.main-container .pikachu .black-pixels div.pixel19 {
+  top: 16.25em;
+  left: 12.5em;
+}
+.main-container .pikachu .black-pixels div.pixel20 {
+  top: 15em;
+  left: 10em;
+}
+.main-container .pikachu .black-pixels div.pixel21 {
+  top: 15em;
+  left: 11.25em;
+}
+.main-container .pikachu .black-pixels div.pixel22 {
+  top: 13.75em;
+  left: 11.25em;
+}
+.main-container .pikachu .black-pixels div.pixel23 {
+  top: 13.75em;
+  left: 12.5em;
+}
+.main-container .pikachu .black-pixels div.pixel24 {
+  top: 13.75em;
+  left: 13.75em;
+}
+.main-container .pikachu .black-pixels div.pixel25 {
+  top: 15em;
+  left: 13.75em;
+}
+.main-container .pikachu .black-pixels div.pixel26 {
+  top: 12.5em;
+  left: 12.5em;
+}
+.main-container .pikachu .black-pixels div.pixel27 {
+  top: 11.25em;
+  left: 12.5em;
+}
+.main-container .pikachu .black-pixels div.pixel28 {
+  top: 10em;
+  left: 12.5em;
+}
+.main-container .pikachu .black-pixels div.pixel29 {
+  top: 8.75em;
+  left: 12.5em;
+}
+.main-container .pikachu .black-pixels div.pixel30 {
+  top: 8.75em;
+  left: 11.25em;
+}
+.main-container .pikachu .black-pixels div.pixel31 {
+  top: 12.5em;
+  left: 15em;
+}
+.main-container .pikachu .black-pixels div.pixel32 {
+  top: 11.25em;
+  left: 16.25em;
+}
+.main-container .pikachu .black-pixels div.pixel33 {
+  top: 10em;
+  left: 15em;
+}
+.main-container .pikachu .black-pixels div.pixel34 {
+  top: 8.75em;
+  left: 16.25em;
+}
+.main-container .pikachu .black-pixels div.pixel35 {
+  top: 7.5em;
+  left: 16.25em;
+}
+.main-container .pikachu .black-pixels div.pixel36 {
+  top: 7.5em;
+  left: 15em;
+}
+.main-container .pikachu .black-pixels div.pixel37 {
+  top: 7.5em;
+  left: 13.75em;
+}
+.main-container .pikachu .black-pixels div.pixel38 {
+  top: 6.25em;
+  left: 13.75em;
+}
+.main-container .pikachu .black-pixels div.pixel39 {
+  top: 5em;
+  left: 15em;
+}
+.main-container .pikachu .black-pixels div.pixel40 {
+  top: 3.75em;
+  left: 16.25em;
+}
+.main-container .pikachu .black-pixels div.pixel41 {
+  top: 2.5em;
+  left: 17.5em;
+}
+.main-container .pikachu .black-pixels div.pixel42 {
+  top: 1.25em;
+  left: 17.5em;
+}
+.main-container .pikachu .black-pixels div.pixel43 {
+  top: 1.25em;
+  left: 16.25em;
+}
+.main-container .pikachu .black-pixels div.pixel44 {
+  top: 1.25em;
+  left: 15em;
+}
+.main-container .pikachu .black-pixels div.pixel45 {
+  top: 1.25em;
+  left: 13.75em;
+}
+.main-container .pikachu .black-pixels div.pixel46 {
+  top: 1.25em;
+  left: 12.5em;
+}
+.main-container .pikachu .black-pixels div.pixel47 {
+  top: 1.25em;
+  left: 11.25em;
+}
+.main-container .pikachu .black-pixels div.pixel48 {
+  top: 1.25em;
+  left: 10em;
+}
+.main-container .pikachu .black-pixels div.pixel49 {
+  top: 1.25em;
+  left: 8.75em;
+}
+.main-container .pikachu .black-pixels div.pixel50 {
+  top: 1.25em;
+  left: 7.5em;
+}
+.main-container .pikachu .black-pixels div.pixel51 {
+  top: 0;
+  left: 11.25em;
+}
+.main-container .pikachu .black-pixels div.pixel52 {
+  top: 0;
+  left: 12.5em;
+}
+.main-container .pikachu .black-pixels div.pixel53 {
+  top: 2.5em;
+  left: 12.5em;
+}
+.main-container .pikachu .black-pixels div.pixel54 {
+  top: 2.5em;
+  left: 11.25em;
+}
+.main-container .pikachu .black-pixels div.pixel55 {
+  top: 2.5em;
+  left: 10em;
+}
+.main-container .pikachu .black-pixels div.pixel56 {
+  top: 3.75em;
+  left: 11.25em;
+}
+.main-container .pikachu .black-pixels div.pixel57 {
+  top: 5em;
+  left: 11.25em;
+}
+.main-container .pikachu .black-pixels div.pixel58 {
+  top: 5em;
+  left: 10em;
+}
+.main-container .pikachu .black-pixels div.pixel59 {
+  top: 6.25em;
+  left: 10em;
+}
+.main-container .pikachu .black-pixels div.pixel60 {
+  top: 7.5em;
+  left: 11.25em;
+}
+.main-container .pikachu .black-pixels div.pixel61 {
+  top: 2.5em;
+  left: 6.25em;
+}
+.main-container .pikachu .black-pixels div.pixel62 {
+  top: 2.5em;
+  left: 5em;
+}
+.main-container .pikachu .black-pixels div.pixel63 {
+  top: 2.5em;
+  left: 3.75em;
+}
+.main-container .pikachu .black-pixels div.pixel64 {
+  top: 3.75em;
+  left: 2.5em;
+}
+.main-container .pikachu .black-pixels div.pixel65 {
+  top: 5em;
+  left: 1.25em;
+}
+.main-container .pikachu .black-pixels div.pixel66 {
+  top: 6.25em;
+  left: 1.25em;
+}
+.main-container .pikachu .black-pixels div.pixel67 {
+  top: 7.5em;
+  left: 3.75em;
+}
+.main-container .pikachu .black-pixels div.pixel68 {
+  top: 11.25em;
+  left: 3.75em;
+}
+.main-container .pikachu .black-pixels div.pixel69 {
+  top: 12.5em;
+  left: 3.75em;
+}
+.main-container .pikachu .black-pixels div.pixel70 {
+  top: 12.5em;
+  left: 5em;
+}
+.main-container .pikachu .red-pixels div {
+  background: #EE452F;
+}
+.main-container .pikachu .red-pixels div.pixel01 {
+  top: 8.75em;
+  left: 6.25em;
+}
+.main-container .pikachu .brown-pixels div {
+  background: #633B0D;
+}
+.main-container .pikachu .brown-pixels div.pixel01 {
+  top: 10em;
+  left: 8.75em;
+}
+.main-container .pikachu .brown-pixels div.pixel02 {
+  top: 10em;
+  left: 10em;
+}
+.main-container .pikachu .brown-pixels div.pixel03 {
+  top: 10em;
+  left: 11.25em;
+}
+.main-container .pikachu .brown-pixels div.pixel04 {
+  top: 10em;
+  left: 13.75em;
+}
+.main-container .pikachu .brown-pixels div.pixel05 {
+  top: 11.25em;
+  left: 13.75em;
+}
+.main-container .pikachu .brown-pixels div.pixel06 {
+  top: 11.25em;
+  left: 15em;
+}
+.main-container .pikachu .brown-pixels div.pixel07 {
+  top: 12.5em;
+  left: 8.75em;
+}
+.main-container .pikachu .brown-pixels div.pixel08 {
+  top: 12.5em;
+  left: 10em;
+}
+.main-container .pikachu .brown-pixels div.pixel09 {
+  top: 12.5em;
+  left: 11.25em;
+}
+.main-container .pikachu .brown-pixels div.pixel10 {
+  top: 12.5em;
+  left: 13.75em;
+}
+.main-container .pikachu .yellow-pixels div {
+  background: #FFF734;
+}
+.main-container .pikachu .yellow-pixels div.pixel01 {
+  top: 2.5em;
+  left: 7.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel02 {
+  top: 2.5em;
+  left: 8.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel03 {
+  top: 2.5em;
+  left: 13.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel04 {
+  top: 2.5em;
+  left: 15em;
+}
+.main-container .pikachu .yellow-pixels div.pixel05 {
+  top: 2.5em;
+  left: 16.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel06 {
+  top: 3.75em;
+  left: 5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel07 {
+  top: 3.75em;
+  left: 6.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel08 {
+  top: 3.75em;
+  left: 7.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel09 {
+  top: 3.75em;
+  left: 8.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel10 {
+  top: 3.75em;
+  left: 10em;
+}
+.main-container .pikachu .yellow-pixels div.pixel11 {
+  top: 3.75em;
+  left: 12.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel12 {
+  top: 3.75em;
+  left: 13.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel13 {
+  top: 3.75em;
+  left: 15em;
+}
+.main-container .pikachu .yellow-pixels div.pixel14 {
+  top: 3.75em;
+  left: 3.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel15 {
+  top: 5em;
+  left: 2.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel16 {
+  top: 5em;
+  left: 3.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel17 {
+  top: 5em;
+  left: 5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel18 {
+  top: 5em;
+  left: 6.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel19 {
+  top: 5em;
+  left: 7.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel20 {
+  top: 5em;
+  left: 8.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel21 {
+  top: 5em;
+  left: 12.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel22 {
+  top: 5em;
+  left: 13.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel23 {
+  top: 6.25em;
+  left: 2.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel24 {
+  top: 6.25em;
+  left: 3.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel25 {
+  top: 6.25em;
+  left: 5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel26 {
+  top: 6.25em;
+  left: 6.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel27 {
+  top: 6.25em;
+  left: 7.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel28 {
+  top: 6.25em;
+  left: 8.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel29 {
+  top: 6.25em;
+  left: 11.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel30 {
+  top: 6.25em;
+  left: 12.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel30 {
+  top: 7.5em;
+  left: 1.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel31 {
+  top: 7.5em;
+  left: 2.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel32 {
+  top: 7.5em;
+  left: 5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel33 {
+  top: 7.5em;
+  left: 6.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel34 {
+  top: 7.5em;
+  left: 7.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel35 {
+  top: 7.5em;
+  left: 8.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel36 {
+  top: 7.5em;
+  left: 10em;
+}
+.main-container .pikachu .yellow-pixels div.pixel37 {
+  top: 7.5em;
+  left: 12.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel38 {
+  top: 8.75em;
+  left: 1.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel39 {
+  top: 8.75em;
+  left: 2.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel40 {
+  top: 8.75em;
+  left: 3.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel41 {
+  top: 8.75em;
+  left: 5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel43 {
+  top: 8.75em;
+  left: 7.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel44 {
+  top: 8.75em;
+  left: 8.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel45 {
+  top: 8.75em;
+  left: 10em;
+}
+.main-container .pikachu .yellow-pixels div.pixel46 {
+  top: 10em;
+  left: 2.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel47 {
+  top: 10em;
+  left: 3.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel48 {
+  top: 10em;
+  left: 5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel49 {
+  top: 10em;
+  left: 6.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel50 {
+  top: 10em;
+  left: 7.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel51 {
+  top: 11.25em;
+  left: 2.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel52 {
+  top: 11.25em;
+  left: 5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel53 {
+  top: 11.25em;
+  left: 6.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel54 {
+  top: 11.25em;
+  left: 7.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel55 {
+  top: 11.25em;
+  left: 8.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel56 {
+  top: 11.25em;
+  left: 10em;
+}
+.main-container .pikachu .yellow-pixels div.pixel57 {
+  top: 11.25em;
+  left: 11.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel58 {
+  top: 12.5em;
+  left: 2.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel59 {
+  top: 12.5em;
+  left: 6.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel60 {
+  top: 12.5em;
+  left: 7.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel61 {
+  top: 6.25em;
+  left: 12.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel62 {
+  top: 8.75em;
+  left: 13.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel63 {
+  top: 8.75em;
+  left: 15em;
+}
+.main-container .pikachu .yellow-pixels div.pixel64 {
+  top: 13.75em;
+  left: 3.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel65 {
+  top: 13.75em;
+  left: 5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel66 {
+  top: 13.75em;
+  left: 6.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel67 {
+  top: 13.75em;
+  left: 7.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel68 {
+  top: 13.75em;
+  left: 8.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel69 {
+  top: 13.75em;
+  left: 10em;
+}
+.main-container .pikachu .yellow-pixels div.pixel70 {
+  top: 13.75em;
+  left: 11.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel71 {
+  top: 15em;
+  left: 1.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel72 {
+  top: 15em;
+  left: 2.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel73 {
+  top: 15em;
+  left: 5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel74 {
+  top: 15em;
+  left: 6.25em;
+}
+.main-container .pikachu .yellow-pixels div.pixel75 {
+  top: 15em;
+  left: 7.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel76 {
+  top: 15em;
+  left: 8.75em;
+}
+.main-container .pikachu .yellow-pixels div.pixel77 {
+  top: 15em;
+  left: 10em;
+  background-color: black;
+}
+.main-container .pikachu .yellow-pixels div.pixel78 {
+  top: 15em;
+  left: 12.5em;
+}
+.main-container .pikachu .yellow-pixels div.pixel79 {
+  top: 16.25em;
+  left: 10em;
+}
+.main-container .pikachu .yellow-pixels div.pixel80 {
+  top: 16.25em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking {
+  height: 18.75em;
+  width: 18.75em;
+  position: absolute;
+  right: 0;
+  visibility: hidden;
   opacity: 0;
 }
-
-.snowflake-3d {
-  transition: 500ms opacity ease-out;
+.main-container .pikachu-walking .christmas-pixels {
+  z-index: 5;
+}
+.main-container .pikachu-walking .christmas-pixels .white-pixel {
+  background: white;
+}
+.main-container .pikachu-walking .christmas-pixels .white-pixel.pixel01 {
+  top: 2.5em;
+  left: 2.5em;
+}
+.main-container .pikachu-walking .christmas-pixels .white-pixel.pixel02 {
+  top: 2.5em;
+  left: 3.75em;
+}
+.main-container .pikachu-walking .christmas-pixels .white-pixel.pixel03 {
+  top: 2.5em;
+  left: 5em;
+}
+.main-container .pikachu-walking .christmas-pixels .white-pixel.pixel04 {
+  top: 2.5em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .christmas-pixels .white-pixel.pixel05 {
+  top: 2.5em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .christmas-pixels .white-pixel.pixel06 {
+  top: 2.5em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .christmas-pixels .white-pixel.pixel07 {
+  top: 2.5em;
+  left: 10em;
+}
+.main-container .pikachu-walking .christmas-pixels .white-pixel.pixel08 {
+  top: -2.5em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .christmas-pixels .red-pixel {
+  background: #EE452F;
+}
+.main-container .pikachu-walking .christmas-pixels .red-pixel.pixel01 {
+  left: 5em;
+}
+.main-container .pikachu-walking .christmas-pixels .red-pixel.pixel02 {
+  left: 6.25em;
+}
+.main-container .pikachu-walking .christmas-pixels .red-pixel.pixel03 {
+  left: 7.5em;
+}
+.main-container .pikachu-walking .christmas-pixels .red-pixel.pixel04 {
+  left: 8.75em;
+}
+.main-container .pikachu-walking .christmas-pixels .red-pixel.pixel05 {
+  left: 10em;
+}
+.main-container .pikachu-walking .christmas-pixels .red-pixel.pixel06 {
+  top: -1.25em;
+  left: 10em;
+}
+.main-container .pikachu-walking .christmas-pixels .red-pixel.pixel07 {
+  top: -1.25em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .christmas-pixels .red-pixel.pixel08 {
+  top: -1.25em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel {
+  background: black;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel01 {
+  top: 3.75em;
+  left: 1.25em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel02 {
+  top: 3.75em;
+  left: 2.5em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel03 {
+  top: 3.75em;
+  left: 3.75em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel04 {
+  top: 3.75em;
+  left: 5em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel05 {
+  top: 3.75em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel06 {
+  top: 3.75em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel07 {
+  top: 3.75em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel08 {
+  top: 3.75em;
+  left: 10em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel09 {
+  top: 3.75em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel10 {
+  top: 2.5em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel11 {
+  top: 1.25em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel12 {
+  top: 0;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel13 {
+  top: -1.25em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel14 {
+  top: -1.25em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel15 {
+  top: -2.5em;
+  left: 13.75em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel16 {
+  top: -3.75em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel17 {
+  top: -2.5em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel18 {
+  top: -2.5em;
+  left: 10em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel19 {
+  top: -2.5em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel20 {
+  top: -2.5em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel21 {
+  top: -1.25em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel22 {
+  top: -1.25em;
+  left: 5em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel23 {
+  top: 0;
+  left: 3.75em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel24 {
+  top: 1.25em;
+  left: 2.5em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel25 {
+  top: 2.5em;
+  left: 1.25em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel26 {
+  top: 1.25em;
+  left: 3.75em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel27 {
+  top: 1.25em;
+  left: 5em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel28 {
+  top: 1.25em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel29 {
+  top: 1.25em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel30 {
+  top: 1.25em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .christmas-pixels .black-pixel.pixel31 {
+  top: 1.25em;
+  left: 10em;
+}
+.main-container .pikachu-walking .black-pixels div {
+  background: black;
+}
+.main-container .pikachu-walking .black-pixels div.pixel01 {
+  top: 7.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel02 {
+  top: 8.75em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel03 {
+  top: 10em;
+  left: 1.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel04 {
+  top: 11.25em;
+  left: 1.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel05 {
+  top: 12.5em;
+  left: 1.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel06 {
+  top: 13.75em;
+  left: 1.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel07 {
+  top: 13.75em;
+  left: 2.5em;
+  background-color: #FFF734;
+}
+.main-container .pikachu-walking .black-pixels div.pixel08 {
+  top: 15em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel09 {
+  top: 16.25em;
+  left: 1.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel11 {
+  top: 16.25em;
+  left: 2.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel12 {
+  top: 15em;
+  left: 3.75em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel13 {
+  top: 16.25em;
+  left: 5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel14 {
+  top: 16.25em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel15 {
+  top: 16.25em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel16 {
+  top: 16.25em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel17 {
+  top: 17.5em;
+  left: 10em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel18 {
+  top: 17.5em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel19 {
+  top: 16.25em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel20 {
+  top: 15em;
+  left: 10em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel21 {
+  top: 15em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel22 {
+  top: 13.75em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel23 {
+  top: 13.75em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel24 {
+  top: 13.75em;
+  left: 13.75em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel25 {
+  top: 15em;
+  left: 13.75em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel26 {
+  top: 12.5em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel27 {
+  top: 11.25em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel28 {
+  top: 10em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel29 {
+  top: 8.75em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel30 {
+  top: 8.75em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel31 {
+  top: 12.5em;
+  left: 15em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel32 {
+  top: 11.25em;
+  left: 16.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel33 {
+  top: 10em;
+  left: 15em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel34 {
+  top: 8.75em;
+  left: 16.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel35 {
+  top: 7.5em;
+  left: 16.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel36 {
+  top: 7.5em;
+  left: 15em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel37 {
+  top: 7.5em;
+  left: 13.75em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel38 {
+  top: 6.25em;
+  left: 13.75em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel39 {
+  top: 5em;
+  left: 15em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel40 {
+  top: 3.75em;
+  left: 16.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel41 {
+  top: 2.5em;
+  left: 17.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel42 {
+  top: 1.25em;
+  left: 17.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel43 {
+  top: 1.25em;
+  left: 16.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel44 {
+  top: 1.25em;
+  left: 15em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel45 {
+  top: 1.25em;
+  left: 13.75em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel46 {
+  top: 1.25em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel47 {
+  top: 1.25em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel48 {
+  top: 1.25em;
+  left: 10em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel49 {
+  top: 1.25em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel50 {
+  top: 1.25em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel51 {
+  top: 0;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel52 {
+  top: 0;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel53 {
+  top: 2.5em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel54 {
+  top: 2.5em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel55 {
+  top: 2.5em;
+  left: 10em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel56 {
+  top: 3.75em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel57 {
+  top: 5em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel58 {
+  top: 5em;
+  left: 10em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel59 {
+  top: 6.25em;
+  left: 10em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel60 {
+  top: 7.5em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel61 {
+  top: 2.5em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel62 {
+  top: 2.5em;
+  left: 5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel63 {
+  top: 2.5em;
+  left: 3.75em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel64 {
+  top: 3.75em;
+  left: 2.5em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel65 {
+  top: 5em;
+  left: 1.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel66 {
+  top: 6.25em;
+  left: 1.25em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel67 {
+  top: 7.5em;
+  left: 3.75em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel68 {
+  top: 11.25em;
+  left: 3.75em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel69 {
+  top: 12.5em;
+  left: 3.75em;
+}
+.main-container .pikachu-walking .black-pixels div.pixel70 {
+  top: 12.5em;
+  left: 5em;
+}
+.main-container .pikachu-walking .red-pixels div {
+  background: #EE452F;
+}
+.main-container .pikachu-walking .red-pixels div.pixel01 {
+  top: 8.75em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .brown-pixels div {
+  background: #633B0D;
+}
+.main-container .pikachu-walking .brown-pixels div.pixel01 {
+  top: 10em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .brown-pixels div.pixel02 {
+  top: 10em;
+  left: 10em;
+}
+.main-container .pikachu-walking .brown-pixels div.pixel03 {
+  top: 10em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .brown-pixels div.pixel04 {
+  top: 10em;
+  left: 13.75em;
+}
+.main-container .pikachu-walking .brown-pixels div.pixel05 {
+  top: 11.25em;
+  left: 13.75em;
+}
+.main-container .pikachu-walking .brown-pixels div.pixel06 {
+  top: 11.25em;
+  left: 15em;
+}
+.main-container .pikachu-walking .brown-pixels div.pixel07 {
+  top: 12.5em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .brown-pixels div.pixel08 {
+  top: 12.5em;
+  left: 10em;
+}
+.main-container .pikachu-walking .brown-pixels div.pixel09 {
+  top: 12.5em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .brown-pixels div.pixel10 {
+  top: 12.5em;
+  left: 13.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div {
+  background: #FFF734;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel01 {
+  top: 2.5em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel02 {
+  top: 2.5em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel03 {
+  top: 2.5em;
+  left: 13.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel04 {
+  top: 2.5em;
+  left: 15em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel05 {
+  top: 2.5em;
+  left: 16.25em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel06 {
+  top: 3.75em;
+  left: 5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel07 {
+  top: 3.75em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel08 {
+  top: 3.75em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel09 {
+  top: 3.75em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel10 {
+  top: 3.75em;
+  left: 10em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel11 {
+  top: 3.75em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel12 {
+  top: 3.75em;
+  left: 13.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel13 {
+  top: 3.75em;
+  left: 15em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel14 {
+  top: 3.75em;
+  left: 3.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel15 {
+  top: 5em;
+  left: 2.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel16 {
+  top: 5em;
+  left: 3.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel17 {
+  top: 5em;
+  left: 5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel18 {
+  top: 5em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel19 {
+  top: 5em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel20 {
+  top: 5em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel21 {
+  top: 5em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel22 {
+  top: 5em;
+  left: 13.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel23 {
+  top: 6.25em;
+  left: 2.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel24 {
+  top: 6.25em;
+  left: 3.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel25 {
+  top: 6.25em;
+  left: 5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel26 {
+  top: 6.25em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel27 {
+  top: 6.25em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel28 {
+  top: 6.25em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel29 {
+  top: 6.25em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel30 {
+  top: 6.25em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel30 {
+  top: 7.5em;
+  left: 1.25em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel31 {
+  top: 7.5em;
+  left: 2.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel32 {
+  top: 7.5em;
+  left: 5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel33 {
+  top: 7.5em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel34 {
+  top: 7.5em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel35 {
+  top: 7.5em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel36 {
+  top: 7.5em;
+  left: 10em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel37 {
+  top: 7.5em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel38 {
+  top: 8.75em;
+  left: 1.25em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel39 {
+  top: 8.75em;
+  left: 2.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel40 {
+  top: 8.75em;
+  left: 3.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel41 {
+  top: 8.75em;
+  left: 5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel43 {
+  top: 8.75em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel44 {
+  top: 8.75em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel45 {
+  top: 8.75em;
+  left: 10em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel46 {
+  top: 10em;
+  left: 2.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel47 {
+  top: 10em;
+  left: 3.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel48 {
+  top: 10em;
+  left: 5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel49 {
+  top: 10em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel50 {
+  top: 10em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel51 {
+  top: 11.25em;
+  left: 2.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel52 {
+  top: 11.25em;
+  left: 5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel53 {
+  top: 11.25em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel54 {
+  top: 11.25em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel55 {
+  top: 11.25em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel56 {
+  top: 11.25em;
+  left: 10em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel57 {
+  top: 11.25em;
+  left: 11.25em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel58 {
+  top: 12.5em;
+  left: 2.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel59 {
+  top: 12.5em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel60 {
+  top: 12.5em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel61 {
+  top: 6.25em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel62 {
+  top: 8.75em;
+  left: 13.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel63 {
+  top: 8.75em;
+  left: 15em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel64 {
+  top: 13.75em;
+  left: 3.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel65 {
+  top: 13.75em;
+  left: 5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel66 {
+  top: 13.75em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel67 {
+  top: 13.75em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel68 {
+  top: 13.75em;
+  left: 8.75em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel69 {
+  top: 13.75em;
+  left: 10em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel70 {
+  top: 13.75em;
+  left: 11.25em;
+  background-color: black;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel71 {
+  top: 15em;
+  left: 1.25em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel72 {
+  top: 15em;
+  left: 2.5em;
+  background-color: black;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel73 {
+  top: 15em;
+  left: 5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel74 {
+  top: 15em;
+  left: 6.25em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel75 {
+  top: 15em;
+  left: 7.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel76 {
+  top: 15em;
+  left: 8.75em;
+  background-color: black;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel77 {
+  top: 15em;
+  left: 10em;
+  background-color: black;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel78 {
+  top: 15em;
+  left: 12.5em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel79 {
+  top: 16.25em;
+  left: 10em;
+}
+.main-container .pikachu-walking .yellow-pixels div.pixel80 {
+  top: 16.25em;
+  left: 11.25em;
+}
+.main-container .jacob {
+  height: 18.75em;
+  width: 18.75em;
+  position: absolute;
+  left: 0;
+}
+.main-container .jacob .green-pixels div {
+  background-color: #008D29;
+}
+.main-container .jacob .green-pixels div.pixel01 {
+  top: 11.25em;
+  left: 12.5em;
+}
+.main-container .jacob .green-pixels div.pixel02 {
+  top: 12.5em;
+  left: 12.5em;
+}
+.main-container .jacob .dark-brown-pixels div {
+  background-color: #402607;
+}
+.main-container .jacob .dark-brown-pixels div.pixel01 {
+  top: 1.25em;
+  left: 5em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel02 {
+  top: 2.5em;
+  left: 5em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel03 {
+  top: 2.5em;
+  left: 3.75em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel04 {
+  top: 3.75em;
+  left: 5em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel05 {
+  top: 1.25em;
+  left: 6.25em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel06 {
+  top: 1.25em;
+  left: 7.5em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel07 {
+  top: 1.25em;
+  left: 8.75em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel08 {
+  top: 1.25em;
+  left: 10em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel09 {
+  top: 1.25em;
+  left: 11.25em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel10 {
+  top: 2.5em;
+  left: 6.25em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel11 {
+  top: 2.5em;
+  left: 7.5em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel12 {
+  top: 2.5em;
+  left: 8.75em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel13 {
+  top: 2.5em;
+  left: 10em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel14 {
+  top: 2.5em;
+  left: 11.25em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel15 {
+  top: 2.5em;
+  left: 12.5em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel16 {
+  top: 3.75em;
+  left: 7.5em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel17 {
+  top: 3.75em;
+  left: 8.75em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel18 {
+  top: 3.75em;
+  left: 10em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel19 {
+  top: 3.75em;
+  left: 11.25em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel20 {
+  top: 3.75em;
+  left: 12.5em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel21 {
+  top: 3.75em;
+  left: 6.25em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel22 {
+  top: 5em;
+  left: 7.5em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel23 {
+  top: 5em;
+  left: 8.75em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel24 {
+  top: 5em;
+  left: 10em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel25 {
+  top: 5em;
+  left: 6.25em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel26 {
+  top: 6.25em;
+  left: 6.25em;
+  background-color: white;
+}
+.main-container .jacob .dark-brown-pixels div.pixel27 {
+  top: 6.25em;
+  left: 5em;
+  background-color: white;
+}
+.main-container .jacob .dark-brown-pixels div.pixel28 {
+  top: 6.25em;
+  left: 3.75em;
+  background-color: white;
+}
+.main-container .jacob .dark-brown-pixels div.pixel29 {
+  top: 5em;
+  left: 11.25em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel30 {
+  top: -1.25em;
+  left: 5em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel31 {
+  top: 0;
+  left: 3.75em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel32 {
+  top: 0;
+  left: 5em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel33 {
+  top: 0;
+  left: 6.25em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel34 {
+  top: 1.25em;
+  left: 2.5em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel35 {
+  top: 1.25em;
+  left: 3.75em;
+}
+.main-container .jacob .dark-brown-pixels div.pixel36 {
+  top: 2.5em;
+  left: 2.5em;
+}
+.main-container .jacob .black-pixels div {
+  background-color: black;
+}
+.main-container .jacob .black-pixels div.pixel01 {
+  left: 5em;
+  top: -2.5em;
+}
+.main-container .jacob .black-pixels div.pixel02 {
+  top: -1.25em;
+  left: 3.75em;
+}
+.main-container .jacob .black-pixels div.pixel03 {
+  top: 0;
+  left: 2.5em;
+}
+.main-container .jacob .black-pixels div.pixel04 {
+  top: 1.25em;
+  left: 1.25em;
+}
+.main-container .jacob .black-pixels div.pixel05 {
+  top: 2.5em;
+  left: 1.25em;
+}
+.main-container .jacob .black-pixels div.pixel06 {
+  top: 8.75em;
+  left: 5em;
+}
+.main-container .jacob .black-pixels div.pixel07 {
+  top: 3.75em;
+  left: 2.5em;
+}
+.main-container .jacob .black-pixels div.pixel08 {
+  top: 5em;
+  left: 2.5em;
+}
+.main-container .jacob .black-pixels div.pixel09 {
+  top: 6.25em;
+  left: 2.5em;
+}
+.main-container .jacob .black-pixels div.pixel10 {
+  top: 7.5em;
+  left: 2.5em;
+}
+.main-container .jacob .black-pixels div.pixel11 {
+  top: 8.75em;
+  left: 2.5em;
+}
+.main-container .jacob .black-pixels div.pixel12 {
+  top: 10em;
+  left: 2.5em;
+}
+.main-container .jacob .black-pixels div.pixel13 {
+  top: 7.5em;
+  left: 5em;
+}
+.main-container .jacob .black-pixels div.pixel14 {
+  top: 11.25em;
+  left: 3.75em;
+}
+.main-container .jacob .black-pixels div.pixel15 {
+  top: 12.5em;
+  left: 3.75em;
+}
+.main-container .jacob .black-pixels div.pixel16 {
+  top: 12.5em;
+  left: 5em;
+}
+.main-container .jacob .black-pixels div.pixel17 {
+  top: 12.5em;
+  left: 6.25em;
+}
+.main-container .jacob .black-pixels div.pixel18 {
+  top: 12.5em;
+  left: 7.5em;
+}
+.main-container .jacob .black-pixels div.pixel19 {
+  top: 12.5em;
+  left: 8.75em;
+}
+.main-container .jacob .black-pixels div.pixel20 {
+  top: 12.5em;
+  left: 10em;
+}
+.main-container .jacob .black-pixels div.pixel21 {
+  top: 13.75em;
+  left: 2.5em;
+}
+.main-container .jacob .black-pixels div.pixel22 {
+  top: 13.75em;
+  left: 3.75em;
+}
+.main-container .jacob .black-pixels div.pixel23 {
+  top: 13.75em;
+  left: 5em;
+}
+.main-container .jacob .black-pixels div.pixel24 {
+  top: 13.75em;
+  left: 6.25em;
+}
+.main-container .jacob .black-pixels div.pixel25 {
+  top: 13.75em;
+  left: 7.5em;
+}
+.main-container .jacob .black-pixels div.pixel26 {
+  top: 13.75em;
+  left: 8.75em;
+}
+.main-container .jacob .black-pixels div.pixel27 {
+  top: 15em;
+  left: 1.25em;
+}
+.main-container .jacob .black-pixels div.pixel28 {
+  top: 16.25em;
+  left: 2.5em;
+}
+.main-container .jacob .black-pixels div.pixel29 {
+  top: 17.5em;
+  left: 3.75em;
+}
+.main-container .jacob .black-pixels div.pixel30 {
+  top: 17.5em;
+  left: 5em;
+}
+.main-container .jacob .black-pixels div.pixel31 {
+  top: 17.5em;
+  left: 6.25em;
+}
+.main-container .jacob .black-pixels div.pixel32 {
+  top: 15em;
+  left: 5em;
+}
+.main-container .jacob .black-pixels div.pixel33 {
+  top: 16.25em;
+  left: 6.25em;
+}
+.main-container .jacob .black-pixels div.pixel34 {
+  top: 16.25em;
+  left: 7.5em;
+}
+.main-container .jacob .black-pixels div.pixel35 {
+  top: 16.25em;
+  left: 8.75em;
+}
+.main-container .jacob .black-pixels div.pixel36 {
+  top: 16.25em;
+  left: 10em;
+}
+.main-container .jacob .black-pixels div.pixel37 {
+  top: 16.25em;
+  left: 11.25em;
+}
+.main-container .jacob .black-pixels div.pixel38 {
+  top: 15em;
+  left: 8.75em;
+}
+.main-container .jacob .black-pixels div.pixel39 {
+  top: 17.5em;
+  left: 12.5em;
+}
+.main-container .jacob .black-pixels div.pixel40 {
+  top: 17.5em;
+  left: 13.75em;
+}
+.main-container .jacob .black-pixels div.pixel41 {
+  top: 16.25em;
+  left: 15em;
+}
+.main-container .jacob .black-pixels div.pixel42 {
+  top: 15em;
+  left: 15em;
+}
+.main-container .jacob .black-pixels div.pixel43 {
+  top: 15em;
+  left: 12.5em;
+}
+.main-container .jacob .black-pixels div.pixel44 {
+  top: 13.75em;
+  left: 12.5em;
+}
+.main-container .jacob .black-pixels div.pixel45 {
+  top: 13.75em;
+  left: 13.75em;
+}
+.main-container .jacob .black-pixels div.pixel46 {
+  top: 12.5em;
+  left: 13.75em;
+}
+.main-container .jacob .black-pixels div.pixel47 {
+  top: 11.25em;
+  left: 13.75em;
+}
+.main-container .jacob .black-pixels div.pixel48 {
+  top: 12.5em;
+  left: 11.25em;
+}
+.main-container .jacob .black-pixels div.pixel49 {
+  top: 11.25em;
+  left: 11.25em;
+}
+.main-container .jacob .black-pixels div.pixel50 {
+  top: 11.25em;
+  left: 10em;
+}
+.main-container .jacob .black-pixels div.pixel51 {
+  top: 10em;
+  left: 12.5em;
+}
+.main-container .jacob .black-pixels div.pixel52 {
+  top: 8.75em;
+  left: 12.5em;
+}
+.main-container .jacob .black-pixels div.pixel53 {
+  top: 8.75em;
+  left: 13.75em;
+}
+.main-container .jacob .black-pixels div.pixel54 {
+  top: 7.5em;
+  left: 15em;
+}
+.main-container .jacob .black-pixels div.pixel55 {
+  top: 7.5em;
+  left: 13.75em;
+}
+.main-container .jacob .black-pixels div.pixel56 {
+  top: 7.5em;
+  left: 12.5em;
+}
+.main-container .jacob .black-pixels div.pixel57 {
+  top: 7.5em;
+  left: 11.25em;
+}
+.main-container .jacob .black-pixels div.pixel58 {
+  top: 7.5em;
+  left: 10em;
+}
+.main-container .jacob .black-pixels div.pixel59 {
+  top: 7.5em;
+  left: 8.75em;
+}
+.main-container .jacob .black-pixels div.pixel60 {
+  top: 8.75em;
+  left: 8.75em;
+}
+.main-container .jacob .black-pixels div.pixel61 {
+  top: 6.25em;
+  left: 15em;
+}
+.main-container .jacob .black-pixels div.pixel62 {
+  top: 6.25em;
+  left: 13.75em;
+}
+.main-container .jacob .black-pixels div.pixel63 {
+  top: 6.25em;
+  left: 12.5em;
+}
+.main-container .jacob .black-pixels div.pixel64 {
+  top: 6.25em;
+  left: 11.25em;
+}
+.main-container .jacob .black-pixels div.pixel65 {
+  top: 6.25em;
+  left: 10em;
+}
+.main-container .jacob .black-pixels div.pixel66 {
+  top: 6.25em;
+  left: 8.75em;
+}
+.main-container .jacob .black-pixels div.pixel67 {
+  top: 6.25em;
+  left: 7.5em;
+}
+.main-container .jacob .black-pixels div.pixel68 {
+  top: 5em;
+  left: 15em;
+}
+.main-container .jacob .black-pixels div.pixel69 {
+  top: 5em;
+  left: 13.75em;
+}
+.main-container .jacob .black-pixels div.pixel70 {
+  top: 5em;
+  left: 12.5em;
+}
+.main-container .jacob .black-pixels div.pixel71 {
+  top: 3.75em;
+  left: 13.75em;
+}
+.main-container .jacob .black-pixels div.pixel72 {
+  top: 2.5em;
+  left: 13.75em;
+}
+.main-container .jacob .black-pixels div.pixel73 {
+  top: 1.25em;
+  left: 12.5em;
+}
+.main-container .jacob .black-pixels div.pixel74 {
+  left: 11.25em;
+}
+.main-container .jacob .black-pixels div.pixel75 {
+  left: 10em;
+}
+.main-container .jacob .black-pixels div.pixel76 {
+  left: 8.75em;
+}
+.main-container .jacob .black-pixels div.pixel77 {
+  left: 7.5em;
+}
+.main-container .jacob .black-pixels div.pixel78 {
+  left: 6.25em;
+  top: -1.25em;
+}
+.main-container .jacob .white-pixels div {
+  background-color: white;
+}
+.main-container .jacob .white-pixels div.pixel01 {
+  top: 3.75em;
+  left: 3.75em;
+}
+.main-container .jacob .white-pixels div.pixel02 {
+  top: 5em;
+  left: 1.25em;
+}
+.main-container .jacob .white-pixels div.pixel03 {
+  top: 5em;
+  left: 2.5em;
+}
+.main-container .jacob .white-pixels div.pixel04 {
+  top: 5em;
+  left: 3.75em;
+}
+.main-container .jacob .white-pixels div.pixel05 {
+  top: 5em;
+  left: 5em;
+}
+.main-container .jacob .white-pixels div.pixel06 {
+  top: 7.5em;
+  left: 3.75em;
+}
+.main-container .jacob .white-pixels div.pixel07 {
+  top: 8.75em;
+  left: 3.75em;
+}
+.main-container .jacob .white-pixels div.pixel08 {
+  top: 10em;
+  left: 3.75em;
+}
+.main-container .jacob .white-pixels div.pixel09 {
+  top: 10em;
+  left: 5em;
+}
+.main-container .jacob .white-pixels div.pixel10 {
+  top: 11.25em;
+  left: 5em;
+}
+.main-container .jacob .white-pixels div.pixel11 {
+  top: 7.5em;
+  left: 6.25em;
+}
+.main-container .jacob .white-pixels div.pixel12 {
+  top: 8.75em;
+  left: 6.25em;
+}
+.main-container .jacob .white-pixels div.pixel13 {
+  top: 10em;
+  left: 6.25em;
+}
+.main-container .jacob .white-pixels div.pixel14 {
+  top: 11.25em;
+  left: 6.25em;
+}
+.main-container .jacob .white-pixels div.pixel15 {
+  top: 7.5em;
+  left: 7.5em;
+}
+.main-container .jacob .white-pixels div.pixel16 {
+  top: 8.75em;
+  left: 7.5em;
+}
+.main-container .jacob .white-pixels div.pixel17 {
+  top: 10em;
+  left: 7.5em;
+}
+.main-container .jacob .white-pixels div.pixel18 {
+  top: 11.25em;
+  left: 7.5em;
+}
+.main-container .jacob .white-pixels div.pixel19 {
+  top: 10em;
+  left: 8.75em;
+}
+.main-container .jacob .white-pixels div.pixel20 {
+  top: 11.25em;
+  left: 8.75em;
+}
+.main-container .jacob .white-pixels div.pixel21 {
+  top: 8.75em;
+  left: 10em;
+}
+.main-container .jacob .white-pixels div.pixel22 {
+  top: 10em;
+  left: 10em;
+}
+.main-container .jacob .white-pixels div.pixel23 {
+  top: 8.75em;
+  left: 11.25em;
+}
+.main-container .jacob .white-pixels div.pixel24 {
+  top: 10em;
+  left: 11.25em;
+}
+.main-container .jacob .white-pixels div.pixel25 {
+  top: 15em;
+  left: 2.5em;
+}
+.main-container .jacob .white-pixels div.pixel26 {
+  top: 15em;
+  left: 3.75em;
+}
+.main-container .jacob .white-pixels div.pixel27 {
+  top: 16.25em;
+  left: 3.75em;
+}
+.main-container .jacob .white-pixels div.pixel28 {
+  top: 16.25em;
+  left: 5em;
+}
+.main-container .jacob .white-pixels div.pixel29 {
+  top: 15em;
+  left: 6.25em;
+}
+.main-container .jacob .white-pixels div.pixel30 {
+  top: 15em;
+  left: 7.5em;
+}
+.main-container .jacob .white-pixels div.pixel31 {
+  top: 13.75em;
+  left: 10em;
+}
+.main-container .jacob .white-pixels div.pixel32 {
+  top: 15em;
+  left: 10em;
+}
+.main-container .jacob .white-pixels div.pixel33 {
+  top: 13.75em;
+  left: 11.25em;
+}
+.main-container .jacob .white-pixels div.pixel34 {
+  top: 15em;
+  left: 11.25em;
+}
+.main-container .jacob .white-pixels div.pixel35 {
+  top: 16.25em;
+  left: 12.5em;
+}
+.main-container .jacob .white-pixels div.pixel36 {
+  top: 16.25em;
+  left: 13.75em;
+}
+.main-container .jacob .white-pixels div.pixel37 {
+  top: 15em;
+  left: 13.75em;
+}
+.main-container .jacob-walking {
+  height: 18.75em;
+  width: 18.75em;
+  position: absolute;
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+}
+.main-container .jacob-walking .green-pixels div {
+  background-color: #008D29;
+}
+.main-container .jacob-walking .green-pixels div.pixel01 {
+  top: 11.25em;
+  left: 12.5em;
+}
+.main-container .jacob-walking .green-pixels div.pixel02 {
+  top: 12.5em;
+  left: 12.5em;
+}
+.main-container .jacob-walking .green-pixels div.pixel03 {
+  top: 13.75em;
+  left: 12.5em;
+}
+.main-container .jacob-walking .green-pixels div.pixel04 {
+  top: 15em;
+  left: 12.5em;
+}
+.main-container .jacob-walking .green-pixels div.pixel05 {
+  top: 12.5em;
+  left: 11.25em;
+}
+.main-container .jacob-walking .dark-brown-pixels div {
+  background-color: #402607;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel01 {
+  top: 1.25em;
+  left: 5em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel02 {
+  top: 2.5em;
+  left: 5em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel03 {
+  top: 2.5em;
+  left: 3.75em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel04 {
+  top: 3.75em;
+  left: 5em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel05 {
+  top: 1.25em;
+  left: 6.25em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel06 {
+  top: 1.25em;
+  left: 7.5em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel07 {
+  top: 1.25em;
+  left: 8.75em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel08 {
+  top: 1.25em;
+  left: 10em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel09 {
+  top: 1.25em;
+  left: 11.25em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel10 {
+  top: 2.5em;
+  left: 6.25em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel11 {
+  top: 2.5em;
+  left: 7.5em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel12 {
+  top: 2.5em;
+  left: 8.75em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel13 {
+  top: 2.5em;
+  left: 10em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel14 {
+  top: 2.5em;
+  left: 11.25em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel15 {
+  top: 2.5em;
+  left: 12.5em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel16 {
+  top: 3.75em;
+  left: 7.5em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel17 {
+  top: 3.75em;
+  left: 8.75em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel18 {
+  top: 3.75em;
+  left: 10em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel19 {
+  top: 3.75em;
+  left: 11.25em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel20 {
+  top: 3.75em;
+  left: 12.5em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel21 {
+  top: 3.75em;
+  left: 6.25em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel22 {
+  top: 5em;
+  left: 7.5em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel23 {
+  top: 5em;
+  left: 8.75em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel24 {
+  top: 5em;
+  left: 10em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel25 {
+  top: 5em;
+  left: 6.25em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel26 {
+  top: 6.25em;
+  left: 6.25em;
+  background-color: white;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel27 {
+  top: 6.25em;
+  left: 5em;
+  background-color: white;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel28 {
+  top: 6.25em;
+  left: 3.75em;
+  background-color: white;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel29 {
+  top: 5em;
+  left: 11.25em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel30 {
+  top: -1.25em;
+  left: 5em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel31 {
+  top: 0;
+  left: 3.75em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel32 {
+  top: 0;
+  left: 5em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel33 {
+  top: 0;
+  left: 6.25em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel34 {
+  top: 1.25em;
+  left: 2.5em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel35 {
+  top: 1.25em;
+  left: 3.75em;
+}
+.main-container .jacob-walking .dark-brown-pixels div.pixel36 {
+  top: 2.5em;
+  left: 2.5em;
+}
+.main-container .jacob-walking .black-pixels div {
+  background-color: black;
+}
+.main-container .jacob-walking .black-pixels div.pixel01 {
+  left: 5em;
+  top: -2.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel02 {
+  top: -1.25em;
+  left: 3.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel03 {
+  top: 0;
+  left: 2.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel04 {
+  top: 1.25em;
+  left: 1.25em;
+}
+.main-container .jacob-walking .black-pixels div.pixel05 {
+  top: 2.5em;
+  left: 1.25em;
+}
+.main-container .jacob-walking .black-pixels div.pixel06 {
+  top: 8.75em;
+  left: 5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel07 {
+  top: 3.75em;
+  left: 2.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel08 {
+  top: 5em;
+  left: 2.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel09 {
+  top: 6.25em;
+  left: 2.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel10 {
+  top: 7.5em;
+  left: 2.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel11 {
+  top: 8.75em;
+  left: 2.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel12 {
+  top: 10em;
+  left: 2.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel13 {
+  top: 7.5em;
+  left: 5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel14 {
+  top: 11.25em;
+  left: 3.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel15 {
+  top: 12.5em;
+  left: 3.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel16 {
+  top: 12.5em;
+  left: 5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel17 {
+  top: 12.5em;
+  left: 6.25em;
+}
+.main-container .jacob-walking .black-pixels div.pixel18 {
+  top: 12.5em;
+  left: 7.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel19 {
+  top: 12.5em;
+  left: 8.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel20 {
+  top: 13.75em;
+  left: 6.25em;
+}
+.main-container .jacob-walking .black-pixels div.pixel23 {
+  top: 13.75em;
+  left: 7.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel24 {
+  top: 15em;
+  left: 6.25em;
+}
+.main-container .jacob-walking .black-pixels div.pixel25 {
+  top: 15em;
+  left: 7.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel26 {
+  top: 16.25em;
+  left: 5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel31 {
+  top: 18.75em;
+  left: 6.25em;
+}
+.main-container .jacob-walking .black-pixels div.pixel32 {
+  top: 18.75em;
+  left: 7.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel33 {
+  top: 18.75em;
+  left: 8.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel34 {
+  top: 18.75em;
+  left: 10em;
+}
+.main-container .jacob-walking .black-pixels div.pixel35 {
+  top: 17.5em;
+  left: 5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel36 {
+  top: 17.5em;
+  left: 11.25em;
+}
+.main-container .jacob-walking .black-pixels div.pixel37 {
+  top: 16.25em;
+  left: 11.25em;
+}
+.main-container .jacob-walking .black-pixels div.pixel38 {
+  top: 16.25em;
+  left: 10em;
+}
+.main-container .jacob-walking .black-pixels div.pixel39 {
+  top: 16.25em;
+  left: 8.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel40 {
+  top: 15em;
+  left: 11.25em;
+}
+.main-container .jacob-walking .black-pixels div.pixel41 {
+  top: 13.75em;
+  left: 11.25em;
+}
+.main-container .jacob-walking .black-pixels div.pixel42 {
+  top: 16.25em;
+  left: 12.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel43 {
+  top: 15em;
+  left: 13.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel44 {
+  top: 13.75em;
+  left: 13.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel45 {
+  top: 12.5em;
+  left: 13.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel46 {
+  top: 11.25em;
+  left: 13.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel48 {
+  top: 12.5em;
+  left: 10em;
+}
+.main-container .jacob-walking .black-pixels div.pixel49 {
+  top: 11.25em;
+  left: 11.25em;
+}
+.main-container .jacob-walking .black-pixels div.pixel50 {
+  top: 11.25em;
+  left: 10em;
+}
+.main-container .jacob-walking .black-pixels div.pixel51 {
+  top: 10em;
+  left: 12.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel52 {
+  top: 8.75em;
+  left: 12.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel53 {
+  top: 8.75em;
+  left: 13.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel54 {
+  top: 7.5em;
+  left: 15em;
+}
+.main-container .jacob-walking .black-pixels div.pixel55 {
+  top: 7.5em;
+  left: 13.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel56 {
+  top: 7.5em;
+  left: 12.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel57 {
+  top: 7.5em;
+  left: 11.25em;
+}
+.main-container .jacob-walking .black-pixels div.pixel58 {
+  top: 7.5em;
+  left: 10em;
+}
+.main-container .jacob-walking .black-pixels div.pixel59 {
+  top: 7.5em;
+  left: 8.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel60 {
+  top: 8.75em;
+  left: 8.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel61 {
+  top: 6.25em;
+  left: 15em;
+}
+.main-container .jacob-walking .black-pixels div.pixel62 {
+  top: 6.25em;
+  left: 13.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel63 {
+  top: 6.25em;
+  left: 12.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel64 {
+  top: 6.25em;
+  left: 11.25em;
+}
+.main-container .jacob-walking .black-pixels div.pixel65 {
+  top: 6.25em;
+  left: 10em;
+}
+.main-container .jacob-walking .black-pixels div.pixel66 {
+  top: 6.25em;
+  left: 8.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel67 {
+  top: 6.25em;
+  left: 7.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel68 {
+  top: 5em;
+  left: 15em;
+}
+.main-container .jacob-walking .black-pixels div.pixel69 {
+  top: 5em;
+  left: 13.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel70 {
+  top: 5em;
+  left: 12.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel71 {
+  top: 3.75em;
+  left: 13.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel72 {
+  top: 2.5em;
+  left: 13.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel73 {
+  top: 1.25em;
+  left: 12.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel74 {
+  left: 11.25em;
+}
+.main-container .jacob-walking .black-pixels div.pixel75 {
+  left: 10em;
+}
+.main-container .jacob-walking .black-pixels div.pixel76 {
+  left: 8.75em;
+}
+.main-container .jacob-walking .black-pixels div.pixel77 {
+  left: 7.5em;
+}
+.main-container .jacob-walking .black-pixels div.pixel78 {
+  left: 6.25em;
+  top: -1.25em;
+}
+.main-container .jacob-walking .white-pixels div {
+  background-color: white;
+}
+.main-container .jacob-walking .white-pixels div.pixel01 {
+  top: 3.75em;
+  left: 3.75em;
+}
+.main-container .jacob-walking .white-pixels div.pixel02 {
+  top: 5em;
+  left: 1.25em;
+}
+.main-container .jacob-walking .white-pixels div.pixel03 {
+  top: 5em;
+  left: 2.5em;
+}
+.main-container .jacob-walking .white-pixels div.pixel04 {
+  top: 5em;
+  left: 3.75em;
+}
+.main-container .jacob-walking .white-pixels div.pixel05 {
+  top: 5em;
+  left: 5em;
+}
+.main-container .jacob-walking .white-pixels div.pixel06 {
+  top: 7.5em;
+  left: 3.75em;
+}
+.main-container .jacob-walking .white-pixels div.pixel07 {
+  top: 8.75em;
+  left: 3.75em;
+}
+.main-container .jacob-walking .white-pixels div.pixel08 {
+  top: 10em;
+  left: 3.75em;
+}
+.main-container .jacob-walking .white-pixels div.pixel09 {
+  top: 10em;
+  left: 5em;
+}
+.main-container .jacob-walking .white-pixels div.pixel10 {
+  top: 11.25em;
+  left: 5em;
+}
+.main-container .jacob-walking .white-pixels div.pixel11 {
+  top: 7.5em;
+  left: 6.25em;
+}
+.main-container .jacob-walking .white-pixels div.pixel12 {
+  top: 8.75em;
+  left: 6.25em;
+}
+.main-container .jacob-walking .white-pixels div.pixel13 {
+  top: 10em;
+  left: 6.25em;
+}
+.main-container .jacob-walking .white-pixels div.pixel14 {
+  top: 11.25em;
+  left: 6.25em;
+}
+.main-container .jacob-walking .white-pixels div.pixel15 {
+  top: 7.5em;
+  left: 7.5em;
+}
+.main-container .jacob-walking .white-pixels div.pixel16 {
+  top: 8.75em;
+  left: 7.5em;
+}
+.main-container .jacob-walking .white-pixels div.pixel17 {
+  top: 10em;
+  left: 7.5em;
+}
+.main-container .jacob-walking .white-pixels div.pixel18 {
+  top: 11.25em;
+  left: 7.5em;
+}
+.main-container .jacob-walking .white-pixels div.pixel19 {
+  top: 10em;
+  left: 8.75em;
+}
+.main-container .jacob-walking .white-pixels div.pixel20 {
+  top: 11.25em;
+  left: 8.75em;
+}
+.main-container .jacob-walking .white-pixels div.pixel21 {
+  top: 8.75em;
+  left: 10em;
+}
+.main-container .jacob-walking .white-pixels div.pixel22 {
+  top: 10em;
+  left: 10em;
+}
+.main-container .jacob-walking .white-pixels div.pixel23 {
+  top: 8.75em;
+  left: 11.25em;
+}
+.main-container .jacob-walking .white-pixels div.pixel24 {
+  top: 10em;
+  left: 11.25em;
+}
+.main-container .jacob-walking .white-pixels div.pixel25 {
+  top: 13.75em;
+  left: 8.75em;
+}
+.main-container .jacob-walking .white-pixels div.pixel26 {
+  top: 13.75em;
+  left: 10em;
+}
+.main-container .jacob-walking .white-pixels div.pixel27 {
+  top: 15em;
+  left: 8.75em;
+}
+.main-container .jacob-walking .white-pixels div.pixel28 {
+  top: 15em;
+  left: 10em;
+}
+.main-container .jacob-walking .white-pixels div.pixel29 {
+  top: 16.25em;
+  left: 6.25em;
+}
+.main-container .jacob-walking .white-pixels div.pixel30 {
+  top: 16.25em;
+  left: 7.5em;
+}
+.main-container .jacob-walking .white-pixels div.pixel31 {
+  top: 17.5em;
+  left: 6.25em;
+}
+.main-container .jacob-walking .white-pixels div.pixel32 {
+  top: 17.5em;
+  left: 7.5em;
+}
+.main-container .jacob-walking .white-pixels div.pixel33 {
+  top: 17.5em;
+  left: 8.75em;
+}
+.main-container .jacob-walking .white-pixels div.pixel34 {
+  top: 17.5em;
+  left: 10em;
 }
 
-.segment-canvas {
+/* =BLACK SQUARES */
+.square {
+  width: 12.5%;
+  height: 25%;
   position: absolute;
+  background-color: black;
+  opacity: 0;
+  display: none;
+}
+.square.square01 {
+  top: 0;
+  left: 0;
+}
+.square.square02 {
+  top: 0;
+  left: 12.5%;
+}
+.square.square03 {
+  top: 0;
+  left: 25%;
+}
+.square.square04 {
+  top: 0;
+  left: 37.5%;
+}
+.square.square05 {
+  top: 0;
+  left: 50%;
+}
+.square.square06 {
+  top: 0;
+  left: 62.5%;
+}
+.square.square07 {
+  top: 0;
+  left: 75%;
+}
+.square.square08 {
+  top: 0;
+  left: 87.5%;
+}
+.square.square09 {
+  top: 0;
+  left: 100%;
+}
+.square.square10 {
+  top: 25%;
+  left: 0;
+}
+.square.square11 {
+  top: 25%;
+  left: 12.5%;
+}
+.square.square12 {
+  top: 25%;
+  left: 25%;
+}
+.square.square13 {
+  top: 25%;
+  left: 37.5%;
+}
+.square.square14 {
+  top: 25%;
+  left: 50%;
+}
+.square.square15 {
+  top: 25%;
+  left: 62.5%;
+}
+.square.square16 {
+  top: 25%;
+  left: 75%;
+}
+.square.square17 {
+  top: 25%;
+  left: 87.5%;
+}
+.square.square18 {
+  top: 25%;
+  left: 100%;
+}
+.square.square19 {
+  top: 50%;
+  left: 0;
+}
+.square.square20 {
+  top: 50%;
+  left: 12.5%;
+}
+.square.square21 {
+  top: 50%;
+  left: 25%;
+}
+.square.square22 {
+  top: 50%;
+  left: 37.5%;
+}
+.square.square23 {
   top: 50%;
   left: 50%;
-
-  z-index: 2;
-
-  width: 26%;
-  height: 62%;
-
-  transform: translateX(-50%) translateY(-50%);
-
-  transition: 500ms opacity ease-out;
 }
-
-.ants-canvas {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  z-index: 3;
-  cursor: none;
-}
-
-.button {
-  position: absolute;
-  bottom: 40px;
-  right: 50px;
-
-  display: none;
-  padding: 10px 50px 10px 15px;
-
-  overflow: hidden;
-
-  font-size: 18px;
-  font-weight: bold;
-  text-transform: uppercase;
-
-  color: #fff;
-  background: none;
-
-  border: 2px solid #fff;
-  border-radius: 30px;
-
-  z-index: 4;
-
-  cursor: pointer;
-}
-
-
-@media screen and (max-width: 600px) {
-  .button--start-again {
-    right: auto;
-    left: 50%;
-
-    width: 240px;
-
-    transform: translateX(-50%);
-  }
-}
-
-.button--active {
-  display: block;
-}
-
-.cutting-mode .button--next {
-  display: block;
-}
-
-.button span {
-  position: relative;
-}
-
-.button:after {
-  position: absolute;
+.square.square24 {
   top: 50%;
-  right: 10px;
-
-  display: block;
-  width: 28px;
-  height: 28px;
-
-  margin-top: -14px;
-
-  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/934290/button-icon.png') no-repeat center;
-  background-size: contain;
-
-  content: '';
+  left: 62.5%;
 }
-
-.button:before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
+.square.square25 {
+  top: 50%;
+  left: 75%;
+}
+.square.square26 {
+  top: 50%;
+  left: 87.5%;
+}
+.square.square27 {
+  top: 50%;
+  left: 100%;
+}
+.square.square28 {
+  top: 75%;
   left: 0;
-
-  background: #bd523b;
-
-  transform: scaleX(0);
-  transform-origin: 0;
-  content: '';
-
-  transition: 250ms transform ease-out;
+}
+.square.square29 {
+  top: 75%;
+  left: 12.5%;
+}
+.square.square30 {
+  top: 75%;
+  left: 25%;
+}
+.square.square31 {
+  top: 75%;
+  left: 37.5%;
+}
+.square.square32 {
+  top: 75%;
+  left: 50%;
+}
+.square.square33 {
+  top: 75%;
+  left: 62.5%;
+}
+.square.square34 {
+  top: 75%;
+  left: 75%;
+}
+.square.square35 {
+  top: 75%;
+  left: 87.5%;
+}
+.square.square36 {
+  top: 75%;
+  left: 100%;
 }
 
-.button:hover:before {
-  transform: scaleX(1);
-}
-
-
-.knife-cursor {
+/* =PRESENT */
+.present-container {
+  width: 15em;
+  height: 15em;
   position: absolute;
-  top: 0;
-  left: 0;
-
-  z-index: 5;
-
-  display: none;
-  width: 45px;
-  height: 45px;
-
-  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/934290/scalpel.png') no-repeat center;
-
-  mix-blend-mode: difference;
-
-  cursor: none;
-
-  pointer-events: none;
-}
-
-.cutting-mode .knife-cursor {
-  display: block;
-}
-
-.demo-animation__touch-marker {
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  margin-top: -25px;
-  margin-left: -25px;
-
-  z-index: 6;
-
-  width: 50px;
-  height: 50px;
-
-  transform-origin: 50%;
-
+  top: 6.25em;
+  right: 0%;
   opacity: 0;
-
-  background: #3eacc3;
+  visibility: hidden;
+}
+.present-container .black-pixel {
+  background: black;
+  height: 1.25em;
+  width: 1.25em;
+  position: absolute;
+}
+.present-container .black-pixel.pixel3 {
+  top: 3.75em;
+  left: 0;
+}
+.present-container .black-pixel.pixel4 {
+  top: 5em;
+  left: 0;
+}
+.present-container .black-pixel.pixel5 {
+  top: 6.25em;
+  left: 0;
+}
+.present-container .black-pixel.pixel6 {
+  top: 7.5em;
+  left: 0;
+}
+.present-container .black-pixel.pixel7 {
+  top: 8.75em;
+  left: 0;
+}
+.present-container .black-pixel.pixel8 {
+  top: 10em;
+  left: 0;
+}
+.present-container .black-pixel.pixel9 {
+  top: 11.25em;
+  left: 0;
+}
+.present-container .black-pixel.pixel10 {
+  top: 12.5em;
+  left: 0;
+}
+.present-container .black-pixel.pixel11 {
+  top: 13.75em;
+  left: 0;
+}
+.present-container .black-pixel.pixel12 {
+  top: 13.75em;
+  left: 1.25em;
+}
+.present-container .black-pixel.pixel13 {
+  top: 13.75em;
+  left: 2.5em;
+}
+.present-container .black-pixel.pixel14 {
+  top: 13.75em;
+  left: 3.75em;
+}
+.present-container .black-pixel.pixel15 {
+  top: 13.75em;
+  left: 5em;
+}
+.present-container .black-pixel.pixel16 {
+  top: 13.75em;
+  left: 6.25em;
+}
+.present-container .black-pixel.pixel17 {
+  top: 13.75em;
+  left: 7.5em;
+}
+.present-container .black-pixel.pixel18 {
+  top: 13.75em;
+  left: 8.75em;
+}
+.present-container .black-pixel.pixel19 {
+  top: 13.75em;
+  left: 10em;
+}
+.present-container .black-pixel.pixel20 {
+  top: 13.75em;
+  left: 11.25em;
+}
+.present-container .black-pixel.pixel21 {
+  top: 13.75em;
+  left: 12.5em;
+}
+.present-container .black-pixel.pixel22 {
+  top: 13.75em;
+  left: 13.75em;
+}
+.present-container .black-pixel.pixel23 {
+  top: 3.75em;
+  left: 13.75em;
+}
+.present-container .black-pixel.pixel24 {
+  top: 5em;
+  left: 13.75em;
+}
+.present-container .black-pixel.pixel25 {
+  top: 6.25em;
+  left: 13.75em;
+}
+.present-container .black-pixel.pixel26 {
+  top: 7.5em;
+  left: 13.75em;
+}
+.present-container .black-pixel.pixel27 {
+  top: 8.75em;
+  left: 13.75em;
+}
+.present-container .black-pixel.pixel28 {
+  top: 10em;
+  left: 13.75em;
+}
+.present-container .black-pixel.pixel29 {
+  top: 11.25em;
+  left: 13.75em;
+}
+.present-container .black-pixel.pixel30 {
+  top: 12.5em;
+  left: 13.75em;
+}
+.present-container .red-pixel {
+  background: #EE452F;
+  height: 1.25em;
+  width: 1.25em;
+  position: absolute;
+}
+.present-container .red-pixel.pixel1 {
+  top: 10em;
+  left: 1.25em;
+}
+.present-container .red-pixel.pixel2 {
+  top: 11.25em;
+  left: 2.5em;
+}
+.present-container .red-pixel.pixel3 {
+  top: 12.5em;
+  left: 3.75em;
+}
+.present-container .red-pixel.pixel4 {
+  top: 7.5em;
+  left: 1.25em;
+}
+.present-container .red-pixel.pixel5 {
+  top: 8.75em;
+  left: 2.5em;
+}
+.present-container .red-pixel.pixel6 {
+  top: 10em;
+  left: 3.75em;
+}
+.present-container .red-pixel.pixel7 {
+  top: 11.25em;
+  left: 5em;
+}
+.present-container .red-pixel.pixel8 {
+  top: 12.5em;
+  left: 6.25em;
+}
+.present-container .red-pixel.pixel9 {
+  top: 5em;
+  left: 1.25em;
+}
+.present-container .red-pixel.pixel10 {
+  top: 6.25em;
+  left: 2.5em;
+}
+.present-container .red-pixel.pixel11 {
+  top: 7.5em;
+  left: 3.75em;
+}
+.present-container .red-pixel.pixel12 {
+  top: 8.75em;
+  left: 5em;
+}
+.present-container .red-pixel.pixel13 {
+  top: 10em;
+  left: 6.25em;
+}
+.present-container .red-pixel.pixel14 {
+  top: 11.25em;
+  left: 7.5em;
+}
+.present-container .red-pixel.pixel15 {
+  top: 12.5em;
+  left: 8.75em;
+}
+.present-container .red-pixel.pixel16 {
+  top: 3.75em;
+  left: 2.5em;
+}
+.present-container .red-pixel.pixel17 {
+  top: 5em;
+  left: 3.75em;
+}
+.present-container .red-pixel.pixel18 {
+  top: 6.25em;
+  left: 5em;
+}
+.present-container .red-pixel.pixel19 {
+  top: 7.5em;
+  left: 6.25em;
+}
+.present-container .red-pixel.pixel20 {
+  top: 8.75em;
+  left: 7.5em;
+}
+.present-container .red-pixel.pixel21 {
+  top: 10em;
+  left: 8.75em;
+}
+.present-container .red-pixel.pixel22 {
+  top: 11.25em;
+  left: 10em;
+}
+.present-container .red-pixel.pixel23 {
+  top: 12.5em;
+  left: 11.25em;
+}
+.present-container .red-pixel.pixel24 {
+  top: 3.75em;
+  left: 5em;
+}
+.present-container .red-pixel.pixel25 {
+  top: 5em;
+  left: 6.25em;
+}
+.present-container .red-pixel.pixel26 {
+  top: 6.25em;
+  left: 7.5em;
+}
+.present-container .red-pixel.pixel27 {
+  top: 7.5em;
+  left: 8.75em;
+}
+.present-container .red-pixel.pixel28 {
+  top: 8.75em;
+  left: 10em;
+}
+.present-container .red-pixel.pixel29 {
+  top: 10em;
+  left: 11.25em;
+}
+.present-container .red-pixel.pixel30 {
+  top: 11.25em;
+  left: 12.5em;
+}
+.present-container .red-pixel.pixel31 {
+  top: 3.75em;
+  left: 7.5em;
+}
+.present-container .red-pixel.pixel32 {
+  top: 5em;
+  left: 8.75em;
+}
+.present-container .red-pixel.pixel33 {
+  top: 6.25em;
+  left: 10em;
+}
+.present-container .red-pixel.pixel34 {
+  top: 7.5em;
+  left: 11.25em;
+}
+.present-container .red-pixel.pixel35 {
+  top: 8.75em;
+  left: 12.5em;
+}
+.present-container .red-pixel.pixel36 {
+  top: 3.75em;
+  left: 10em;
+}
+.present-container .red-pixel.pixel37 {
+  top: 5em;
+  left: 11.25em;
+}
+.present-container .red-pixel.pixel38 {
+  top: 6.25em;
+  left: 12.5em;
+}
+.present-container .red-pixel.pixel39 {
+  top: 3.75em;
+  left: 12.5em;
+}
+.present-container .red-pixel.pixel40 {
+  top: 12.5em;
+  left: 1.25em;
+}
+.present-container .darkred-pixel {
+  background: #8E291C;
+  height: 1.25em;
+  width: 1.25em;
+  position: absolute;
+}
+.present-container .darkred-pixel.pixel1 {
+  top: 11.25em;
+  left: 1.25em;
+}
+.present-container .darkred-pixel.pixel2 {
+  top: 12.5em;
+  left: 2.5em;
+}
+.present-container .darkred-pixel.pixel3 {
+  top: 8.75em;
+  left: 1.25em;
+}
+.present-container .darkred-pixel.pixel4 {
+  top: 10em;
+  left: 2.5em;
+}
+.present-container .darkred-pixel.pixel5 {
+  top: 11.25em;
+  left: 3.75em;
+}
+.present-container .darkred-pixel.pixel6 {
+  top: 12.5em;
+  left: 5em;
+}
+.present-container .darkred-pixel.pixel7 {
+  top: 6.25em;
+  left: 1.25em;
+}
+.present-container .darkred-pixel.pixel8 {
+  top: 7.5em;
+  left: 2.5em;
+}
+.present-container .darkred-pixel.pixel9 {
+  top: 8.75em;
+  left: 3.75em;
+}
+.present-container .darkred-pixel.pixel10 {
+  top: 10em;
+  left: 5em;
+}
+.present-container .darkred-pixel.pixel11 {
+  top: 11.25em;
+  left: 6.25em;
+}
+.present-container .darkred-pixel.pixel12 {
+  top: 12.5em;
+  left: 7.5em;
+}
+.present-container .darkred-pixel.pixel13 {
+  top: 3.75em;
+  left: 1.25em;
+}
+.present-container .darkred-pixel.pixel14 {
+  top: 5em;
+  left: 2.5em;
+}
+.present-container .darkred-pixel.pixel15 {
+  top: 6.25em;
+  left: 3.75em;
+}
+.present-container .darkred-pixel.pixel16 {
+  top: 7.5em;
+  left: 5em;
+}
+.present-container .darkred-pixel.pixel17 {
+  top: 8.75em;
+  left: 6.25em;
+}
+.present-container .darkred-pixel.pixel18 {
+  top: 10em;
+  left: 7.5em;
+}
+.present-container .darkred-pixel.pixel19 {
+  top: 11.25em;
+  left: 8.75em;
+}
+.present-container .darkred-pixel.pixel20 {
+  top: 12.5em;
+  left: 10em;
+}
+.present-container .darkred-pixel.pixel21 {
+  top: 3.75em;
+  left: 3.75em;
+}
+.present-container .darkred-pixel.pixel22 {
+  top: 5em;
+  left: 5em;
+}
+.present-container .darkred-pixel.pixel23 {
+  top: 6.25em;
+  left: 6.25em;
+}
+.present-container .darkred-pixel.pixel24 {
+  top: 7.5em;
+  left: 7.5em;
+}
+.present-container .darkred-pixel.pixel25 {
+  top: 8.75em;
+  left: 8.75em;
+}
+.present-container .darkred-pixel.pixel26 {
+  top: 10em;
+  left: 10em;
+}
+.present-container .darkred-pixel.pixel27 {
+  top: 11.25em;
+  left: 11.25em;
+}
+.present-container .darkred-pixel.pixel28 {
+  top: 12.5em;
+  left: 12.5em;
+}
+.present-container .darkred-pixel.pixel29 {
+  top: 3.75em;
+  left: 6.25em;
+}
+.present-container .darkred-pixel.pixel30 {
+  top: 5em;
+  left: 7.5em;
+}
+.present-container .darkred-pixel.pixel31 {
+  top: 6.25em;
+  left: 8.75em;
+}
+.present-container .darkred-pixel.pixel32 {
+  top: 7.5em;
+  left: 10em;
+}
+.present-container .darkred-pixel.pixel33 {
+  top: 8.75em;
+  left: 11.25em;
+}
+.present-container .darkred-pixel.pixel34 {
+  top: 10em;
+  left: 12.5em;
+}
+.present-container .darkred-pixel.pixel35 {
+  top: 3.75em;
+  left: 8.75em;
+}
+.present-container .darkred-pixel.pixel36 {
+  top: 5em;
+  left: 10em;
+}
+.present-container .darkred-pixel.pixel37 {
+  top: 6.25em;
+  left: 11.25em;
+}
+.present-container .darkred-pixel.pixel38 {
+  top: 7.5em;
+  left: 12.5em;
+}
+.present-container .darkred-pixel.pixel39 {
+  top: 3.75em;
+  left: 11.25em;
+}
+.present-container .darkred-pixel.pixel40 {
+  top: 5em;
+  left: 12.5em;
+}
+.present-container .wrapper1 {
+  position: absolute;
+  top: 7.5em;
+  left: 1.25em;
+  width: 12.5em;
+  height: 2.5em;
+  z-index: 10;
+  background-color: #FFF734;
+}
+.present-container .wrapper2 {
+  position: absolute;
+  top: 3.75em;
+  left: 6.25em;
+  width: 2.5em;
+  height: 10em;
+  z-index: 10;
+  background-color: #FFF734;
+}
+.present-container .present-top-container {
+  position: absolute;
+  left: -1.25em;
+  z-index: 20;
+}
+.present-container .present-top-container .present-top {
+  border: 1.25em solid black;
+  width: 15em;
+  height: 2.5em;
+  background-color: #EE452F;
+}
+.present-container .present-top-container .wrapper-circle-one {
+  border: 1.25em solid #FFF734;
+  height: 2.5em;
+  width: 5em;
+  position: absolute;
+  top: -3.75em;
+  left: 1.875em;
+  z-index: -1;
+  transform: rotate(45deg);
   border-radius: 50%;
 }
-
-.title {
+.present-container .present-top-container .wrapper-circle-two {
+  border: 1.25em solid #FFF734;
+  height: 2.5em;
+  width: 5em;
   position: absolute;
-  top: 10%;
-  margin: 0;
-  width: 100%;
-  text-align: center;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #fff;
+  top: -3.75em;
+  left: 8.125em;
+  z-index: -1;
+  transform: rotate(315deg);
+  border-radius: 50%;
+}
+.present-container .present-top-container .wrapper-middle {
+  position: absolute;
+  top: 1.25em;
+  left: 7.5em;
+  width: 2.5em;
+  height: 2.5em;
+  background-color: #FFF734;
 }
 
-.title:before {
+/* =SPEECH BOX */
+.speech-box {
+  width: 90%;
+  height: 30%;
+  border: 5px solid black;
+  border-radius: 5px;
   position: absolute;
-  top: -35px;
   left: 50%;
+  transform: translateX(-50%);
+  bottom: 15px;
+  opacity: 0;
+  display: none;
+}
+.speech-box .speech-box-inner {
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  border: 5px solid black;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.speech-box .speech-box-inner .battle-message, .speech-box .speech-box-inner .run-message, .speech-box .speech-box-inner .pack-message, .speech-box .speech-box-inner .not-effective, .speech-box .speech-box-inner .super-effective {
+  width: 60%;
+  margin: 5px 20px;
+  position: absolute;
+  font-size: 4vw;
+}
+.speech-box .speech-box-inner .run-message {
+  width: 100%;
+  display: none;
+}
+.speech-box .speech-box-inner .pack-message {
+  width: 90%;
+  display: none;
+}
+.speech-box .speech-box-inner .not-effective {
+  width: 100%;
+  display: none;
+}
+.speech-box .speech-box-inner .super-effective {
+  width: 100%;
+  display: none;
+}
+.speech-box .fight-menu {
+  width: 55% !important;
+}
+.speech-box .fight-menu .attack {
+  position: relative;
+  cursor: pointer;
+  font-size: 5vw;
+  text-transform: uppercase;
+}
+.speech-box .fight-menu .attack .open, .speech-box .fight-menu .attack .shake {
+  width: 100%;
+  float: left;
+}
+.speech-box .options, .speech-box .fight-menu {
+  width: 35%;
+  height: calc(100% - 15px);
+  border-left: 5px solid black;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  right: 10px;
+  top: 8px;
+}
+.speech-box .options ul, .speech-box .fight-menu ul {
+  list-style-type: none;
+  margin: 0;
+}
+.speech-box .options .option, .speech-box .fight-menu .option {
+  position: relative;
+  cursor: pointer;
+  font-size: 5vw;
+  text-transform: uppercase;
+}
+.speech-box .options .option.fight, .speech-box .fight-menu .option.fight {
+  float: left;
+  width: 60%;
+}
+.speech-box .options .option.pack, .speech-box .fight-menu .option.pack {
+  float: left;
+  width: 45%;
+}
+.speech-box .options .option.run, .speech-box .fight-menu .option.run {
+  float: left;
+  text-align: center;
+  margin-left: 10px;
+  width: 45%;
+}
 
-  display: block;
-  width: 60px;
-  height: 30px;
+/* =INFO */
+.info {
+  position: fixed;
+  bottom: 0;
+  right: 20px;
+  z-index: 21;
+}
+.info .twitter-logo {
+  fill: #4D648D;
+  float: left;
+  vertical-align: center;
+}
+.info .info-header {
+  color: #4D648D;
+  float: right;
+  text-decoration: none;
+  font-size: 25px;
+}
 
-  margin-left: -30px;
+/* iPads (portrait) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .road {
+    height: 43.75em;
+  }
 
-  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/934290/flourish.png') no-repeat center;
-  background-size: contain;
+  .christmas-tree {
+    top: 12.5em;
+  }
 
-  content: '';
+  .main-container {
+    top: 26.25em;
+  }
+
+  .speech-box {
+    height: 20%;
+  }
+  .speech-box .speech-box-inner .battle-message, .speech-box .speech-box-inner .run-message, .speech-box .speech-box-inner .pack-message, .speech-box .speech-box-inner .not-effective, .speech-box .speech-box-inner .super-effective {
+    font-size: 5.5vw;
+  }
+  .speech-box .fight-menu .attack {
+    font-size: 7vw;
+  }
+  .speech-box .options .option, .speech-box .fight-menu .option {
+    padding-left: 11px;
+  }
+  .speech-box .options .option.run, .speech-box .fight-menu .option.run {
+    float: left;
+    width: 45%;
+    margin: 0;
+    text-align: left;
+  }
 }
