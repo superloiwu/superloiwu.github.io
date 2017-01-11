@@ -7,7 +7,7 @@ categories: loiwu update
 
 #About Loi
 
-My name is Loi Wu, and I’m a software engineer. I'm living in Guangzhou, China with my work partner Constance.
+My name is Loi Wu, and I’m a software engineer living in Guangzhou, China with my work partner Constance.
 
 You can contact me, if you like:
 
@@ -19,7 +19,7 @@ I used to work for Alibaba, Cisco.
 
 As a participant and leader, I've been involved in product designing and developing of VIP.com for iOS 
 
-- [唯品会 for iOS](https://appsto.re/cn/gNF3y.i)
+- [唯品会 for iOS](https://itunes.apple.com/us/app/vipshop/id417200582?mt=8)
 
 I'm coding for iOS, as well as full stack, and I've released an app named BAEN in App Store
 
