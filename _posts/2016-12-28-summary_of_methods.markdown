@@ -8,8 +8,6 @@ categories: loiwu update
 
 #### <span id="Summary">Summary</span>
 
-> 以Project A为例，总结下项目进展的各种阶段，和每个阶段的应对策略。
-
 > 第一阶段：产品规划+技术预研
 
 > 第二阶段：1.0研发与发布
