@@ -11,21 +11,32 @@ My name is Loi Wu, and I’m a software engineer living in Guangzhou, China with
 
 You can contact me, if you like:
 
-- Email: superloiwu@yahoo.com
+- Email: vipstartup@qq.com
+- Wechat: superloiwu
 
 I’m interested in technology and software development. I’m passionate about intuitive design, multi-touch interfaces, human-focused software, and accessibility.
 
+
 I used to work for Alibaba, Cisco.
+
+
+I have a software/design studio called 'CatsLinc Studio'. Our team members come from many different fields. 
+
+- [CatsLinc Studio Official Website](http://www.catslinc.com)
+
 
 As a participant and leader, I've been involved in product designing and developing of VIP.com for iOS 
 
 - [唯品会 for iOS](https://itunes.apple.com/us/app/vipshop/id417200582?mt=8)
 
+
 I'm coding for iOS, as well as full stack, and I've released an app named BAEN in App Store
 
 - [BAEN](https://itunes.apple.com/us/app/baen-bay-area-equestrian-network/id967867603?mt=8)
 
+
 You can check what I am interested in at [my Github](https://github.com/loiwu)
+
 
 #About this site
 
