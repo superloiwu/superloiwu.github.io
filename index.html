@@ -3,12 +3,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Fallout Hacking Game</title>
+  <title>HTTP Response Status Code Game</title>
   
   
-  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
-<link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.css'>
-
+  
       <link rel="stylesheet" href="css/style.css">
 
   
@@ -16,90 +14,43 @@
 
 <body>
 
-  <code>Coded by Grandduchy</code>
-<div id = "ignore"></div>
-<div class = "computer-frame">
-  <div class = "inner-computer-frame">
-    <div class = "black-computer-framing">
-      <div class = "title-screen">
-        </div>
-        <div class = "hacking-screen">
-        </div>
-        <div class = "input-screen">
-      </div>
-      <div class = "lower-input-screen">
-      </div>
-    </div>
-      <div class = "black-computer-framing-before">
-        <h3 class = "text-center">Choose Difficulty</h3>
-        <ul>
-          <li>Very Easy</li>
-          <li>Easy</li>
-          <li>Average</li>
-          <li id = "lfmid">Hard</li>
-          <li id = "mid">Very Hard</li>
-        </ul>
-        <div id = "help">
-          <i class="fa fa-question-circle-o fa-4x" aria-hidden="true"></i>
-        </div>
-        <div id = "settings">
-          <i class="fa fa-cogs fa-4x" aria-hidden="true"></i>
-        </div>
-      </div>
-    <div class = "help-screen">
-      <h2 class = "text-center">Help</h2>
-      <p class = "text-center">The goal of the game is to determine the correct password given gibberish.<br>Within the gibberish, there is a single correct word.<br> If you choose the incorrect password, your tries go down by one, and if your tries run out, the terminal becomes locked.<br>Whenever you choose an incorrect word, the system will return how many placement of characters are correct.<br>To help, there are duds in the gibberish that will either remove incorrect words or replenish your tries.<br> Duds are enclosed special characters such as <br>() , &lt;&gt; , {} , [].<br> There could also be charcters contained in the dud as well.<br> Good Luck!</p>
-      <div id = "back">
-        <i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i>
-        <p>Back</p>
-      </div>
-      
-    </div>
-    <div class = "settings-screen">
-      <h2 class = "text-center">Settings</h2>
-      <div id = "inputs">
-        <p>Words: </p><input type = "text" name = "words" id = "wd"></input>
-        <p>Duds: </p><input type = "text" name = "duds" id = "dd"></input>
-        <p>Tries: </p><input type = "text" name = "Tries" id = "tr"></input>
-        <p style = "margin-top:20px margin-">Note: if nothing is inputted, defaults are used.</p>
-      </div>
-    <button class = "btn" id = "confirm">Confirm</button>
-    </div>
-    <div class = "win-screen">
-      <h2 class = "text-center">ACCESS GRANTED</h2>
-      <div id = "win-quote">
-      </div>
-    </div>
-    <div class = "failed-screen">
-      <h3 class = "text-center">TERMINAL LOCKED</h3>
-      <h3 class = "text-center">PLEASE CONTACT AN ADMINISTRATOR</h3> 
-    </div>
-    <div class = "black-screen">
-    </div>
-    </div>
-  </div>
-<button id = "turn" class = "btn"></button>
-</div>
-
-
-
-<div id="audiostuff">
-  <audio id="pb" src="http://mitchellthompson.net/demos/terminal/sound/passbad.ogg"></audio>
-  <audio id="pg" src="http://mitchellthompson.net/demos/terminal/sound/passgood.ogg"></audio>
-  <audio id="pof" src="http://mitchellthompson.net/demos/terminal/sound/poweroff.ogg"></audio>
-  <audio id="po" src="http://mitchellthompson.net/demos/terminal/sound/poweron.ogg"></audio>
-	<audio id="k1" src="http://mitchellthompson.net/demos/terminal/sound/k1.ogg"></audio>
-	<audio id="k2" src="http://mitchellthompson.net/demos/terminal/sound/k2.ogg"></audio>
-	<audio id="k3" src="http://mitchellthompson.net/demos/terminal/sound/k3.ogg"></audio>
-	<audio id="k4" src="http://mitchellthompson.net/demos/terminal/sound/k4.ogg"></audio>
-	<audio id="k5" src="http://mitchellthompson.net/demos/terminal/sound/k5.ogg"></audio>
-	<audio id="k6" src="http://mitchellthompson.net/demos/terminal/sound/k6.ogg"></audio>
-	<audio id="k7" src="http://mitchellthompson.net/demos/terminal/sound/k7.ogg"></audio>
-	<audio id="k8" src="http://mitchellthompson.net/demos/terminal/sound/k8.ogg"></audio>
-	<audio id="k9" src="http://mitchellthompson.net/demos/terminal/sound/k9.ogg"></audio>
-	<audio id="k10" src="http://mitchellthompson.net/demos/terminal/sound/k10.ogg"></audio>
-	<audio id="k11" src="http://mitchellthompson.net/demos/terminal/sound/k11.ogg"></audio>
-</div>
+  <monitor>
+	<screen class="screenFade">
+		<status>
+			Get Ready...
+		</status>
+		<counter>5</counter>
+		<score>0</score>
+	</screen>
+	<light></light>
+</monitor>
+<hr>
+<keyboard>
+	<button class="def" value="Continue">Continue</button>
+	<br>
+	<button class="def" value="OK">OK</button>
+	<button class="def" value="Created">Created</button>
+	<button class="def" value="No Content">No Content</button>
+	<button class="def" value="Partial Content">Partial Content</button>
+	<br>
+	<button class="def" value="Moved Permanently">Moved Permanently</button>
+	<button class="def" value="Found">Found</button>
+	<button class="def" value="See Other">See Other</button>
+	<button class="def" value="Not Modified">Not Modified</button>
+	<button class="def" value="Temporary Redirect">Temporary Redirect</button>
+	<button class="def" value="Permanent Redirect">Permanent Redirect</button>
+	<br>
+	<button class="def" value="Not Found">Not Found</button>
+	<button class="def" value="Gone">Gone</button>
+	<button class="def" value="Precondition Failed">Precondition Failed</button>
+	<button class="def" value="Unavailable For Legal Reasons">Unavailable For Legal Reasons</button>
+	<br>
+	<button class="def" value="Internal Server Error">Internal Server Error</button>
+	<button class="def" value="Not Implemented">Not Implemented</button>
+	<button class="def" value="Bad Gateway">Bad Gateway</button>
+	<button class="def" value="Service Unavailable">Service Unavailable</button>
+	<button class="def" value="Gateway Timeout">Gateway Timeout</button>
+</keyboard>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
 
   
