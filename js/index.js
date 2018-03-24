@@ -1,659 +1,237 @@
-var json = 
+$(document).ready(function() {
+  var divx = document.getElementById('terminal');
+  /* Welcome screen */
+  $('#welcome-login').animate({'opacity': '1', 'top': $(window).height()/2 - $('#welcome-login').height()/2 }, 3000);
 
-{
-    "name": "Grandmother Akkapeddi",
-    "children": [{
-        "name": "Person1",
-        "children": [{
-            "name": "Child1",
-            "children": [{
-                "name": "person3",
-                "size": 3938
-            }, {
-                "name": "person4",
-                "size": 3812
-            }]
-        }]
-    }, {
-        "name": "Person3",
-        "children": [{
-            "name": "Eleanor",
-            "size": 17010
-        }, {
-            "name": "Amadeus",
-            "children": [{
-                "name": "Monday",
-                "size": 1983
-            }, {
-                "name": "Coco",
-                "size": 2047
-            }, {
-                "name": "Frida",
-                "size": 1375
-            }]
-        }]
-    }, {
-        "name": "Person5",
-        "children": [{
-            "name": "Sam",
-            "children": [{
-                "name": "Kate",
-                "size": 721
-            }]
-        }]
-    }, {
-        "name": "Person6",
-        "children": [{
-            "name": "Theo",
-            "size": 8833
-        }, {
-            "name": "someotherwhitename",
-            "size": 1732
-        }, {
-            "name": "Nandhi",
-            "size": 3623
-        }]
-    }, {
-        "name": "Person7",
-        "children": [{
-            "name": "Dragan",
-            "size": 1082
-        }]
-    }, {
-        "name": "Person8",
-        "children": [{
-            "name": "topher",
-            "size": 1616
-        }, {
-            "name": "And",
-            "size": 1027
-        }, {
-            "name": "Aan",
-            "size": 3891
-        },{
-            "name": "mirchi",
-            "children": [{
-                "name": "add",
-                "size": 593
-            }, {
-                "name": "pancake",
-                "size": 330
-            }]
-        }]
-    }, {
-        "name": "Person9",
-        "children": [{
-            "name": "Sumac",
-            "size": 2105
-        }, {
-            "name": "Sunday",
-            "size": 1316
-        }]
-    }, {
-        "name": "Aan",
-        "children": [{
-            "name": "Frank",
-            "children": [{
-                "name": "Theo",
-                "size": 9354
-            }, {
-                "name": "San",
-                "size": 1233
-            }]
-        }, {
-            "name": "Ma",
-            "size": 335
-        }, {
-            "name": "L",
-            "children": [{
-                "name": "Elle",
-                "size": 3165
-            }, {
-                "name": "Saturday",
-                "size": 2815
-            }, {
-                "name": "Mr.Bean",
-                "size": 3366
-            }]
-        }]
-    }]
-};
+  setTimeout(function() {
+      $('#login-input').animate({'opacity': '1'}, 3000);
+  }, 4000);
 
-var treeData = json;
- var totalNodes = 0;
-    var maxLabelLength = 0;
-    // variables for drag/drop
-    var selectedNode = null;
-    var draggingNode = null;
-    // panning variables
-    var panSpeed = 200;
-    var panBoundary = 20; // Within 20px from edges will pan when dragging.
-    // Misc. variables
-    var i = 0;
-    var duration = 750;
-    var root;
+  /* player login */
+  var player_name = "Anonymous";
+  var logged = 0;
 
-    // size of the diagram
-    var viewerWidth = $(document).width();
-    var viewerHeight = $(document).height();
+  $('#login-input').keypress(function(e) {
+    if(e.which === 13 && $(this).val() != '') {
+      player_name = $(this).val();
+      logged = 1;
+      $('#welcome-login').animate({'opacity': '0'}, 1000);
+      /* objectives */
+      var help = 0;
+      var list = 0;
+      var connect = 0;
+      var trojan = 0;
+      var disconnect = 0;
 
-    var tree = d3.layout.tree()
-        .size([viewerHeight, viewerWidth]);
+      var won = 0;
+      var able = 0;
 
-    // define a d3 diagonal projection for use by the node paths later on.
-    var diagonal = d3.svg.diagonal()
-        .projection(function(d) {
-            return [d.y, d.x];
-        });
-
-    // A recursive helper function for performing some setup by walking through all nodes
-
-    function visit(parent, visitFn, childrenFn) {
-        if (!parent) return;
-
-        visitFn(parent);
-
-        var children = childrenFn(parent);
-        if (children) {
-            var count = children.length;
-            for (var i = 0; i < count; i++) {
-                visit(children[i], visitFn, childrenFn);
-            }
-        }
-    }
-
-    // Call visit function to establish maxLabelLength
-    visit(treeData, function(d) {
-        totalNodes++;
-        maxLabelLength = Math.max(d.name.length, maxLabelLength);
-
-    }, function(d) {
-        return d.children && d.children.length > 0 ? d.children : null;
-    });
-
-
-    // sort the tree according to the node names
-
-    function sortTree() {
-        tree.sort(function(a, b) {
-            return b.name.toLowerCase() < a.name.toLowerCase() ? 1 : -1;
-        });
-    }
-    // Sort the tree initially incase the JSON isn't in a sorted order.
-    sortTree();
-
-    // TODO: Pan function, can be better implemented.
-
-    function pan(domNode, direction) {
-        var speed = panSpeed;
-        if (panTimer) {
-            clearTimeout(panTimer);
-            translateCoords = d3.transform(svgGroup.attr("transform"));
-            if (direction == 'left' || direction == 'right') {
-                translateX = direction == 'left' ? translateCoords.translate[0] + speed : translateCoords.translate[0] - speed;
-                translateY = translateCoords.translate[1];
-            } else if (direction == 'up' || direction == 'down') {
-                translateX = translateCoords.translate[0];
-                translateY = direction == 'up' ? translateCoords.translate[1] + speed : translateCoords.translate[1] - speed;
-            }
-            scaleX = translateCoords.scale[0];
-            scaleY = translateCoords.scale[1];
-            scale = zoomListener.scale();
-            svgGroup.transition().attr("transform", "translate(" + translateX + "," + translateY + ")scale(" + scale + ")");
-            d3.select(domNode).select('g.node').attr("transform", "translate(" + translateX + "," + translateY + ")");
-            zoomListener.scale(zoomListener.scale());
-            zoomListener.translate([translateX, translateY]);
-            panTimer = setTimeout(function() {
-                pan(domNode, speed, direction);
-            }, 50);
-        }
-    }
-
-    // Define the zoom function for the zoomable tree
-
-    function zoom() {
-        svgGroup.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-    }
-
-
-    // define the zoomListener which calls the zoom function on the "zoom" event constrained within the scaleExtents
-    var zoomListener = d3.behavior.zoom().scaleExtent([0.1, 3]).on("zoom", zoom);
-
-    function initiateDrag(d, domNode) {
-        draggingNode = d;
-        d3.select(domNode).select('.ghostCircle').attr('pointer-events', 'none');
-        d3.selectAll('.ghostCircle').attr('class', 'ghostCircle show');
-        d3.select(domNode).attr('class', 'node activeDrag');
-
-        svgGroup.selectAll("g.node").sort(function(a, b) { // select the parent and sort the path's
-            if (a.id != draggingNode.id) return 1; // a is not the hovered element, send "a" to the back
-            else return -1; // a is the hovered element, bring "a" to the front
-        });
-        // if nodes has children, remove the links and nodes
-        if (nodes.length > 1) {
-            // remove link paths
-            links = tree.links(nodes);
-            nodePaths = svgGroup.selectAll("path.link")
-                .data(links, function(d) {
-                    return d.target.id;
-                }).remove();
-            // remove child nodes
-            nodesExit = svgGroup.selectAll("g.node")
-                .data(nodes, function(d) {
-                    return d.id;
-                }).filter(function(d, i) {
-                    if (d.id == draggingNode.id) {
-                        return false;
-                    }
-                    return true;
-                }).remove();
-        }
-
-        // remove parent link
-        parentLink = tree.links(tree.nodes(draggingNode.parent));
-        svgGroup.selectAll('path.link').filter(function(d, i) {
-            if (d.target.id == draggingNode.id) {
-                return true;
-            }
-            return false;
-        }).remove();
-
-        dragStarted = null;
-    }
-
-    // define the baseSvg, attaching a class for styling and the zoomListener
-    var baseSvg = d3.select("#tree-container").append("svg")
-        .attr("width", viewerWidth)
-        .attr("height", viewerHeight)
-        .attr("class", "overlay")
-        .call(zoomListener);
-
-
-    // Define the drag listeners for drag/drop behaviour of nodes.
-    dragListener = d3.behavior.drag()
-        .on("dragstart", function(d) {
-            if (d == root) {
-                return;
-            }
-            dragStarted = true;
-            nodes = tree.nodes(d);
-            d3.event.sourceEvent.stopPropagation();
-            // it's important that we suppress the mouseover event on the node being dragged. Otherwise it will absorb the mouseover event and the underlying node will not detect it d3.select(this).attr('pointer-events', 'none');
-        })
-        .on("drag", function(d) {
-            if (d == root) {
-                return;
-            }
-            if (dragStarted) {
-                domNode = this;
-                initiateDrag(d, domNode);
-            }
-
-            // get coords of mouseEvent relative to svg container to allow for panning
-            relCoords = d3.mouse($('svg').get(0));
-            if (relCoords[0] < panBoundary) {
-                panTimer = true;
-                pan(this, 'left');
-            } else if (relCoords[0] > ($('svg').width() - panBoundary)) {
-
-                panTimer = true;
-                pan(this, 'right');
-            } else if (relCoords[1] < panBoundary) {
-                panTimer = true;
-                pan(this, 'up');
-            } else if (relCoords[1] > ($('svg').height() - panBoundary)) {
-                panTimer = true;
-                pan(this, 'down');
-            } else {
-                try {
-                    clearTimeout(panTimer);
-                } catch (e) {
-
+      window.setInterval(function() {
+        if (won === 0) {
+          if (help === 1) {
+            $('#objectives #help').css({'color': 'red'});
+            $('#objectives #list').animate({'opacity': '1'}, 1000);
+            if (list === 1) {
+              $('#objectives #list').css({'color': 'red'});
+              $('#objectives #connect').animate({'opacity': '1'}, 1000);
+              if (connect === 1) {
+                $('#objectives #connect').css({'color': 'red'});
+                $('#objectives #trojan').animate({'opacity': '1'}, 1000);
+                if (trojan === 1) {
+                  $('#objectives #trojan').css({'color': 'red'});
+                  $('#objectives #disconnect').animate({'opacity': '1'}, 1000);
                 }
+              }
             }
+          }
+        }
 
-            d.x0 += d3.event.dy;
-            d.y0 += d3.event.dx;
-            var node = d3.select(this);
-            node.attr("transform", "translate(" + d.y0 + "," + d.x0 + ")");
-            updateTempConnector();
-        }).on("dragend", function(d) {
-            if (d == root) {
-                return;
-            }
-            domNode = this;
-            if (selectedNode) {
-                // now remove the element from the parent, and insert it into the new elements children
-                var index = draggingNode.parent.children.indexOf(draggingNode);
-                if (index > -1) {
-                    draggingNode.parent.children.splice(index, 1);
-                }
-                if (typeof selectedNode.children !== 'undefined' || typeof selectedNode._children !== 'undefined') {
-                    if (typeof selectedNode.children !== 'undefined') {
-                        selectedNode.children.push(draggingNode);
-                    } else {
-                        selectedNode._children.push(draggingNode);
-                    }
+        if (disconnect === 1) {
+          $('#objectives #disconnect').css({'color': 'red'});
+        }
+
+        if (minutes <= 1 && help === 1 && list === 1 && connect === 0 && trojan === 1 && disconnect === 1) {
+          won++;
+        }
+
+        if (won === 1) {
+          $('#objectives li').animate({'opacity': '0'}, 3000);
+          $('#objectives #won').show(3000).animate({'opacity': '1'}, 3000);
+        } else if (won > 1) {
+          won = 2;
+        }
+      }, 1000);
+
+      /* timer */
+      var seconds = 0;
+      var minutes = 0;
+      var danger = 0;
+      var lost = 0;
+
+      window.setInterval(function() {
+        if (connect === 1) {
+          if (seconds < 10) {
+            $('#time').text('Being traced: ' + minutes + ':0' +seconds);
+          } else {
+            $('#time').text('Being traced: ' + minutes + ':' +seconds);
+          }
+          if (seconds < 59) {
+            seconds++;
+          } else {
+            seconds = 0;
+            minutes++;
+          }
+          if (minutes >= 0 && seconds > 45) {
+            $('#time').css({'color': 'red'});
+            danger++;
+          }
+          if (danger === 1) {
+            $('span').remove();
+            $('#terminal').append('<div>You have only 15 seconds left...<span id="blinking">_</span></div><br>');
+            divx.scrollTop = divx.scrollHeight;
+          } else if (danger > 1) {
+            danger = 2;
+          }
+          if (minutes >= 1 && seconds > 0) {
+            $('#time').text('You\'ve been traced down!');
+            lost++;
+            able = 0;
+          }
+          if (lost === 1) {
+            $('span').remove();
+            $('#terminal').append('<div>You\'ve been traced down!<br>Formatting HDD...<br>Goodbye...<span id="blinking">_</span></div><br>');
+            $('#objectives li').animate({'opacity': '0'}, 3000);
+            $('#objectives #lost').show(3000).animate({'opacity': '1'}, 3000);
+            divx.scrollTop = divx.scrollHeight;
+            $('#objectives li').css({'color': 'green'}).animate({'opacity': '1'}, 3000);
+            setTimeout(function() {
+              $('#terminal').animate({'opacity': '0'}, 1000);
+              $('#root').animate({'opacity': '0'}, 1000);
+              $('input').animate({'opacity': '0'}, 1000).hide(3000);
+              $('#objectives').animate({'opacity': '0'}, 1000);
+              $('#time').animate({'opacity': '0'}, 1000);
+              help = 0;
+              list = 0;
+              connect = 0;
+              trojan = 0;
+              disconnect = 0;
+              won = 0;
+              $('#objectives li').css({'color': 'green'});
+            }, 20000);
+          } else if (lost > 1) {
+            lost = 2;
+          }
+        }
+      }, 1000);
+
+      setTimeout(function(){
+        $('#terminal').animate({'opacity': '1'}, 1000);
+      }, 1000);
+
+      setTimeout(function(){
+        $('#root').animate({'opacity': '1'}, 1000);
+        $('input').animate({'opacity': '1'}, 1000).show();
+      }, 5000);
+
+      setTimeout(function(){
+        $('span').remove();
+        $('#terminal').append('<br><div>Welcome to HACKSYS [version 1.0.0].<br>(c) Copyright 2014 HACorp Corporation. All rights reserved.<br><br>' + player_name + ' authenticated.<br>HACKSYS ready for use.<br>Use the help command for a list of commands.<br><br><span id="initial-root">$</span>&nbsp;&nbsp;&nbsp;<span id="blinking">_</span></div>');
+      }, 6500);
+
+      setTimeout(function() {
+        $('#time').animate({'opacity': '1'}, 3000);
+        $('#objectives').animate({'opacity': '1'}, 3000);
+      }, 7000);
+
+      setTimeout(function() {
+        $('#objectives #help').animate({'opacity': '1'}, 500);
+        able = 1;
+      }, 10000);
+
+      $('#input').keypress(function(e) {
+          if(e.which === 13 && $(this).val() != '' && able === 1) {
+            $('div span').remove();
+            $('initial-root').remove();
+
+            /* 
+             * List of commands available in the game:
+             * 
+             * help
+             * list
+             * connect nearest-phone-relay
+             * send trojan
+             * send adware
+             * disconnect
+             * exit
+             * 
+             */
+
+            switch( $(this).val() ) {
+              case 'help':
+                $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>List of commands:<br>help - Show this message (command list)<br>connect [DNS name] - Connects host computer with the targeted DNS name<br>disconnect - Disconnects host computer from the connected DNS name<br>exit - Shuts down host computer<br>list - Shows the list of the currently available applications<br>send [application type] - Sends given application name to the connected DNS name<span id="blinking">_</span></div>');
+                help = 1;
+                break;
+              case 'connect nearest.phone.relay':
+                if (connect === 0) {
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>Connecting...<br>Connected.<br>You have 1 minute before you get traced down.<span id="blinking">_</span></div>');
+                  connect = 1;
                 } else {
-                    selectedNode.children = [];
-                    selectedNode.children.push(draggingNode);
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>You are already connected to nearest.phone.relay.<span id="blinking">_</span></div>');
                 }
-                // Make sure that the node being added to is expanded so user can see added node is correctly moved
-                expand(selectedNode);
-                sortTree();
-                endDrag();
-            } else {
-                endDrag();
-            }
-        });
-
-    function endDrag() {
-        selectedNode = null;
-        d3.selectAll('.ghostCircle').attr('class', 'ghostCircle');
-        d3.select(domNode).attr('class', 'node');
-        // now restore the mouseover event or we won't be able to drag a 2nd time
-        d3.select(domNode).select('.ghostCircle').attr('pointer-events', '');
-        updateTempConnector();
-        if (draggingNode !== null) {
-            update(root);
-            centerNode(draggingNode);
-            draggingNode = null;
-        }
-    }
-
-    // Helper functions for collapsing and expanding nodes.
-
-    function collapse(d) {
-        if (d.children) {
-            d._children = d.children;
-            d._children.forEach(collapse);
-            d.children = null;
-        }
-    }
-
-    function expand(d) {
-        if (d._children) {
-            d.children = d._children;
-            d.children.forEach(expand);
-            d._children = null;
-        }
-    }
-
-    var overCircle = function(d) {
-        selectedNode = d;
-        updateTempConnector();
-    };
-    var outCircle = function(d) {
-        selectedNode = null;
-        updateTempConnector();
-    };
-
-    // Function to update the temporary connector indicating dragging affiliation
-    var updateTempConnector = function() {
-        var data = [];
-        if (draggingNode !== null && selectedNode !== null) {
-            // have to flip the source coordinates since we did this for the existing connectors on the original tree
-            data = [{
-                source: {
-                    x: selectedNode.y0,
-                    y: selectedNode.x0
-                },
-                target: {
-                    x: draggingNode.y0,
-                    y: draggingNode.x0
+                break;
+              case 'list':
+                $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>List of currently available applications:<br>AdBreak - bombard targeted computer with advertisement pop-ups (type: adware)<br>Trojan.Vaklik.BBB - steals vital information from the targeted computer (type: trojan)<span id="blinking">_</span>');
+                list = 1;
+                break;
+              case 'send trojan':
+                if (connect === 1) {
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>Sending Trojan.Vaklik.BBB...<br>Trojan.Vaklik.BBB sent.<span id="blinking">_</span></div>');
+                  trojan = 1;
+                } else {
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>You are not connected to any DNS name.<span id="blinking">_</span></div>');
                 }
-            }];
-        }
-        var link = svgGroup.selectAll(".templink").data(data);
-
-        link.enter().append("path")
-            .attr("class", "templink")
-            .attr("d", d3.svg.diagonal())
-            .attr('pointer-events', 'none');
-
-        link.attr("d", d3.svg.diagonal());
-
-        link.exit().remove();
-    };
-
-    // Function to center node when clicked/dropped so node doesn't get lost when collapsing/moving with large amount of children.
-
-    function centerNode(source) {
-        scale = zoomListener.scale();
-        x = -source.y0;
-        y = -source.x0;
-        x = x * scale + viewerWidth / 2;
-        y = y * scale + viewerHeight / 2;
-        d3.select('g').transition()
-            .duration(duration)
-            .attr("transform", "translate(" + x + "," + y + ")scale(" + scale + ")");
-        zoomListener.scale(scale);
-        zoomListener.translate([x, y]);
-    }
-
-    // Toggle children function
-
-    function toggleChildren(d) {
-        if (d.children) {
-            d._children = d.children;
-            d.children = null;
-        } else if (d._children) {
-            d.children = d._children;
-            d._children = null;
-        }
-        return d;
-    }
-    /////////////////////////////////////////////////
-    ///////////////// IMAGE DEFS ////////////////////
-    /////////////////////////////////////////////////
-
-    d3.select('svg').append('defs').append("pattern")
-        .attr("id", "img1")
-        .attr("patternUnits", "objectBoundingBox")
-
-        .attr("width", "25")
-        .attr("height", "25")
-        .append("image")
-
-        .attr("xlink:href", "")
-        .attr("x", 0)
-        .attr("y", 0)
-        .attr("width", 40)
-        .attr("height", 40);
-
-
-
-
-    // Toggle children on click.
-
-    function click(d) {
-        if (d3.event.defaultPrevented) return; // click suppressed
-        d = toggleChildren(d);
-        update(d);
-        centerNode(d);
-    }
-
-    function update(source) {
-        // Compute the new height, function counts total children of root node and sets tree height accordingly.
-        // This prevents the layout looking squashed when new nodes are made visible or looking sparse when nodes are removed
-        // This makes the layout more consistent.
-        var levelWidth = [1];
-        var childCount = function(level, n) {
-
-            if (n.children && n.children.length > 0) {
-                if (levelWidth.length <= level + 1) levelWidth.push(0);
-
-                levelWidth[level + 1] += n.children.length;
-                n.children.forEach(function(d) {
-                    childCount(level + 1, d);
-                });
+                break;
+              case 'send adware':
+                if (connect === 1) {
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>Sending AdBreak...<br>Unable to send AdBreak.<span id="blinking">_</span></div>');
+                } else {
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>You are not connected to any DNS name.<span id="blinking">_</span></div>');
+                }
+                break;
+              case 'disconnect':
+                if (connect === 1) {
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>Disconnecting...<br>Disconnected<span id="blinking">_</span></div>');
+                  disconnect = 1;
+                  connect = 0;
+                  minutes = 0;
+                  seconds = 0;
+                } else {
+                  $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>You are not connected to any DNS name.<span id="blinking">_</span></div>');
+                }
+                break;
+              case 'exit':
+                $('#terminal').animate({'opacity': '0'}, 1000);
+                $('#root').animate({'opacity': '0'}, 1000);
+                $('input').animate({'opacity': '0'}, 1000).hide(3000);
+                $('#objectives').animate({'opacity': '0'}, 1000);
+                $('#time').animate({'opacity': '0'}, 1000);
+                help = 0;
+                list = 0;
+                connect = 0;
+                trojan = 0;
+                disconnect = 0;
+                won = 0;
+                $('#objectives li').css({'color': 'green'});
+                break;
+              default:
+                $('#terminal').append('<div>$&nbsp;&nbsp;&nbsp;' + $(this).val() + '<br>Command not recognized. Type in help for a list of commands.<span id="blinking">_</span></div>');
             }
-        };
-        childCount(0, root);
-        var newHeight = d3.max(levelWidth) * 105; // 25 pixels per line  /*<><><><><><><><><><><><><><><><><><><><><><><>THIS IS DETERMINING SPACING */
-        tree = tree.size([newHeight, viewerWidth]);
+            $('#terminal').append('<br>');
 
-        // Compute the new tree layout.
-        var nodes = tree.nodes(root).reverse(),
-            links = tree.links(nodes);
-
-        // Set widths between levels based on maxLabelLength.
-        nodes.forEach(function(d) {
-            d.y = (d.depth * (maxLabelLength * 10)); //maxLabelLength * 10px
-            // alternatively to keep a fixed scale one can set a fixed depth per level
-            // Normalize for fixed-depth by commenting out below line
-            // d.y = (d.depth * 500); //500px per level.
-        });
-
-        // Update the nodes…
-        node = svgGroup.selectAll("g.node")
-            .data(nodes, function(d) {
-                return d.id || (d.id = ++i);
-            });
-
-        // Enter any new nodes at the parent's previous position.
-        var nodeEnter = node.enter().append("g")
-            .call(dragListener)
-            .attr("class", "node")
-            .attr("transform", function(d) {
-                return "translate(" + source.y0 + "," + source.x0 + ")";
-            })
-            .on('click', click);
-
-        nodeEnter.append("circle")
-            .attr('class', 'nodeCircle')
-            .attr("r", 0)
-            .style("fill", function(d) {
-                return d._children ? "lightsteelblue" : "#fff";
-            });
-
-        nodeEnter.append("text")
-            .attr("x", function(d) {
-                return d.children || d._children ? -10 : 10;
-            })
-            .attr("dy", ".35em")
-            .attr('class', 'nodeText')  
-          .attr("text-anchor", function(d) {
-                return d.children || d._children ? "end" : "start";
-            })
-            .text(function(d) {
-                return d.name;
-            })
-            .style("fill-opacity", 0);
-
-        // phantom node to give us mouseover in a radius around it
-        nodeEnter.append("circle")
-            .attr('class', 'ghostCircle')
-            .attr("r", 30)
-            .attr("opacity", 0.2) // change this to zero to hide the target area
-        .style("fill", "red")
-            .attr('pointer-events', 'mouseover')
-            .on("mouseover", function(node) {
-                overCircle(node);
-            })
-            .on("mouseout", function(node) {
-                outCircle(node);
-            });
-
-        // Update the text to reflect whether node has children or not.
-        node.select('text')
-            .attr("x", function(d) {
-                return d.children || d._children ? -30 : 30;
-            })
-            .attr("text-anchor", function(d) {
-                return d.children || d._children ? "end" : "start";
-            })
-            .text(function(d) {
-                return d.name;
-            });
-
-        // Change the circle fill depending on whether it has children and is collapsed
-        node.select("circle.nodeCircle")
-            .attr("r", 20.5) /*<><><><><><><><><><><><><><><><><><><><><><><>THIS IS DETERMINING RADIUS */
-            .style("fill", function(d) {
-                return d._children ? "lightsteelblue" : "url(#img1)";
-            });
-
-        // Transition nodes to their new position.
-        var nodeUpdate = node.transition()
-            .duration(duration)
-            .attr("transform", function(d) {
-                return "translate(" + d.y + "," + d.x + ")";
-            });
-
-        // Fade the text in
-        nodeUpdate.select("text")
-            .style("fill-opacity", 1);
-
-        // Transition exiting nodes to the parent's new position.
-        var nodeExit = node.exit().transition()
-            .duration(duration)
-            .attr("transform", function(d) {
-                return "translate(" + source.y + "," + source.x + ")";
-            })
-            .remove();
-
-        nodeExit.select("circle")
-            .attr("r", 0);
-
-        nodeExit.select("text")
-            .style("fill-opacity", 0);
-
-        // Update the links…
-        var link = svgGroup.selectAll("path.link")
-            .data(links, function(d) {
-                return d.target.id;
-            });
-
-        // Enter any new links at the parent's previous position.
-        link.enter().insert("path", "g")
-            .attr("class", "link")
-            .attr("d", function(d) {
-                var o = {
-                    x: source.x0,
-                    y: source.y0
-                };
-                return diagonal({
-                    source: o,
-                    target: o
-                });
-            });
-
-        // Transition links to their new position.
-        link.transition()
-            .duration(duration)
-            .attr("d", diagonal);
-
-        // Transition exiting nodes to the parent's new position.
-        link.exit().transition()
-            .duration(duration)
-            .attr("d", function(d) {
-                var o = {
-                    x: source.x,
-                    y: source.y
-                };
-                return diagonal({
-                    source: o,
-                    target: o
-                });
-            })
-            .remove();
-
-        // Stash the old positions for transition.
-        nodes.forEach(function(d) {
-            d.x0 = d.x;
-            d.y0 = d.y;
-        });
+            divx.scrollTop = divx.scrollHeight;
+            $(this).val('');
+          }
+      });
     }
-
-    // Append a group which holds all nodes and which the zoom Listener can act upon.
-    var svgGroup = baseSvg.append("g");
-
-    // Define the root
-    root = treeData;
-    root.x0 = viewerHeight / 2;
-    root.y0 = 0;
-
-    // Layout the tree initially and center on the root node.
-    update(root);
-    centerNode(root);
+  });
+});
