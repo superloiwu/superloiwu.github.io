@@ -455,7 +455,7 @@ var treeData = json;
         .attr("height", "25")
         .append("image")
 
-        .attr("xlink:href", "http://loiwu.github.io/img/favicon.ico")
+        .attr("xlink:href", "")
         .attr("x", 0)
         .attr("y", 0)
         .attr("width", 40)
