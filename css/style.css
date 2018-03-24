@@ -1,176 +1,97 @@
-* {
-  color: green;
-  cursor: default;
-  font: 200 1em 'Arial Narrow', sans-serif;
-}
-
-html,
-body {
-  background-color: black;
-  color: green;
-  margin: 0;
-}
-
-#welcome-login {
-  border: solid 1px;
-  border-radius: 1em;
-  margin: 0 5%;
-  opacity: 0;
-  position: fixed;
-  text-align: center;
-  width: 90%;
-  z-index: 99;
-}
-
-h1 {
-  font-size: 5em;
-  margin: 0;
-}
-
-#login-input {
-  background: black;
-  border: solid 1px;
-  border-radius: 1em;
-  cursor: text;
-  margin-bottom: 1em;
-  opacity: 0;
-	outline: none;
-  text-align: center;
-  width: 10em;
-}
-
-#terminal {
-  border: none;
-  height: calc(100% - 3em);
-  opacity: 0;
-  overflow-y: auto;
-  position: fixed;
-  width: 100%;
-}
-
-#root {
-  bottom: 0;
-  height: 2.6em;
-  opacity: 0;
-  position: fixed;
-  text-align: center;
-  width: 1em;
-}
-
-#input {
-  background: black;
-  border: none;
-  bottom: 1em;
-  cursor: text;
-  display: none;
-  height: 1.9em;
-  margin: 0;
-	outline: none;
-  opacity: 0;
-  position: fixed;
-  right: 0;
-  width: calc(100% - 1em);
-}
-
-#blinking {
-  -webkit-animation: blink 1s linear 0s infinite;
-  -moz-animation: blink 1s linear 0s infinite;
-  -ms-animation: blink 1s linear 0s infinite;
-  -o-animation: blink 1s linear 0s infinite;
-  animation: blink 1s linear 0s infinite;
-}
-
-@-webkit-keyframes blink {
-  from {
-    color: #000;
+html
+{
+  background:#000;
+  background-color: #000099;
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+  border-color:#33CCFF;
+  font-family: 'VT323', monospace;
+  font-size: 25px;
+  height:100%;
+  width:100%;
+  color: #33CCFF;
   }
 
-  to {
-    color: #fff;
-  }
+/*== stings ==*/
+.sting {
+   transition: all .25s ease-in-out;
+   -moz-transition: all .25s ease-in-out;
+   -webkit-transition: all .25s ease-in-out;
 }
 
-@-moz-keyframes blink {
-  from {
-    color: #000;
-  }
-
-  to {
-    color: #fff;
-  }
+.sting-red {
+  background-color: red;
+  color: red;
+}
+.sting-red a:hover {
+  background: red !important;
+  box-shadow:  0 0 1px 1px red !important;
 }
 
-@-ms-keyframes blink {
-  from {
-    color: #000;
-  }
+.sting-green {
+  background-color: green;
+  color: lightgreen;
+}
+.sting-green a:hover {
+  background: green !important;
+  box-shadow:  0 0 1px 1px green !important;
+}
+/*============*/
 
-  to {
-    color: #fff;
-  }
+#GlobalWrapper {
+opacity: 0.55;  
+margin: auto;
+width: 70%;
 }
 
-@-o-keyframes blink {
-  from {
-    color: #000;
-  }
-
-  to {
-    color: #fff;
-  }
+#GlobalWrapper a:hover {
+background: #33CCFF;
+box-shadow:  0 0 1px 1px #33CCFF;
+color: #000;
+border-color: inherit;
 }
 
-@keyframes blink {
-  from {
-    color: #000;
-  }
-
-  to {
-    color: #fff;
-  }
+#bg {
+  position: fixed; 
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
+  z-index: -1;
+}
+#bg img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
 }
 
-#time {
-  opacity: 0;
-  position: fixed;
-  right: 1em;
-  top: .5em;
+a
+{
+  color: inherit;
+  outline:0;
+  text-decoration:none;
+  font-weight: bold;
 }
 
-#objectives {
-  opacity: 0;
-  position: fixed;
-  right: .5em;
-  top: 1em;
-  width: 25%;
+.modal a {
+  margin: 0 auto;
 }
 
-#won,
-#lost {
-  display: none;
-  opacity: 0;
+.modal {position:relative; padding: 10px; display: inline-block;}
+.modal:before, .modal:after, .modal>:first-child:before, .modal>:first-child:after {
+    position:absolute;
+    width:15px; height: 15px;
+    border-color:inherit; /* or whatever colour */
+    border-style:solid; /* or whatever style */
+    content: ' ';
+	opacity: 0.55;
 }
-
-#objectives li {
-  opacity: 0;
-}
-
-::-webkit-scrollbar {
-    width: .5em;
-}
-
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0em 0em .5em rgba(0, 255, 0, .25);
-}
-
-::-webkit-scrollbar-thumb {
-    -webkit-box-shadow: inset 0em 0em .25em rgba(0, 255, 0, .5);
-}
-
-footer {
-  bottom: 0;
-  font-size: .8em;
-  position: fixed;
-  text-align: center;
-  width: 100%;
-}
+.modal:before {top:0;left:0;border-width: 3px 0 0 3px}
+.modal:after {top:0;right:0;border-width: 3px 3px 0 0}
+.modal>:first-child:before {bottom:0;right:0;border-width: 0 3px 3px 0}
+.modal>:first-child:after {bottom:0;left:0;border-width: 0 0 3px 3px}
